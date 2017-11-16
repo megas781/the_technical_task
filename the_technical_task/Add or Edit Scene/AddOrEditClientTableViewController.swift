@@ -24,6 +24,7 @@ class AddOrEditClientViewController: UITableViewController {
     //Также представим все эти TextField'ы в виде коллекции
     @IBOutlet var inputTextFieldCollection: [UITextField]!
     
+    private var smallestTextFieldWidth: CGFloat?
     
     
     @IBOutlet weak var dobLabel: UILabel!
@@ -214,6 +215,15 @@ class AddOrEditClientViewController: UITableViewController {
             
             textField.addTarget(self, action: #selector(self.aTextFieldPrimaryActionTriggered(_:)), for: .primaryActionTriggered)
             
+            if self.smallestTextFieldWidth == nil || self.smallestTextFieldWidth! > textField.frame.size.width {
+                self.smallestTextFieldWidth = textField.frame.size.width
+            }
+            
+        }
+        
+        //Здесь мы нашли smallestTextFieldWidth. Так что можно ставить constraint'ы
+        for textField in self.inputTextFieldCollection {
+            textField.widthAnchor.constraint(equalToConstant: self.smallestTextFieldWidth!).isActive = true
         }
         
     }
