@@ -16,6 +16,9 @@
 		ED0B85131FBDA76C006F877A /* AddOrEditClientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B85121FBDA76C006F877A /* AddOrEditClientTableViewController.swift */; };
 		ED0B85151FBDA78C006F877A /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B85141FBDA78C006F877A /* ReportViewController.swift */; };
 		ED0B85171FBDA7D7006F877A /* IncreasementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B85161FBDA7D7006F877A /* IncreasementViewController.swift */; };
+		ED0B85191FBDAB09006F877A /* ClientListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B85181FBDAB09006F877A /* ClientListTableViewCell.swift */; };
+		ED0B851B1FBDAB64006F877A /* AttributeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B851A1FBDAB64006F877A /* AttributeTableViewCell.swift */; };
+		ED0B851D1FBDABA4006F877A /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B851C1FBDABA4006F877A /* TransactionTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		ED0B85121FBDA76C006F877A /* AddOrEditClientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditClientTableViewController.swift; sourceTree = "<group>"; };
 		ED0B85141FBDA78C006F877A /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		ED0B85161FBDA7D7006F877A /* IncreasementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncreasementViewController.swift; sourceTree = "<group>"; };
+		ED0B85181FBDAB09006F877A /* ClientListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListTableViewCell.swift; sourceTree = "<group>"; };
+		ED0B851A1FBDAB64006F877A /* AttributeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeTableViewCell.swift; sourceTree = "<group>"; };
+		ED0B851C1FBDABA4006F877A /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,10 +69,9 @@
 			isa = PBXGroup;
 			children = (
 				ED0B84FD1FBD92E3006F877A /* AppDelegate.swift */,
-				ED0B84FF1FBD92E3006F877A /* ClientListViewController.swift */,
-				ED0B85121FBDA76C006F877A /* AddOrEditClientTableViewController.swift */,
-				ED0B85141FBDA78C006F877A /* ReportViewController.swift */,
-				ED0B85161FBDA7D7006F877A /* IncreasementViewController.swift */,
+				EDA693CA1FBDAC7100FBDFAE /* Client List Scene */,
+				EDA693CB1FBDAC7D00FBDFAE /* Add or Edit Scene */,
+				EDA693CC1FBDAC9000FBDFAE /* Client Report Scene */,
 				ED0B85011FBD92E3006F877A /* Main.storyboard */,
 				ED0B85071FBD92E3006F877A /* Assets.xcassets */,
 				ED0B85091FBD92E3006F877A /* LaunchScreen.storyboard */,
@@ -74,6 +79,34 @@
 				ED0B85041FBD92E3006F877A /* the_technical_task.xcdatamodeld */,
 			);
 			path = the_technical_task;
+			sourceTree = "<group>";
+		};
+		EDA693CA1FBDAC7100FBDFAE /* Client List Scene */ = {
+			isa = PBXGroup;
+			children = (
+				ED0B84FF1FBD92E3006F877A /* ClientListViewController.swift */,
+				ED0B85181FBDAB09006F877A /* ClientListTableViewCell.swift */,
+				ED0B85161FBDA7D7006F877A /* IncreasementViewController.swift */,
+			);
+			path = "Client List Scene";
+			sourceTree = "<group>";
+		};
+		EDA693CB1FBDAC7D00FBDFAE /* Add or Edit Scene */ = {
+			isa = PBXGroup;
+			children = (
+				ED0B85121FBDA76C006F877A /* AddOrEditClientTableViewController.swift */,
+			);
+			path = "Add or Edit Scene";
+			sourceTree = "<group>";
+		};
+		EDA693CC1FBDAC9000FBDFAE /* Client Report Scene */ = {
+			isa = PBXGroup;
+			children = (
+				ED0B85141FBDA78C006F877A /* ReportViewController.swift */,
+				ED0B851A1FBDAB64006F877A /* AttributeTableViewCell.swift */,
+				ED0B851C1FBDABA4006F877A /* TransactionTableViewCell.swift */,
+			);
+			path = "Client Report Scene";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,8 +184,11 @@
 				ED0B85131FBDA76C006F877A /* AddOrEditClientTableViewController.swift in Sources */,
 				ED0B85001FBD92E3006F877A /* ClientListViewController.swift in Sources */,
 				ED0B84FE1FBD92E3006F877A /* AppDelegate.swift in Sources */,
+				ED0B85191FBDAB09006F877A /* ClientListTableViewCell.swift in Sources */,
 				ED0B85151FBDA78C006F877A /* ReportViewController.swift in Sources */,
 				ED0B85171FBDA7D7006F877A /* IncreasementViewController.swift in Sources */,
+				ED0B851B1FBDAB64006F877A /* AttributeTableViewCell.swift in Sources */,
+				ED0B851D1FBDABA4006F877A /* TransactionTableViewCell.swift in Sources */,
 				ED0B85061FBD92E3006F877A /* the_technical_task.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

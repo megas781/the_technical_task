@@ -10,6 +10,7 @@ import UIKit
 
 class ClientListTableViewController: UITableViewController {
 
+    @IBOutlet weak var theSearchBar: UISearchBar!
     
     
     override func viewDidLoad() {
