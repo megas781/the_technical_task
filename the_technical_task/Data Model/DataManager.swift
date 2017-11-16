@@ -25,6 +25,7 @@ class DataManager {
     func getContext() -> NSManagedObjectContext { return self.context }
     
     private init() {
+        //При инициализации shared нужно установить inMemoryClients
         self.inMemoryClients = self.getClients()
     }
     
@@ -61,7 +62,9 @@ class DataManager {
                 try self.context.save()
                 self.updateInMemoryClients()
             } catch let error as NSError {
-                print("saving error: \(error.localizedDescription)")
+                print("saving error : \(error.localizedDescription)")
+                print("failureReason: \(error.localizedFailureReason)")
+                print("suggestion   : \(error.localizedRecoveryOptions)")
             }
         }
     }
@@ -89,8 +92,8 @@ class DataManager {
     }
     
     //Может изменю на другую архитектуру
-    func createNewClientAndSave(name: String, surname: String, patronymic: String, phoneNumber: String, birthdayDate: Date = Date(), image: UIImage? = nil) {
-        let _ = Client.init(name: name, surname: surname, patronymic: patronymic, phoneNumber: phoneNumber, birthdayDate: birthdayDate, image: image)
+    func createNewClientAndSave(name: String, surname: String, patronymic: String? = nil, phoneNumber: String? = nil, birthdayDate: Date, image: UIImage? = nil) {
+        let m = Client.init(name: name, surname: surname, patronymic: patronymic, phoneNumber: phoneNumber, birthdayDate: birthdayDate, image: image)
         self.saveChangesIfNeeded()
     }
     

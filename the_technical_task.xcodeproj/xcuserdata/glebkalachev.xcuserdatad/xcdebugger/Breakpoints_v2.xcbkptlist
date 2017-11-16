@@ -2,4 +2,116 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "the_technical_task/Data Model/DataManager.swift"
+            timestampString = "532566053.255035"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "saveChangesIfNeeded()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "the_technical_task/Data Model/DataManager.swift"
+            timestampString = "532566053.255129"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "saveChangesIfNeeded()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "the_technical_task/Data Model/DataManager.swift"
+            timestampString = "532566053.2552"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "createNewClientAndSave(name:surname:patronymic:phoneNumber:birthdayDate:image:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 2 of the_technical_task.DataManager.createNewClientAndSave(name: Swift.String, surname: Swift.String, patronymic: Swift.Optional&lt;Swift.String&gt;, phoneNumber: Swift.Optional&lt;Swift.String&gt;, birthdayDate: Foundation.Date, image: Swift.Optional&lt;__ObjC.UIImage&gt;) -&gt; ()"
+                  moduleName = "the_technical_task"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/glebkalachev/Documents/workspace_xcode/the_technical_task/the_technical_task/Data%20Model/DataManager.swift"
+                  timestampString = "532565427.294706"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 3 of the_technical_task.DataManager.createNewClientAndSave(name: Swift.String, surname: Swift.String, patronymic: Swift.Optional&lt;Swift.String&gt;, phoneNumber: Swift.Optional&lt;Swift.String&gt;, birthdayDate: Foundation.Date, image: Swift.Optional&lt;__ObjC.UIImage&gt;) -&gt; ()"
+                  moduleName = "the_technical_task"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/glebkalachev/Documents/workspace_xcode/the_technical_task/the_technical_task/Data%20Model/DataManager.swift"
+                  timestampString = "532565427.298729"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 5 of the_technical_task.DataManager.createNewClientAndSave(name: Swift.String, surname: Swift.String, patronymic: Swift.Optional&lt;Swift.String&gt;, phoneNumber: Swift.Optional&lt;Swift.String&gt;, birthdayDate: Foundation.Date, image: Swift.Optional&lt;__ObjC.UIImage&gt;) -&gt; ()"
+                  moduleName = "the_technical_task"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/glebkalachev/Documents/workspace_xcode/the_technical_task/the_technical_task/Data%20Model/DataManager.swift"
+                  timestampString = "532565427.301965"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "the_technical_task.DataManager.createNewClientAndSave(name: Swift.String, surname: Swift.String, patronymic: Swift.Optional&lt;Swift.String&gt;, phoneNumber: Swift.Optional&lt;Swift.String&gt;, birthdayDate: Foundation.Date, image: Swift.Optional&lt;__ObjC.UIImage&gt;) -&gt; ()"
+                  moduleName = "the_technical_task"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/glebkalachev/Documents/workspace_xcode/the_technical_task/the_technical_task/Data%20Model/DataManager.swift"
+                  timestampString = "532565427.30501"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "96"
+                  endingLineNumber = "96"
+                  offsetFromSymbolStart = "198">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -18,7 +18,7 @@ class ClientListTableViewCell: UITableViewCell {
         
         self.theImageView.image = client.image ?? UIImage.init(named: "empty_photo_image")
         
-        self.clientFullNameLabel.text = "\(client.surname) \(client.name) \(client.patronymic)"
+        self.clientFullNameLabel.text = "\(client.surname) \(client.name) \(client.patronymic ?? "")"
         
         self.theImageView.layer.cornerRadius = self.theImageView.frame.size.height/2
         

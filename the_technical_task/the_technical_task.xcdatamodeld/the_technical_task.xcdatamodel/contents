@@ -2,12 +2,11 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17B48" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Client" representedClassName="Client" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="patronymic" attributeType="String" syncable="YES"/>
+        <attribute name="patronymic" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="storedBirthdayDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="storedImageData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="surname" attributeType="String" syncable="YES"/>
-        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Transaction" inverseName="client" inverseEntity="Transaction" syncable="YES"/>
     </entity>
     <entity name="Transaction" representedClassName="Transaction" syncable="YES">
@@ -16,7 +15,7 @@
         <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="transactions" inverseEntity="Client" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Client" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="Client" positionX="0" positionY="0" width="128" height="150"/>
         <element name="Transaction" positionX="0" positionY="0" width="128" height="90"/>
     </elements>
 </model>

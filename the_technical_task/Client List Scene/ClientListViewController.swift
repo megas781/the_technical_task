@@ -15,8 +15,6 @@ class ClientListTableViewController: UITableViewController {
     
     @IBOutlet weak var theSearchBar: UISearchBar!
     
-    //Скорее всего не буду это использовать
-//    var clients: [Client] = []
     
     //MARK: LifeCycle implementation
     
@@ -30,7 +28,7 @@ class ClientListTableViewController: UITableViewController {
         print("count before: \(DataManager.shared.getClients().count)")
         
         for i in 1...5 {
-            DataManager.shared.createNewClientAndSave(name: "Gleb #\(i)", surname: "Kalachev", patronymic: "Романович", phoneNumber: "1-234-56-78")
+            DataManager.shared.createNewClientAndSave(name: "Gleb #\(i)", surname: "Kalachev", patronymic: "Романович", birthdayDate: Date())
         }
         
         
@@ -41,13 +39,13 @@ class ClientListTableViewController: UITableViewController {
     //MARK: UITableViewDataSource implementation
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataManager.shared.getClients().count
+        return DataManager.shared.inMemoryClients.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "ClientListTableViewCellIdentifier", for: indexPath) as! ClientListTableViewCell
         
-        cell.setOutletsAndRoundImageView(with: DataManager.shared.getClients()[indexPath.row])
+        cell.setOutletsAndRoundImageView(with: DataManager.shared.inMemoryClients[indexPath.row])
         
         return cell
     }
@@ -101,6 +99,7 @@ class ClientListTableViewController: UITableViewController {
     
     @IBAction func unwindToClientListVC(segue: UIStoryboardSegue) {
         print("unwindToClientListVC performed")
+        self.tableView.reloadData()
     }
     
 }

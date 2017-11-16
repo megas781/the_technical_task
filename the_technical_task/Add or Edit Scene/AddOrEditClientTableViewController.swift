@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddOrEditClientViewController: UITableViewController {
+class AddOrEditClientViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK: Outlets
     
@@ -115,10 +115,19 @@ class AddOrEditClientViewController: UITableViewController {
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         
-        print("SaveButtonTapped")
         
         if self.newClientContext {
             print("Should implement creating new client")
+            
+            guard let name = self.nameInputTextField.text,
+                let surname = self.nameInputTextField.text else {
+                    fatalError("Не смог уберечь saveButton от краша")
+            }
+            
+            DataManager.shared.createNewClientAndSave(name: name, surname: surname, patronymic: self.patronymicInputTextField.text, phoneNumber: self.phoneNumberInputTextField.text, birthdayDate: self.birthdayDatePicker.date, image: self.theImagePickerButton.currentBackgroundImage != UIImage.init(named: "empty_photo_tap_to_pick_image") ? self.theImagePickerButton.currentBackgroundImage : nil)
+            
+            self.performSegue(withIdentifier: "unwindFromAddOrEditClientVCToClientListVCIdentifier", sender: self)
+            
         } else {
             print("non-newClientContext")
         }
@@ -137,8 +146,41 @@ class AddOrEditClientViewController: UITableViewController {
         
         //Здесь нужно зумутить ActionSheet с выбором Камера/Библиотека
         
+        let ac = UIAlertController.init(title: "Выбирите источник изображения", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        ac.addAction(UIAlertAction.init(title: "Отменить", style: .cancel, handler: nil))
+        
+        ac.addAction(UIAlertAction.init(title: "Камера", style: .default, handler: { (_) in
+            let imagePicker = UIImagePickerController.init()
+            imagePicker.sourceType = .camera
+            imagePicker.delegate = self
+            self.present(imagePicker, animated: true, completion: nil)
+        }))
+        
+        ac.addAction(UIAlertAction.init(title: "Библиотека", style: .default, handler: { (_) in
+            let imagePicker = UIImagePickerController.init()
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.delegate = self
+            self.present(imagePicker, animated: true, completion: nil)
+        }))
+        
+        self.present(ac, animated: true, completion: nil)
+        
     }
     
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        picker.dismiss(animated: true, completion: nil)
+        
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            print("coundn't retrieve an image")
+            return
+        }
+        
+        self.theImagePickerButton.setBackgroundImage(image, for: .normal)
+        
+    }
     
     
     
@@ -169,7 +211,7 @@ class AddOrEditClientViewController: UITableViewController {
         
         switch sender.tag {
         case 1,2,3:
-        self.inputTextFieldCollection[sender.tag].becomeFirstResponder()
+            self.inputTextFieldCollection[sender.tag].becomeFirstResponder()
         case 4:
             sender.resignFirstResponder()
         default:
@@ -227,5 +269,6 @@ class AddOrEditClientViewController: UITableViewController {
         }
         
     }
+    
     
 }

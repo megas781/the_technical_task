@@ -22,14 +22,17 @@ extension Client {
         return NSFetchRequest<Client>(entityName: "Client")
     }
 
+    //Non-optional
+    @NSManaged public var name: String
+    @NSManaged public var surname: String
+    
+    //Optional
     @NSManaged private var storedBirthdayDate: NSDate?
     @NSManaged private var storedImageData: NSData?
-    @NSManaged public var name: String
-    @NSManaged public var patronymic: String
-    @NSManaged public var phoneNumber: String
-    @NSManaged public var surname: String
-    @NSManaged public var uuid: UUID
+    @NSManaged public var patronymic: String?
+    @NSManaged public var phoneNumber: String?
     @NSManaged public var transactions: NSOrderedSet?
+    //    @NSManaged public var uuid: UUID
     
     
     //MARK: Convenience properties
@@ -61,20 +64,20 @@ extension Client {
     
     
     //MARK: Convenience Initializers
-    convenience init(name: String, surname: String, patronymic: String, phoneNumber: String, birthdayDate: Date = Date(), image: UIImage? = nil) {
+    convenience init(name: String, surname: String, patronymic: String? = nil, phoneNumber: String? = nil, birthdayDate: Date, image: UIImage? = nil) {
         
         self.init(context: Client.context)
         
         self.name = name
         self.surname = surname
+        
         self.patronymic = patronymic
         self.phoneNumber = phoneNumber
         
         self.birthdayDate = birthdayDate
-        
         self.image = image
         
-        self.uuid = UUID.init()
+//        self.uuid = UUID.init()
         
     }
     
