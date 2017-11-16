@@ -30,6 +30,11 @@ class ClientListTableViewController: UITableViewController {
         for i in 1...5 {
             DataManager.shared.createNewClientAndSave(name: "Gleb #\(i)", surname: "Kalachev", patronymic: "Романович", birthdayDate: Date())
         }
+        for i in 1...5 {
+            print("#\(1) transactions: \(DataManager.shared.inMemoryClients[i-1].transactions)")
+        }
+        
+        
         
         
         print("count after : \(DataManager.shared.getClients().count)")
@@ -49,6 +54,23 @@ class ClientListTableViewController: UITableViewController {
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let positiveTransactionAction = UITableViewRowAction.init(style: .default, title: "  +  ") { (action, indexPath) in
+            print("positiveTransactionAction performed")
+        }
+        positiveTransactionAction.backgroundColor = #colorLiteral(red: 0, green: 0.6883943677, blue: 0.003334663808, alpha: 1)
+        
+        
+        let negativeTransactionAction = UITableViewRowAction.init(style: .default, title: "  -  ") { (action, indexPath) in
+            print("negativeTransactionAction performed")
+        }
+        negativeTransactionAction.backgroundColor = #colorLiteral(red: 0.6911816001, green: 0.007650073618, blue: 0, alpha: 1)
+        
+        return [positiveTransactionAction, negativeTransactionAction]
+    }
+    
     
     //MARK: UITableViewDelegate implementation
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -101,6 +123,9 @@ class ClientListTableViewController: UITableViewController {
         print("unwindToClientListVC performed")
         self.tableView.reloadData()
     }
+    
+    
+    
     
 }
 
