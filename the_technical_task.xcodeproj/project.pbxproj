@@ -10,7 +10,6 @@
 		ED0B84FE1FBD92E3006F877A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B84FD1FBD92E3006F877A /* AppDelegate.swift */; };
 		ED0B85001FBD92E3006F877A /* ClientListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B84FF1FBD92E3006F877A /* ClientListViewController.swift */; };
 		ED0B85031FBD92E3006F877A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED0B85011FBD92E3006F877A /* Main.storyboard */; };
-		ED0B85061FBD92E3006F877A /* the_technical_task.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED0B85041FBD92E3006F877A /* the_technical_task.xcdatamodeld */; };
 		ED0B85081FBD92E3006F877A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED0B85071FBD92E3006F877A /* Assets.xcassets */; };
 		ED0B850B1FBD92E4006F877A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED0B85091FBD92E3006F877A /* LaunchScreen.storyboard */; };
 		ED0B85131FBDA76C006F877A /* AddOrEditClientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B85121FBDA76C006F877A /* AddOrEditClientTableViewController.swift */; };
@@ -19,7 +18,9 @@
 		ED0B85191FBDAB09006F877A /* ClientListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B85181FBDAB09006F877A /* ClientListTableViewCell.swift */; };
 		ED0B851B1FBDAB64006F877A /* AttributeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B851A1FBDAB64006F877A /* AttributeTableViewCell.swift */; };
 		ED0B851D1FBDABA4006F877A /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B851C1FBDABA4006F877A /* TransactionTableViewCell.swift */; };
+		ED91D61B1FBDC42D001DBDB2 /* the_technical_task.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED91D6191FBDC42D001DBDB2 /* the_technical_task.xcdatamodeld */; };
 		EDA693CE1FBDB3B100FBDFAE /* Client+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA693CD1FBDB3B100FBDFAE /* Client+extension.swift */; };
+		EDA693D01FBDB42000FBDFAE /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA693CF1FBDB42000FBDFAE /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +28,6 @@
 		ED0B84FD1FBD92E3006F877A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED0B84FF1FBD92E3006F877A /* ClientListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListViewController.swift; sourceTree = "<group>"; };
 		ED0B85021FBD92E3006F877A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		ED0B85051FBD92E3006F877A /* the_technical_task.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = the_technical_task.xcdatamodel; sourceTree = "<group>"; };
 		ED0B85071FBD92E3006F877A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED0B850A1FBD92E3006F877A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED0B850C1FBD92E4006F877A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,7 +37,9 @@
 		ED0B85181FBDAB09006F877A /* ClientListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListTableViewCell.swift; sourceTree = "<group>"; };
 		ED0B851A1FBDAB64006F877A /* AttributeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeTableViewCell.swift; sourceTree = "<group>"; };
 		ED0B851C1FBDABA4006F877A /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		ED91D61A1FBDC42D001DBDB2 /* the_technical_task.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = the_technical_task.xcdatamodel; sourceTree = "<group>"; };
 		EDA693CD1FBDB3B100FBDFAE /* Client+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+extension.swift"; sourceTree = "<group>"; };
+		EDA693CF1FBDB42000FBDFAE /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,11 +77,11 @@
 				EDA693CB1FBDAC7D00FBDFAE /* Add or Edit Scene */,
 				EDA693CC1FBDAC9000FBDFAE /* Client Report Scene */,
 				ED0B85011FBD92E3006F877A /* Main.storyboard */,
-				EDA693CD1FBDB3B100FBDFAE /* Client+extension.swift */,
+				EDA693DA1FBDC11D00FBDFAE /* Data Model */,
 				ED0B85071FBD92E3006F877A /* Assets.xcassets */,
 				ED0B85091FBD92E3006F877A /* LaunchScreen.storyboard */,
 				ED0B850C1FBD92E4006F877A /* Info.plist */,
-				ED0B85041FBD92E3006F877A /* the_technical_task.xcdatamodeld */,
+				ED91D6191FBDC42D001DBDB2 /* the_technical_task.xcdatamodeld */,
 			);
 			path = the_technical_task;
 			sourceTree = "<group>";
@@ -110,6 +112,23 @@
 				ED0B851C1FBDABA4006F877A /* TransactionTableViewCell.swift */,
 			);
 			path = "Client Report Scene";
+			sourceTree = "<group>";
+		};
+		EDA693D91FBDC10E00FBDFAE /* NSManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NSManagedObjects;
+			sourceTree = "<group>";
+		};
+		EDA693DA1FBDC11D00FBDFAE /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				EDA693CD1FBDB3B100FBDFAE /* Client+extension.swift */,
+				EDA693CF1FBDB42000FBDFAE /* DataManager.swift */,
+				EDA693D91FBDC10E00FBDFAE /* NSManagedObjects */,
+			);
+			path = "Data Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,10 +209,11 @@
 				ED0B85191FBDAB09006F877A /* ClientListTableViewCell.swift in Sources */,
 				EDA693CE1FBDB3B100FBDFAE /* Client+extension.swift in Sources */,
 				ED0B85151FBDA78C006F877A /* ReportViewController.swift in Sources */,
+				ED91D61B1FBDC42D001DBDB2 /* the_technical_task.xcdatamodeld in Sources */,
 				ED0B85171FBDA7D7006F877A /* IncreasementViewController.swift in Sources */,
 				ED0B851B1FBDAB64006F877A /* AttributeTableViewCell.swift in Sources */,
+				EDA693D01FBDB42000FBDFAE /* DataManager.swift in Sources */,
 				ED0B851D1FBDABA4006F877A /* TransactionTableViewCell.swift in Sources */,
-				ED0B85061FBD92E3006F877A /* the_technical_task.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,12 +400,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		ED0B85041FBD92E3006F877A /* the_technical_task.xcdatamodeld */ = {
+		ED91D6191FBDC42D001DBDB2 /* the_technical_task.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				ED0B85051FBD92E3006F877A /* the_technical_task.xcdatamodel */,
+				ED91D61A1FBDC42D001DBDB2 /* the_technical_task.xcdatamodel */,
 			);
-			currentVersion = ED0B85051FBD92E3006F877A /* the_technical_task.xcdatamodel */;
+			currentVersion = ED91D61A1FBDC42D001DBDB2 /* the_technical_task.xcdatamodel */;
 			path = the_technical_task.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

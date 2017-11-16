@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import CoreData
+
+
 
 class ClientListTableViewController: UITableViewController {
 
@@ -16,8 +19,22 @@ class ClientListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+        Client.init(name: "", surname: "", patronymic: "", phoneNumber: "")
+////        print("fetchd objects: \(DataManager().getClients())")
+//        
+//        print("before: \(DataManager.shared.getContext().hasChanges)")
+//        
+//        let newClient = Client.init(name: "Gleb", surname: "Kalachev", patronymic: "Романович", phoneNumber: "8-937-539-93-02")
+//        
+//        print("new client: \(newClient)")
+//        
+//        print("after : \(DataManager.shared.getContext().hasChanges)")
+//        
+//        DataManager.shared.saveChanges()
+//        
+//        print("saved changes")
+//        
+////        newClient.na += " [changed]"
         
     }
 
