@@ -19,6 +19,7 @@
 		ED0B85191FBDAB09006F877A /* ClientListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B85181FBDAB09006F877A /* ClientListTableViewCell.swift */; };
 		ED0B851B1FBDAB64006F877A /* AttributeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B851A1FBDAB64006F877A /* AttributeTableViewCell.swift */; };
 		ED0B851D1FBDABA4006F877A /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B851C1FBDABA4006F877A /* TransactionTableViewCell.swift */; };
+		EDA693CE1FBDB3B100FBDFAE /* Client+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA693CD1FBDB3B100FBDFAE /* Client+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		ED0B85181FBDAB09006F877A /* ClientListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListTableViewCell.swift; sourceTree = "<group>"; };
 		ED0B851A1FBDAB64006F877A /* AttributeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeTableViewCell.swift; sourceTree = "<group>"; };
 		ED0B851C1FBDABA4006F877A /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		EDA693CD1FBDB3B100FBDFAE /* Client+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				EDA693CB1FBDAC7D00FBDFAE /* Add or Edit Scene */,
 				EDA693CC1FBDAC9000FBDFAE /* Client Report Scene */,
 				ED0B85011FBD92E3006F877A /* Main.storyboard */,
+				EDA693CD1FBDB3B100FBDFAE /* Client+extension.swift */,
 				ED0B85071FBD92E3006F877A /* Assets.xcassets */,
 				ED0B85091FBD92E3006F877A /* LaunchScreen.storyboard */,
 				ED0B850C1FBD92E4006F877A /* Info.plist */,
@@ -185,6 +188,7 @@
 				ED0B85001FBD92E3006F877A /* ClientListViewController.swift in Sources */,
 				ED0B84FE1FBD92E3006F877A /* AppDelegate.swift in Sources */,
 				ED0B85191FBDAB09006F877A /* ClientListTableViewCell.swift in Sources */,
+				EDA693CE1FBDB3B100FBDFAE /* Client+extension.swift in Sources */,
 				ED0B85151FBDA78C006F877A /* ReportViewController.swift in Sources */,
 				ED0B85171FBDA7D7006F877A /* IncreasementViewController.swift in Sources */,
 				ED0B851B1FBDAB64006F877A /* AttributeTableViewCell.swift in Sources */,
