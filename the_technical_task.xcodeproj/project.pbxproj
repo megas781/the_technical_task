@@ -19,6 +19,10 @@
 		ED0B851B1FBDAB64006F877A /* AttributeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B851A1FBDAB64006F877A /* AttributeTableViewCell.swift */; };
 		ED0B851D1FBDABA4006F877A /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B851C1FBDABA4006F877A /* TransactionTableViewCell.swift */; };
 		ED91D61B1FBDC42D001DBDB2 /* the_technical_task.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED91D6191FBDC42D001DBDB2 /* the_technical_task.xcdatamodeld */; };
+		ED91D6201FBDC695001DBDB2 /* Client+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91D61C1FBDC695001DBDB2 /* Client+CoreDataClass.swift */; };
+		ED91D6211FBDC695001DBDB2 /* Client+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91D61D1FBDC695001DBDB2 /* Client+CoreDataProperties.swift */; };
+		ED91D6221FBDC695001DBDB2 /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91D61E1FBDC695001DBDB2 /* Transaction+CoreDataClass.swift */; };
+		ED91D6231FBDC695001DBDB2 /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91D61F1FBDC695001DBDB2 /* Transaction+CoreDataProperties.swift */; };
 		EDA693CE1FBDB3B100FBDFAE /* Client+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA693CD1FBDB3B100FBDFAE /* Client+extension.swift */; };
 		EDA693D01FBDB42000FBDFAE /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA693CF1FBDB42000FBDFAE /* DataManager.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +42,10 @@
 		ED0B851A1FBDAB64006F877A /* AttributeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeTableViewCell.swift; sourceTree = "<group>"; };
 		ED0B851C1FBDABA4006F877A /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		ED91D61A1FBDC42D001DBDB2 /* the_technical_task.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = the_technical_task.xcdatamodel; sourceTree = "<group>"; };
+		ED91D61C1FBDC695001DBDB2 /* Client+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataClass.swift"; sourceTree = "<group>"; };
+		ED91D61D1FBDC695001DBDB2 /* Client+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		ED91D61E1FBDC695001DBDB2 /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
+		ED91D61F1FBDC695001DBDB2 /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EDA693CD1FBDB3B100FBDFAE /* Client+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+extension.swift"; sourceTree = "<group>"; };
 		EDA693CF1FBDB42000FBDFAE /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +125,10 @@
 		EDA693D91FBDC10E00FBDFAE /* NSManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
+				ED91D61C1FBDC695001DBDB2 /* Client+CoreDataClass.swift */,
+				ED91D61D1FBDC695001DBDB2 /* Client+CoreDataProperties.swift */,
+				ED91D61E1FBDC695001DBDB2 /* Transaction+CoreDataClass.swift */,
+				ED91D61F1FBDC695001DBDB2 /* Transaction+CoreDataProperties.swift */,
 			);
 			path = NSManagedObjects;
 			sourceTree = "<group>";
@@ -204,13 +216,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED0B85131FBDA76C006F877A /* AddOrEditClientTableViewController.swift in Sources */,
+				ED91D6211FBDC695001DBDB2 /* Client+CoreDataProperties.swift in Sources */,
 				ED0B85001FBD92E3006F877A /* ClientListViewController.swift in Sources */,
 				ED0B84FE1FBD92E3006F877A /* AppDelegate.swift in Sources */,
 				ED0B85191FBDAB09006F877A /* ClientListTableViewCell.swift in Sources */,
+				ED91D6231FBDC695001DBDB2 /* Transaction+CoreDataProperties.swift in Sources */,
 				EDA693CE1FBDB3B100FBDFAE /* Client+extension.swift in Sources */,
 				ED0B85151FBDA78C006F877A /* ReportViewController.swift in Sources */,
 				ED91D61B1FBDC42D001DBDB2 /* the_technical_task.xcdatamodeld in Sources */,
 				ED0B85171FBDA7D7006F877A /* IncreasementViewController.swift in Sources */,
+				ED91D6201FBDC695001DBDB2 /* Client+CoreDataClass.swift in Sources */,
+				ED91D6221FBDC695001DBDB2 /* Transaction+CoreDataClass.swift in Sources */,
 				ED0B851B1FBDAB64006F877A /* AttributeTableViewCell.swift in Sources */,
 				EDA693D01FBDB42000FBDFAE /* DataManager.swift in Sources */,
 				ED0B851D1FBDABA4006F877A /* TransactionTableViewCell.swift in Sources */,

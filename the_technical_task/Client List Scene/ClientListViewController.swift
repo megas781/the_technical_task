@@ -12,31 +12,32 @@ import CoreData
 
 
 class ClientListTableViewController: UITableViewController {
-
+    
     @IBOutlet weak var theSearchBar: UISearchBar!
     
+    var clients: [Client] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Client.init(name: "", surname: "", patronymic: "", phoneNumber: "")
-////        print("fetchd objects: \(DataManager().getClients())")
-//        
-//        print("before: \(DataManager.shared.getContext().hasChanges)")
-//        
-//        let newClient = Client.init(name: "Gleb", surname: "Kalachev", patronymic: "Романович", phoneNumber: "8-937-539-93-02")
-//        
-//        print("new client: \(newClient)")
-//        
-//        print("after : \(DataManager.shared.getContext().hasChanges)")
-//        
-//        DataManager.shared.saveChanges()
-//        
-//        print("saved changes")
-//        
-////        newClient.na += " [changed]"
+        //        print("fetched: \(DataManager.shared.getClients())")
+        
+        self.clients = DataManager.shared.getClients()
         
     }
-
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.clients.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "", for: indexPath) as! ClientListTableViewCell
+        
+        
+        
+        return cell
+    }
+    
+    
 }
 

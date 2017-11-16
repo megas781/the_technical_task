@@ -14,4 +14,10 @@ class ClientListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var ClientFullNameLabel: UILabel!
     
+    func setOutlets(with client: Client) {
+        
+//        self.theImageView.image = 
+        
+    }
+    
 }
