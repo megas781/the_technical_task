@@ -16,7 +16,7 @@
         <!--Список клиентов-->
         <scene sceneID="qVi-0H-oIS">
             <objects>
-                <tableViewController id="9Ky-GQ-4ey" sceneMemberID="viewController">
+                <tableViewController id="9Ky-GQ-4ey" customClass="ClientListTableViewController" customModule="the_technical_task" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qTV-cy-Sa4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,7 +57,7 @@
         <!--Отчет-->
         <scene sceneID="Qqt-vW-xye">
             <objects>
-                <viewController id="0Xu-W8-qgU" sceneMemberID="viewController">
+                <viewController id="0Xu-W8-qgU" customClass="ReportViewController" customModule="the_technical_task" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M0h-VE-o9J">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,6 +83,7 @@
                                     <constraint firstItem="inj-EB-dVK" firstAttribute="centerY" secondItem="QvE-Kr-spZ" secondAttribute="centerY" id="4t8-2t-fLe"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="B2t-fx-ALm" secondAttribute="trailing" constant="8" id="9J3-QH-bHt"/>
                                     <constraint firstItem="inj-EB-dVK" firstAttribute="leading" secondItem="QvE-Kr-spZ" secondAttribute="leadingMargin" constant="8" id="GxP-s8-j3T"/>
+                                    <constraint firstItem="B2t-fx-ALm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="inj-EB-dVK" secondAttribute="trailing" constant="20" id="Ozu-ck-bnS"/>
                                     <constraint firstAttribute="height" constant="44" id="vqw-2Q-gFB"/>
                                     <constraint firstItem="B2t-fx-ALm" firstAttribute="centerY" secondItem="QvE-Kr-spZ" secondAttribute="centerY" id="wzJ-lK-4Av"/>
                                 </constraints>
@@ -112,6 +113,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="R5c-NB-uoj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5sC-tD-v1U" secondAttribute="trailing" constant="20" id="FFJ-9L-yhJ"/>
                                                 <constraint firstItem="R5c-NB-uoj" firstAttribute="centerY" secondItem="tux-DD-GHz" secondAttribute="centerY" id="YCg-gk-JfZ"/>
                                                 <constraint firstItem="5sC-tD-v1U" firstAttribute="leading" secondItem="tux-DD-GHz" secondAttribute="leadingMargin" id="Yri-7V-ry2"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="R5c-NB-uoj" secondAttribute="trailing" id="gMz-w2-W0B"/>
@@ -171,10 +173,10 @@
             </objects>
             <point key="canvasLocation" x="1057" y="331"/>
         </scene>
-        <!--View Controller-->
+        <!--Increasement View Controller-->
         <scene sceneID="eJl-z4-HT1">
             <objects>
-                <viewController id="4x6-83-aux" sceneMemberID="viewController">
+                <viewController id="4x6-83-aux" customClass="IncreasementViewController" customModule="the_technical_task" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fyc-En-RVz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -267,7 +269,7 @@
         <!--Добавить клиента-->
         <scene sceneID="A4f-ce-rhP">
             <objects>
-                <tableViewController id="MQt-FO-7Ve" customClass="EmployeeDetailTableViewController" customModule="EmployeeRoster" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="MQt-FO-7Ve" customClass="AddOrEditClientViewController" customModule="the_technical_task" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Bd-fL-e2w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

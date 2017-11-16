@@ -13,6 +13,9 @@
 		ED0B85061FBD92E3006F877A /* the_technical_task.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED0B85041FBD92E3006F877A /* the_technical_task.xcdatamodeld */; };
 		ED0B85081FBD92E3006F877A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED0B85071FBD92E3006F877A /* Assets.xcassets */; };
 		ED0B850B1FBD92E4006F877A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED0B85091FBD92E3006F877A /* LaunchScreen.storyboard */; };
+		ED0B85131FBDA76C006F877A /* AddOrEditClientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B85121FBDA76C006F877A /* AddOrEditClientTableViewController.swift */; };
+		ED0B85151FBDA78C006F877A /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B85141FBDA78C006F877A /* ReportViewController.swift */; };
+		ED0B85171FBDA7D7006F877A /* IncreasementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B85161FBDA7D7006F877A /* IncreasementViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		ED0B85071FBD92E3006F877A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED0B850A1FBD92E3006F877A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED0B850C1FBD92E4006F877A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED0B85121FBDA76C006F877A /* AddOrEditClientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditClientTableViewController.swift; sourceTree = "<group>"; };
+		ED0B85141FBDA78C006F877A /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		ED0B85161FBDA7D7006F877A /* IncreasementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncreasementViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,9 @@
 			children = (
 				ED0B84FD1FBD92E3006F877A /* AppDelegate.swift */,
 				ED0B84FF1FBD92E3006F877A /* ClientListViewController.swift */,
+				ED0B85121FBDA76C006F877A /* AddOrEditClientTableViewController.swift */,
+				ED0B85141FBDA78C006F877A /* ReportViewController.swift */,
+				ED0B85161FBDA7D7006F877A /* IncreasementViewController.swift */,
 				ED0B85011FBD92E3006F877A /* Main.storyboard */,
 				ED0B85071FBD92E3006F877A /* Assets.xcassets */,
 				ED0B85091FBD92E3006F877A /* LaunchScreen.storyboard */,
@@ -139,8 +148,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED0B85131FBDA76C006F877A /* AddOrEditClientTableViewController.swift in Sources */,
 				ED0B85001FBD92E3006F877A /* ClientListViewController.swift in Sources */,
 				ED0B84FE1FBD92E3006F877A /* AppDelegate.swift in Sources */,
+				ED0B85151FBDA78C006F877A /* ReportViewController.swift in Sources */,
+				ED0B85171FBDA7D7006F877A /* IncreasementViewController.swift in Sources */,
 				ED0B85061FBD92E3006F877A /* the_technical_task.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ClientListViewController: UITableViewController {
+class ClientListTableViewController: UITableViewController {
 
     
     
