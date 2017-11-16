@@ -83,12 +83,14 @@ class ClientListTableViewController: UITableViewController {
         
         switch identifier {
         case "fromCilentListVCToAddOrEditClientVCIdentifier":
-//            let dvc = segue.destination as! AddOrEditClientViewController
+            
+            let dvc = (segue.destination as! UINavigationController).viewControllers.first! as! AddOrEditClientViewController
+            
 //            guard let selectedClientIndex = tableView.indexPathForSelectedRow?.row else {
 //                fatalError("Не смог извлечь indexPathForSelectedRow")
 //            }
             
-            //Здесь вроде не нужно передавать никаких данных
+            dvc.newClientContext = true
             
             break
             
