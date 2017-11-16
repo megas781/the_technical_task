@@ -37,9 +37,9 @@ class AddOrEditClientViewController: UITableViewController {
     //Свойство, показывающее, совершались ли хоть какие-то действия с датой или нет
     var newClientContext: Bool!
     //Свойство, показывающее, указана дата, или нет
-    var isDatePicked = false
+    private var isDatePicked = false
     //Свойство, показывающие,что нужно сделать: свернуть datePicker или развернуть
-    var shouldExpandDatePicker = true {
+    private var shouldExpandDatePicker = true {
         didSet {
             DispatchQueue.main.async {
                 self.birthdayDatePicker.isHidden = self.shouldExpandDatePicker
@@ -49,7 +49,7 @@ class AddOrEditClientViewController: UITableViewController {
         }
     }    
     //Свойство, создающее короткий date string
-    var dateString : String {
+    private var dateString : String {
         
         var value = ""
         let dateFormatter = DateFormatter()
@@ -57,6 +57,8 @@ class AddOrEditClientViewController: UITableViewController {
         value = dateFormatter.string(from: birthdayDatePicker.date)
         return value
     }
+    
+    
     
     //MARK: LifeCycle
     override func viewDidLoad() {
@@ -141,13 +143,6 @@ class AddOrEditClientViewController: UITableViewController {
     
     //MARK: IBActions on changing value
     
-    //В этом методе будет проверяться правильность заполнения первых двух textField'ов (имя и фамилия) и даты рождения
-    @IBAction func aTextFieldValueChanged(_ sender: UITextField) {
-        
-        self.updateSaveButtonEnability()
-                
-    }
-    
     @IBAction func birthdayDatePickerValueChanged(_ sender: UIDatePicker) {
         
         self.isDatePicked = true
@@ -156,6 +151,29 @@ class AddOrEditClientViewController: UITableViewController {
         
         //Здесь нужно обновлять dobLabel с выбранной датой в коротком формате
         self.dobLabel.text = self.dateString
+        
+    }
+    
+    //MARK: Selectors
+    
+    //В этом методе будет проверяться правильность заполнения первых двух textField'ов (имя и фамилия) и даты рождения
+    @objc func aTextFieldValueChanged(_ sender: UITextField) {
+        
+        self.updateSaveButtonEnability()
+        
+    }
+    
+    //Keyboard primary key tapped
+    @objc func aTextFieldPrimaryActionTriggered(_ sender: UITextField) {
+        
+        switch sender.tag {
+        case 1,2,3:
+        self.inputTextFieldCollection[sender.tag].becomeFirstResponder()
+        case 4:
+            sender.resignFirstResponder()
+        default:
+            fatalError("Ошибка тега sender'a. tag: \(sender.tag)")
+        }
         
     }
     
@@ -186,10 +204,17 @@ class AddOrEditClientViewController: UITableViewController {
         self.theImagePickerButton.layer.cornerRadius = self.theImagePickerButton.frame.size.height/2
         self.tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         
-//        //При нажатии на ячейки в пустом месте должна убираться клавиатура
-//        for self.tableView.cell {
-//            
-//        }
+        //Добавление всех action'ов для всех textField'ов
+        for (index,textField) in self.inputTextFieldCollection.enumerated() {
+            
+            //Если textField является nameInput или surnameInput
+            if [0, 1].contains(index) {
+                textField.addTarget(self, action: #selector(self.aTextFieldValueChanged(_:)), for: .valueChanged)
+            }
+            
+            textField.addTarget(self, action: #selector(self.aTextFieldPrimaryActionTriggered(_:)), for: .primaryActionTriggered)
+            
+        }
         
     }
     

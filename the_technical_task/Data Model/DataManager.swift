@@ -59,6 +59,7 @@ class DataManager {
         if self.context.hasChanges {
             do {
                 try self.context.save()
+                self.updateInMemoryClients()
             } catch let error as NSError {
                 print("saving error: \(error.localizedDescription)")
             }

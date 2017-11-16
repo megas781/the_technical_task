@@ -379,10 +379,7 @@
                                                             <rect key="frame" x="56" y="7" width="287" height="30"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" textContentType="given-name"/>
-                                                            <connections>
-                                                                <action selector="aTextFieldValueChanged:" destination="MQt-FO-7Ve" eventType="editingChanged" id="xWQ-3V-gYQ"/>
-                                                            </connections>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartQuotesType="no" textContentType="given-name"/>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -415,10 +412,7 @@
                                                             <rect key="frame" x="95.5" y="7" width="247.5" height="30"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
-                                                            <connections>
-                                                                <action selector="aTextFieldValueChanged:" destination="MQt-FO-7Ve" eventType="editingChanged" id="CaF-Pt-rIi"/>
-                                                            </connections>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartQuotesType="no" textContentType="family-name"/>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -451,7 +445,7 @@
                                                             <rect key="frame" x="90.5" y="7" width="252.5" height="30"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartQuotesType="no"/>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -484,7 +478,7 @@
                                                             <rect key="frame" x="84" y="7" width="259" height="30"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" textContentType="tel"/>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
