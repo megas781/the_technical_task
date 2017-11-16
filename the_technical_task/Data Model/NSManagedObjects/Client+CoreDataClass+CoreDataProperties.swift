@@ -22,8 +22,8 @@ extension Client {
         return NSFetchRequest<Client>(entityName: "Client")
     }
 
-    @NSManaged private var storedBirthday: NSDate
-    @NSManaged private var imageData: NSData?
+    @NSManaged private var storedBirthdayDate: NSDate?
+    @NSManaged private var storedImageData: NSData?
     @NSManaged public var name: String
     @NSManaged public var patronymic: String
     @NSManaged public var phoneNumber: String
@@ -35,7 +35,7 @@ extension Client {
     //MARK: Convenience properties
     var image: UIImage? {
         get {
-            if let imageData = self.imageData as Data? {
+            if let imageData = self.storedImageData as Data? {
                 return UIImage.init(data: imageData)
             } else {
                 return nil
@@ -43,19 +43,19 @@ extension Client {
         }
         set(newImage) {
             if let newImage = newImage {
-                self.imageData = UIImagePNGRepresentation(newImage) as NSData?
+                self.storedImageData = UIImagePNGRepresentation(newImage) as NSData?
             } else {
-                self.imageData = nil
+                self.storedImageData = nil
             }
         }
     }
     
-    var birthdayDate: Date {
+    var birthdayDate: Date? {
         get {
-            return self.storedBirthday as Date
+            return self.storedBirthdayDate as Date?
         }
         set(newDate) {
-            self.storedBirthday = newDate as NSDate
+            self.storedBirthdayDate = newDate as NSDate?
         }
     }
     
@@ -69,7 +69,16 @@ extension Client {
         self.surname = surname
         self.patronymic = patronymic
         self.phoneNumber = phoneNumber
+        
+        
+//        self.birthdayDate = birthday
+        
+//        self.storedBirthday = birthday as NSDate
         self.birthdayDate = birthday
+        
+        
+//        self.image = image
+//        self.imageDataHuy = image != nil ? UIImagePNGRepresentation(image!) as NSData? : nil
         
         self.image = image
         

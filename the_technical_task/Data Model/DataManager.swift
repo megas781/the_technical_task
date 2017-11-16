@@ -49,15 +49,37 @@ class DataManager {
 //        
 //    }
     
-    func saveChanges() {
-        do {
-            try self.context.save()
-        } catch let error as NSError {
-            print("saving error: \(error.localizedDescription)")
+    func saveChangesIfNeeded() {
+        if self.context.hasChanges {
+            do {
+                try self.context.save()
+            } catch let error as NSError {
+                print("saving error: \(error.localizedDescription)")
+            }
         }
     }
     
     
+    func deleteClient(_ client: Client, shouldSaveAfterDeletion: Bool = true) {
+        
+        self.context.delete(client)
+        
+        if shouldSaveAfterDeletion {
+            self.saveChangesIfNeeded()
+        }
+        
+    }
+    
+    func deleteAllClients(shouldSaveAfterDeletion: Bool = true) {
+        
+        for client in self.getClients() {
+            self.context.delete(client)
+        }
+        
+        if shouldSaveAfterDeletion {
+            self.saveChangesIfNeeded()
+        }
+    }
     
     
     

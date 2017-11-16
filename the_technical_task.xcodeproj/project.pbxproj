@@ -21,7 +21,6 @@
 		ED91D61B1FBDC42D001DBDB2 /* the_technical_task.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED91D6191FBDC42D001DBDB2 /* the_technical_task.xcdatamodeld */; };
 		ED91D6211FBDC695001DBDB2 /* Client+CoreDataClass+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91D61D1FBDC695001DBDB2 /* Client+CoreDataClass+CoreDataProperties.swift */; };
 		ED91D6231FBDC695001DBDB2 /* Transaction+CoreDataClass+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91D61F1FBDC695001DBDB2 /* Transaction+CoreDataClass+CoreDataProperties.swift */; };
-		EDA693CE1FBDB3B100FBDFAE /* Client+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA693CD1FBDB3B100FBDFAE /* Client+extension.swift */; };
 		EDA693D01FBDB42000FBDFAE /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA693CF1FBDB42000FBDFAE /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +41,6 @@
 		ED91D61A1FBDC42D001DBDB2 /* the_technical_task.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = the_technical_task.xcdatamodel; sourceTree = "<group>"; };
 		ED91D61D1FBDC695001DBDB2 /* Client+CoreDataClass+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataClass+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		ED91D61F1FBDC695001DBDB2 /* Transaction+CoreDataClass+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		EDA693CD1FBDB3B100FBDFAE /* Client+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Client+extension.swift"; sourceTree = "<group>"; };
 		EDA693CF1FBDB42000FBDFAE /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,7 +128,6 @@
 		EDA693DA1FBDC11D00FBDFAE /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				EDA693CD1FBDB3B100FBDFAE /* Client+extension.swift */,
 				EDA693CF1FBDB42000FBDFAE /* DataManager.swift */,
 				EDA693D91FBDC10E00FBDFAE /* NSManagedObjects */,
 			);
@@ -215,7 +212,6 @@
 				ED0B84FE1FBD92E3006F877A /* AppDelegate.swift in Sources */,
 				ED0B85191FBDAB09006F877A /* ClientListTableViewCell.swift in Sources */,
 				ED91D6231FBDC695001DBDB2 /* Transaction+CoreDataClass+CoreDataProperties.swift in Sources */,
-				EDA693CE1FBDB3B100FBDFAE /* Client+extension.swift in Sources */,
 				ED0B85151FBDA78C006F877A /* ReportViewController.swift in Sources */,
 				ED91D61B1FBDC42D001DBDB2 /* the_technical_task.xcdatamodeld in Sources */,
 				ED0B85171FBDA7D7006F877A /* IncreasementViewController.swift in Sources */,

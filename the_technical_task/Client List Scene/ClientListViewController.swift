@@ -20,11 +20,33 @@ class ClientListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        print("fetched: \(DataManager.shared.getClients())")
+        DataManager.shared.deleteAllClients()
         
         
+//        var newClient = Client.init(name: "Gleb", surname: "Kalachev", patronymic: "Романович", phoneNumber: "8-937-539-73-02")
+        var newClient = Client.init(context: DataManager.shared.getContext())
+        
+        
+        
+        
+        
+        guard DataManager.shared.getContext().hasChanges else {
+            fatalError("doesn't have any changes")
+        }
+        DataManager.shared.saveChangesIfNeeded()
         
         self.clients = DataManager.shared.getClients()
+        
+        print("fetchedArray.countBeforeDeletion: \(DataManager.shared.getClients().count)")
+        print("     vcArray.countBeforeDeletion: \(self.clients.count)")
+        
+        DataManager.shared.deleteClient(self.clients.first!)
+        
+        
+        print("fetchedArray.countafterDeletion : \(DataManager.shared.getClients().count)")
+        print("     vcArray.countAfterDeletion : \(self.clients.count)")
+        
+        
         
     }
     
@@ -33,7 +55,7 @@ class ClientListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "", for: indexPath) as! ClientListTableViewCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "ClientListTableViewCellIdentifier", for: indexPath) as! ClientListTableViewCell
         
         
         
