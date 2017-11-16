@@ -15,49 +15,33 @@ class ClientListTableViewController: UITableViewController {
     
     @IBOutlet weak var theSearchBar: UISearchBar!
     
-    var clients: [Client] = []
+    //Скорее всего не буду это использовать
+//    var clients: [Client] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         DataManager.shared.deleteAllClients()
         
+        print("count before: \(DataManager.shared.getClients().count)")
         
-//        var newClient = Client.init(name: "Gleb", surname: "Kalachev", patronymic: "Романович", phoneNumber: "8-937-539-73-02")
-        var newClient = Client.init(context: DataManager.shared.getContext())
-        
-        
-        
-        
-        
-        guard DataManager.shared.getContext().hasChanges else {
-            fatalError("doesn't have any changes")
+        for i in 1...5 {
+            DataManager.shared.createNewClientAndSave(name: "Gleb #\(i)", surname: "Kalachev", patronymic: "Романович", phoneNumber: "1-234-56-78")
         }
-        DataManager.shared.saveChangesIfNeeded()
-        
-        self.clients = DataManager.shared.getClients()
-        
-        print("fetchedArray.countBeforeDeletion: \(DataManager.shared.getClients().count)")
-        print("     vcArray.countBeforeDeletion: \(self.clients.count)")
-        
-        DataManager.shared.deleteClient(self.clients.first!)
         
         
-        print("fetchedArray.countafterDeletion : \(DataManager.shared.getClients().count)")
-        print("     vcArray.countAfterDeletion : \(self.clients.count)")
-        
-        
+        print("count after : \(DataManager.shared.getClients().count)")
         
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.clients.count
+        return DataManager.shared.getClients().count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "ClientListTableViewCellIdentifier", for: indexPath) as! ClientListTableViewCell
         
-        
+        cell.setOutletsAndRoundImageView(with: DataManager.shared.getClients()[indexPath.row])
         
         return cell
     }

@@ -23,6 +23,10 @@ extension Transaction {
 
     @NSManaged public var date: NSDate?
     @NSManaged public var value: Int64
+
     @NSManaged public var client: Client?
+    
+    //Рассматриваю возможное добавление uuid
+//    @NSManaged public var uuid: UUID
 
 }

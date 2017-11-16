@@ -34,7 +34,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="30w-ZG-3yF">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_photo_image" translatesAutoresizingMaskIntoConstraints="NO" id="30w-ZG-3yF">
                                             <rect key="frame" x="16" y="3.5" width="35" height="35"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="30w-ZG-3yF" secondAttribute="height" id="Q39-IO-JOJ"/>
@@ -57,7 +57,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="ClientFullNameLabel" destination="XGb-1K-Ir2" id="WHg-fM-p6t"/>
+                                    <outlet property="clientFullNameLabel" destination="XGb-1K-Ir2" id="WHg-fM-p6t"/>
                                     <outlet property="theImageView" destination="30w-ZG-3yF" id="oP1-yq-Zb6"/>
                                 </connections>
                             </tableViewCell>
@@ -225,23 +225,23 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sga-Ao-YsX">
-                                <rect key="frame" x="48" y="185.5" width="277.5" height="228"/>
+                                <rect key="frame" x="49" y="186" width="277.5" height="228"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G3n-e4-utr">
-                                        <rect key="frame" x="108.5" y="16" width="60" height="60"/>
+                                        <rect key="frame" x="109" y="16" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="chD-Z5-bsP"/>
                                             <constraint firstAttribute="width" secondItem="G3n-e4-utr" secondAttribute="height" id="itS-yn-Tas"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Фамилия Имя" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4K-iv-pR0">
-                                        <rect key="frame" x="28" y="92" width="222" height="21"/>
+                                        <rect key="frame" x="28" y="92" width="222.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTh-Te-dmC">
-                                        <rect key="frame" x="0.0" y="165" width="277.5" height="55"/>
+                                        <rect key="frame" x="0.5" y="165" width="277.5" height="55"/>
                                         <state key="normal" title="Сохранить"/>
                                         <connections>
                                             <action selector="saveButtonTapped:" destination="4x6-83-aux" eventType="touchUpInside" id="CMI-hr-3xD"/>
@@ -261,7 +261,7 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите сумму" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CIi-5v-tVM">
-                                <rect key="frame" x="77" y="312.5" width="222" height="30"/>
+                                <rect key="frame" x="76.5" y="313" width="222" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="7ht-ib-uDG"/>
                                 </constraints>
@@ -576,4 +576,7 @@
             <point key="canvasLocation" x="1057" y="-465"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="empty_photo_image" width="64" height="64"/>
+    </resources>
 </document>

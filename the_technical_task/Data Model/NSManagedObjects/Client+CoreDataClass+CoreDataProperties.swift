@@ -61,7 +61,7 @@ extension Client {
     
     
     //MARK: Convenience Initializers
-    convenience init(name: String, surname: String, patronymic: String, phoneNumber: String, birthday: Date = Date(), image: UIImage? = nil) {
+    convenience init(name: String, surname: String, patronymic: String, phoneNumber: String, birthdayDate: Date = Date(), image: UIImage? = nil) {
         
         self.init(context: Client.context)
         
@@ -70,21 +70,14 @@ extension Client {
         self.patronymic = patronymic
         self.phoneNumber = phoneNumber
         
-        
-//        self.birthdayDate = birthday
-        
-//        self.storedBirthday = birthday as NSDate
-        self.birthdayDate = birthday
-        
-        
-//        self.image = image
-//        self.imageDataHuy = image != nil ? UIImagePNGRepresentation(image!) as NSData? : nil
+        self.birthdayDate = birthdayDate
         
         self.image = image
         
         self.uuid = UUID.init()
         
     }
+    
 
 }
 

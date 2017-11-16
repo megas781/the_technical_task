@@ -12,11 +12,15 @@ class ClientListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var theImageView: UIImageView!
     
-    @IBOutlet weak var ClientFullNameLabel: UILabel!
+    @IBOutlet weak var clientFullNameLabel: UILabel!
     
-    func setOutlets(with client: Client) {
+    func setOutletsAndRoundImageView(with client: Client) {
         
-//        self.theImageView.image = client.image
+        self.theImageView.image = client.image
+        
+        self.clientFullNameLabel.text = "\(client.surname) \(client.name) \(client.patronymic)"
+        
+        self.theImageView.layer.cornerRadius = self.theImageView.frame.size.height/2
         
     }
     

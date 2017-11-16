@@ -81,6 +81,11 @@ class DataManager {
         }
     }
     
+    //Может изменю на другую архитектуру
+    func createNewClientAndSave(name: String, surname: String, patronymic: String, phoneNumber: String, birthdayDate: Date = Date(), image: UIImage? = nil) {
+        let _ = Client.init(name: name, surname: surname, patronymic: patronymic, phoneNumber: phoneNumber, birthdayDate: birthdayDate, image: image)
+        self.saveChangesIfNeeded()
+    }
     
     
 }
