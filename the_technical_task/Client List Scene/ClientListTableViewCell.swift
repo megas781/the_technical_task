@@ -16,7 +16,7 @@ class ClientListTableViewCell: UITableViewCell {
     
     func setOutletsAndRoundImageView(with client: Client) {
         
-        self.theImageView.image = client.image
+        self.theImageView.image = client.image ?? UIImage.init(named: "empty_photo_image")
         
         self.clientFullNameLabel.text = "\(client.surname) \(client.name) \(client.patronymic)"
         

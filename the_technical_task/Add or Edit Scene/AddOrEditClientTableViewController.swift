@@ -24,6 +24,15 @@ class AddOrEditClientViewController: UITableViewController {
     @IBOutlet weak var dobLabel: UILabel!
     @IBOutlet weak var birthdayDatePicker: UIDatePicker!
     
+    //MARK: Properties
+    var selectedClient: Client!
     
+    //MARK: LifeCycle
+    override func viewDidLoad() {
+        
+    }
+    
+    
+    //MARK: Custom funcstions
     
 }

@@ -14,28 +14,36 @@ import UIKit
 class DataManager {
     
     static var shared: DataManager {
-        return self.sharedInstance
+        return self.sharedInstanceHolder
     }
-    private static var sharedInstance: DataManager = DataManager.init()
+    private static var sharedInstanceHolder: DataManager = DataManager.init()
     
+    //Ссылка на контекст
     private let context: NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    //convenience метод (потому уберу)
     func getContext() -> NSManagedObjectContext { return self.context }
     
     private init() {
-        
-        
+        self.inMemoryClients = self.getClients()
     }
     
-    //MARK: Public functionality
     
+    //MARK: Fetching data
+    
+    //Массив для загрузки данных с оперативой памяти. Такой подход вроде уменьшит ресурсопотребление. Массив обновляется либо вручную, либо сделаю, чтобы при любом изменении объектов
+    var inMemoryClients: [Client] = []
+    
+    //Для удобного ручного обновления массива inMemoryClients
+    func updateInMemoryClients() {
+        self.inMemoryClients = self.getClients()
+    }
+    
+    //Загрузка данных с диска
     func getClients() -> [Client] {
         
-        let fetchRequest: NSFetchRequest<Client> = Client.fetchRequest()
-        
         do {
-            return try self.context.fetch(fetchRequest)
-            
+            return try self.context.fetch(Client.fetchRequest())
         } catch let error as NSError {
             print("fetching error: \(error.localizedDescription)")
             return []
@@ -43,12 +51,10 @@ class DataManager {
         
     }
     
-//    func addClient(_ client: Client) {
-//        
-//        
-//        
-//    }
     
+    //MARK: Managing data
+    
+    //Сохранение данных
     func saveChangesIfNeeded() {
         if self.context.hasChanges {
             do {
@@ -59,7 +65,7 @@ class DataManager {
         }
     }
     
-    
+    //Удаление конкретного клиента (для разработки. В конечном проекте использоваться не будет)
     func deleteClient(_ client: Client, shouldSaveAfterDeletion: Bool = true) {
         
         self.context.delete(client)

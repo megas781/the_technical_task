@@ -18,8 +18,12 @@ class ClientListTableViewController: UITableViewController {
     //Скорее всего не буду это использовать
 //    var clients: [Client] = []
     
+    //MARK: LifeCycle implementation
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setup()
         
         DataManager.shared.deleteAllClients()
         
@@ -34,6 +38,8 @@ class ClientListTableViewController: UITableViewController {
         
     }
     
+    //MARK: UITableViewDataSource implementation
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DataManager.shared.getClients().count
     }
@@ -46,6 +52,47 @@ class ClientListTableViewController: UITableViewController {
         return cell
     }
     
+    //MARK: UITableViewDelegate implementation
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    //MARK: IBActions on tap
+    
+    @IBAction func addClientButtonTapped(_ sender: UIBarButtonItem) {
+        
+        self.performSegue(withIdentifier: "fromCilentListVCToEditClientVCIdentifier", sender: self)
+        
+    }
+    
+    
+    //MARK: Custom functions
+    private func setup() {
+        //Убираем линии
+        self.tableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        //Чтобы при возвращении к этому viewController'у theSearchBar не был firstResponder'ом
+        self.definesPresentationContext = true
+    }
+    
+    
+    //MARK: Navigation methods
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else {
+            fatalError("Сигвей без identifier'а")
+        }
+        
+        switch identifier {
+        case "fromCilentListVCToEditClientVCIdentifier":
+            let dvc = segue.destination as! AddOrEditClientViewController
+            guard let selectedClientIndex = tableView.indexPathForSelectedRow?.row else {
+                fatalError("Не смог извлечь indexPathForSelectedRow")
+            }
+            dvc.selectedClient = DataManager.shared.inMemoryClients[selectedClientIndex]
+            
+        default:
+            fatalError("Сигвей с неизвесным identifier'ом")
+        }
+    }
     
 }
 

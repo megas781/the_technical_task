@@ -68,7 +68,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Список клиентов" id="5LS-fi-ZGd">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dYi-qm-thH"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dYi-qm-thH">
+                            <connections>
+                                <action selector="addClientButtonTapped:" destination="9Ky-GQ-4ey" id="jnC-F6-KRP"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="theSearchBar" destination="H1e-4H-0Y8" id="oFp-6o-13G"/>
