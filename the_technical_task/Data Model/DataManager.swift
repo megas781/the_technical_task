@@ -43,11 +43,11 @@ class DataManager {
         
     }
     
-    func addClient(_ client: Client) {
-        
-        
-        
-    }
+//    func addClient(_ client: Client) {
+//        
+//        
+//        
+//    }
     
     func saveChanges() {
         do {

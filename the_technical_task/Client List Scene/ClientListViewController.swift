@@ -22,6 +22,8 @@ class ClientListTableViewController: UITableViewController {
         
         //        print("fetched: \(DataManager.shared.getClients())")
         
+        
+        
         self.clients = DataManager.shared.getClients()
         
     }

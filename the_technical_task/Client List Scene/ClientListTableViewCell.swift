@@ -16,7 +16,7 @@ class ClientListTableViewCell: UITableViewCell {
     
     func setOutlets(with client: Client) {
         
-//        self.theImageView.image = 
+//        self.theImageView.image = client.image
         
     }
     
