@@ -337,17 +337,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_photo_tap_to_pick_image" translatesAutoresizingMaskIntoConstraints="NO" id="gkb-Qt-Cdo">
+                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CFl-SI-oVo">
                                                     <rect key="frame" x="140" y="12" width="95.5" height="95.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="gkb-Qt-Cdo" secondAttribute="height" id="cNh-oO-k5S"/>
+                                                        <constraint firstAttribute="width" secondItem="CFl-SI-oVo" secondAttribute="height" multiplier="1:1" id="eqn-mh-sYk"/>
                                                     </constraints>
-                                                </imageView>
+                                                    <state key="normal" backgroundImage="empty_photo_tap_to_pick_image"/>
+                                                    <connections>
+                                                        <action selector="theImagePickerButtonTapped:" destination="MQt-FO-7Ve" eventType="touchUpInside" id="AcU-nI-heq"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="gkb-Qt-Cdo" firstAttribute="height" secondItem="IiC-SN-VXO" secondAttribute="height" multiplier="0.8" id="5Wm-x1-gC5"/>
-                                                <constraint firstItem="gkb-Qt-Cdo" firstAttribute="centerY" secondItem="IiC-SN-VXO" secondAttribute="centerY" id="QD9-KL-eid"/>
-                                                <constraint firstItem="gkb-Qt-Cdo" firstAttribute="centerX" secondItem="IiC-SN-VXO" secondAttribute="centerX" id="b9A-yI-rjC"/>
+                                                <constraint firstItem="CFl-SI-oVo" firstAttribute="centerY" secondItem="IiC-SN-VXO" secondAttribute="centerY" id="IwT-MB-OlK"/>
+                                                <constraint firstItem="CFl-SI-oVo" firstAttribute="centerX" secondItem="IiC-SN-VXO" secondAttribute="centerX" id="QV4-O7-R9M"/>
+                                                <constraint firstItem="CFl-SI-oVo" firstAttribute="height" secondItem="IiC-SN-VXO" secondAttribute="height" multiplier="0.8" id="Vdp-iE-Bli"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -412,6 +416,9 @@
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <action selector="aTextFieldValueChanged:" destination="MQt-FO-7Ve" eventType="editingChanged" id="CaF-Pt-rIi"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -477,7 +484,7 @@
                                                             <rect key="frame" x="84" y="7" width="259" height="30"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -578,7 +585,11 @@
                         <outlet property="phoneNumberInputTextField" destination="04F-ed-k8Z" id="FV0-Yk-J0d"/>
                         <outlet property="saveButton" destination="Awq-a8-3Qa" id="uux-Xl-d8L"/>
                         <outlet property="surnameInputTextField" destination="Vf1-hR-1hQ" id="G6b-ro-Zr2"/>
-                        <outlet property="theImageView" destination="gkb-Qt-Cdo" id="wNl-Ao-7ca"/>
+                        <outlet property="theImagePickerButton" destination="CFl-SI-oVo" id="3jf-Ol-FOG"/>
+                        <outletCollection property="inputTextFieldCollection" destination="pTn-R5-af6" collectionClass="NSMutableArray" id="8gA-KX-nZJ"/>
+                        <outletCollection property="inputTextFieldCollection" destination="Vf1-hR-1hQ" collectionClass="NSMutableArray" id="b65-Ug-IE9"/>
+                        <outletCollection property="inputTextFieldCollection" destination="v7b-PS-ODA" collectionClass="NSMutableArray" id="7kw-Ob-bq3"/>
+                        <outletCollection property="inputTextFieldCollection" destination="04F-ed-k8Z" collectionClass="NSMutableArray" id="O9m-RO-DHX"/>
                         <segue destination="grX-Be-HXX" kind="unwind" identifier="unwindFromAddOrEditClientVCToClientListVCIdentifier" unwindAction="unwindToClientListVCWithSegue:" id="xtg-Nr-9Sj"/>
                     </connections>
                 </tableViewController>

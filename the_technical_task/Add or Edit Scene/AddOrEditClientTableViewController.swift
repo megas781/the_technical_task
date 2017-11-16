@@ -13,12 +13,17 @@ class AddOrEditClientViewController: UITableViewController {
     
     //MARK: Outlets
     
-    @IBOutlet weak var theImageView: UIImageView!
+    @IBOutlet weak var theImagePickerButton: UIButton!
+    
     
     @IBOutlet weak var nameInputTextField: UITextField!
     @IBOutlet weak var surnameInputTextField: UITextField!
     @IBOutlet weak var patronymicInputTextField: UITextField!
     @IBOutlet weak var phoneNumberInputTextField: UITextField!
+    
+    //Также представим все эти TextField'ы в виде коллекции
+    @IBOutlet var inputTextFieldCollection: [UITextField]!
+    
     
     
     @IBOutlet weak var dobLabel: UILabel!
@@ -64,17 +69,21 @@ class AddOrEditClientViewController: UITableViewController {
     //MARK: UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath == [1,5] {
-            
+        
+        switch indexPath {
+        case [0,0]:
+            return 120
+        case [1,5]:
             //Так как этот метод ничего не меняет, то если "следует развернуть DatePicker", то возвращаем 0, иначе 216
             if self.shouldExpandDatePicker {
                 return 0
             } else {
                 return 216
             }
-        } else {
+        default:
             return 44
         }
+        
     }
     
     //MARK: UITableViewDelegate
@@ -82,6 +91,9 @@ class AddOrEditClientViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("did select row")
         self.tableView.deselectRow(at: indexPath, animated: false)
+        
+        self.resignAnyFirstResponder()
+        
         if indexPath == [1,4] {
             
             if shouldExpandDatePicker{
@@ -118,25 +130,29 @@ class AddOrEditClientViewController: UITableViewController {
         
     }
     
+    @IBAction func theImagePickerButtonTapped(_ sender: UIButton) {
+        
+        //Здесь нужно зумутить ActionSheet с выбором Камера/Библиотека
+        
+    }
+    
+    
     
     
     //MARK: IBActions on changing value
     
-    //В этом методе будет проверяться правильность заполнения textField'ов и даты рождения
+    //В этом методе будет проверяться правильность заполнения первых двух textField'ов (имя и фамилия) и даты рождения
     @IBAction func aTextFieldValueChanged(_ sender: UITextField) {
         
-        //Если в nameInputTextField'e и surnameInputTextField'e хоть что-то написано и была нажата ячейка даты для показа datePicker'a, то можно включить saveButton
-        if nameInputTextField.text != "" && nameInputTextField.text != nil, 
-            surnameInputTextField.text != "" && surnameInputTextField.text != nil,
-            self.isDatePicked {
-                self.saveButton.isEnabled = true
-        } else {
-            self.saveButton.isEnabled = false
-        }
-        
+        self.updateSaveButtonEnability()
+                
     }
     
     @IBAction func birthdayDatePickerValueChanged(_ sender: UIDatePicker) {
+        
+        self.isDatePicked = true
+        
+        self.updateSaveButtonEnability()
         
         //Здесь нужно обновлять dobLabel с выбранной датой в коротком формате
         self.dobLabel.text = self.dateString
@@ -147,9 +163,34 @@ class AddOrEditClientViewController: UITableViewController {
     
     //MARK: Custom funcstions
     
+    @objc func resignAnyFirstResponder() {
+        for textField in self.inputTextFieldCollection {
+            textField.resignFirstResponder()
+        }
+    }
+    
+    private func updateSaveButtonEnability() {
+        
+        //Если в nameInputTextField'e и surnameInputTextField'e хоть что-то написано и была нажата ячейка даты для показа datePicker'a, то можно включить saveButton
+        if nameInputTextField.text != "" && nameInputTextField.text != nil, 
+            surnameInputTextField.text != "" && surnameInputTextField.text != nil,
+            self.isDatePicked {
+            self.saveButton.isEnabled = true
+        } else {
+            self.saveButton.isEnabled = false
+        }
+        
+    }
+    
     private func setupUI() {
-        self.theImageView.layer.cornerRadius = self.theImageView.frame.size.height/2
+        self.theImagePickerButton.layer.cornerRadius = self.theImagePickerButton.frame.size.height/2
         self.tableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        
+//        //При нажатии на ячейки в пустом месте должна убираться клавиатура
+//        for self.tableView.cell {
+//            
+//        }
+        
     }
     
 }
