@@ -76,9 +76,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="theSearchBar" destination="H1e-4H-0Y8" id="oFp-6o-13G"/>
-                        <segue destination="MQt-FO-7Ve" kind="show" identifier="fromCilentListVCToEditClientVCIdentifier" id="nn1-wt-ngN"/>
                         <segue destination="0Xu-W8-qgU" kind="show" identifier="fromClientListVCToReportVCIdentifier" id="80c-PP-QmA"/>
                         <segue destination="4x6-83-aux" kind="presentation" identifier="PresentModallyIncreasementVCIdentifier" modalPresentationStyle="overCurrentContext" id="brD-bC-bfI"/>
+                        <segue destination="CNy-vo-P81" kind="show" identifier="fromCilentListVCToAddOrEditClientVCIdentifier" id="BPx-a4-DmU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GJL-7p-YRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -337,7 +337,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gkb-Qt-Cdo">
+                                                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_photo_tap_to_pick_image" translatesAutoresizingMaskIntoConstraints="NO" id="gkb-Qt-Cdo">
                                                     <rect key="frame" x="140" y="12" width="95.5" height="95.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="gkb-Qt-Cdo" secondAttribute="height" id="cNh-oO-k5S"/>
@@ -376,6 +376,9 @@
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" textContentType="given-name"/>
+                                                            <connections>
+                                                                <action selector="aTextFieldValueChanged:" destination="MQt-FO-7Ve" eventType="editingChanged" id="xWQ-3V-gYQ"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -556,9 +559,14 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Добавить клиента" id="D0K-nh-zz8">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="UpN-9H-5J0"/>
-                        <barButtonItem key="rightBarButtonItem" title="Сохранить" id="Awq-a8-3Qa">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="vA4-8B-Xin">
                             <connections>
-                                <action selector="saveButtonTapped:" destination="MQt-FO-7Ve" id="8xH-kh-RtK"/>
+                                <action selector="backButtonTapped:" destination="MQt-FO-7Ve" id="bUH-U7-vpQ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Сохранить" id="Awq-a8-3Qa">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="MQt-FO-7Ve" id="3GV-sQ-vop"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -566,21 +574,40 @@
                         <outlet property="birthdayDatePicker" destination="Vr2-pe-C4s" id="NtY-JY-aay"/>
                         <outlet property="dobLabel" destination="EMT-SG-kbL" id="JC3-X2-Tvp"/>
                         <outlet property="nameInputTextField" destination="pTn-R5-af6" id="HmU-au-7q7"/>
-                        <outlet property="nameTextField" destination="pTn-R5-af6" id="wn8-rW-Itn"/>
                         <outlet property="patronymicInputTextField" destination="v7b-PS-ODA" id="4m6-vv-hTC"/>
                         <outlet property="phoneNumberInputTextField" destination="04F-ed-k8Z" id="FV0-Yk-J0d"/>
+                        <outlet property="saveButton" destination="Awq-a8-3Qa" id="uux-Xl-d8L"/>
                         <outlet property="surnameInputTextField" destination="Vf1-hR-1hQ" id="G6b-ro-Zr2"/>
                         <outlet property="theImageView" destination="gkb-Qt-Cdo" id="wNl-Ao-7ca"/>
-                        <segue destination="grX-Be-HXX" kind="unwind" identifier="UnwindToListSegue" unwindAction="prepareForUnwindWithSegue:" id="6gm-dx-pVq"/>
+                        <segue destination="grX-Be-HXX" kind="unwind" identifier="unwindFromAddOrEditClientVCToClientListVCIdentifier" unwindAction="unwindToClientListVCWithSegue:" id="xtg-Nr-9Sj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rgB-NC-PqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="grX-Be-HXX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1057" y="-465"/>
+            <point key="canvasLocation" x="1846" y="-482"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ooj-Xd-kBZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CNy-vo-P81" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bYT-Ck-d7X">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MQt-FO-7Ve" kind="relationship" relationship="rootViewController" id="wPD-1M-IlZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hNv-M0-aVq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1057" y="-481"/>
         </scene>
     </scenes>
     <resources>
         <image name="empty_photo_image" width="64" height="64"/>
+        <image name="empty_photo_tap_to_pick_image" width="128" height="128"/>
     </resources>
 </document>

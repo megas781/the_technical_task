@@ -61,7 +61,7 @@ class ClientListTableViewController: UITableViewController {
     
     @IBAction func addClientButtonTapped(_ sender: UIBarButtonItem) {
         
-        self.performSegue(withIdentifier: "fromCilentListVCToEditClientVCIdentifier", sender: self)
+        self.performSegue(withIdentifier: "fromCilentListVCToAddOrEditClientVCIdentifier", sender: self)
         
     }
     
@@ -82,16 +82,23 @@ class ClientListTableViewController: UITableViewController {
         }
         
         switch identifier {
-        case "fromCilentListVCToEditClientVCIdentifier":
-            let dvc = segue.destination as! AddOrEditClientViewController
-            guard let selectedClientIndex = tableView.indexPathForSelectedRow?.row else {
-                fatalError("Не смог извлечь indexPathForSelectedRow")
-            }
-            dvc.selectedClient = DataManager.shared.inMemoryClients[selectedClientIndex]
+        case "fromCilentListVCToAddOrEditClientVCIdentifier":
+//            let dvc = segue.destination as! AddOrEditClientViewController
+//            guard let selectedClientIndex = tableView.indexPathForSelectedRow?.row else {
+//                fatalError("Не смог извлечь indexPathForSelectedRow")
+//            }
+            
+            //Здесь вроде не нужно передавать никаких данных
+            
+            break
             
         default:
             fatalError("Сигвей с неизвесным identifier'ом")
         }
+    }
+    
+    @IBAction func unwindToClientListVC(segue: UIStoryboardSegue) {
+        print("unwindToClientListVC performed")
     }
     
 }
