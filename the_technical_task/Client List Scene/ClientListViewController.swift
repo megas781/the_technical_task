@@ -91,10 +91,10 @@ class ClientListTableViewController: UITableViewController {
     
     //MARK: UITableViewDelegate implementation
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: false)
         
         self.performSegue(withIdentifier: "fromClientListVCToReportVCIdentifier", sender: nil)
         
+        self.tableView.deselectRow(at: indexPath, animated: false)
     }
     
     //MARK: IBActions on tap
@@ -143,7 +143,6 @@ class ClientListTableViewController: UITableViewController {
             //Здесь забываем это значение, так как теперь его держать будет IncreasementVC
             self.editActionTappedCellIndex = nil
             
-            //Показ increasementVC. Ничего, вроде, передавать не нужно
             let dvc = segue.destination as! IncreasementViewController
             
             //Передаю индекс клиента, на не самого клиента, потому что не хочу, чтобы viewController связывался с Client
@@ -154,6 +153,14 @@ class ClientListTableViewController: UITableViewController {
         case "fromClientListVCToReportVCIdentifier":
             
             let dvc = segue.destination as! ReportViewController
+            
+            print(self.tableView.indexPathForSelectedRow)
+            
+            guard let selectedCellIndex = self.tableView.indexPathForSelectedRow?.row else {
+                fatalError("не смог извлечь indexPathForSelectedRow")
+            }
+            
+            dvc.selectedClientIndex = selectedCellIndex
             
             break
             

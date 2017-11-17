@@ -89,6 +89,7 @@ class DataManager {
         
     }
     
+    //В финальном проекте использоваться не будет
     func deleteAllClients(shouldSaveAfterDeletion: Bool = true) {
         
         for client in self.getClients() {
@@ -100,6 +101,7 @@ class DataManager {
         }
     }
     
+    //В финальном проекте использоваться не будет
     func deleteAllData() {
         
         for client in self.getClients() {
@@ -120,6 +122,8 @@ class DataManager {
         self.saveChangesIfNeeded()
     }
     
+    
+    //Создать транзакцию и сохранить
     func createNewTransactionAndSave(value: Int, forClient client: Client) {
         
         client.addToTransactions(Transaction.init(value: value, date: Date()))

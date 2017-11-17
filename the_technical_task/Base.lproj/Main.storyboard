@@ -214,7 +214,7 @@
                         <viewLayoutGuide key="safeArea" id="hUO-ep-tQz"/>
                     </view>
                     <navigationItem key="navigationItem" title="Отчет" id="swn-8P-Wg2">
-                        <barButtonItem key="backBarButtonItem" title="Назад" id="Isc-5t-hyu"/>
+                        <barButtonItem key="backBarButtonItem" title="sdf" id="Isc-5t-hyu"/>
                     </navigationItem>
                     <connections>
                         <outlet property="remainderValueLabel" destination="B2t-fx-ALm" id="H0G-De-27m"/>

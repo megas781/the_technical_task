@@ -22,6 +22,9 @@ class ReportViewController: UIViewController, UITableViewDataSource, UITableView
     var selectedClientIndex: Int!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.remainderValueLabel.text = "\(DataManager.shared.inMemoryClients[selectedClientIndex].remainder)"
         
     }
     
@@ -69,7 +72,7 @@ class ReportViewController: UIViewController, UITableViewDataSource, UITableView
             case 3:
                 cell.attributeValueLabel.text = DataManager.shared.inMemoryClients[self.selectedClientIndex].phoneNumber
             case 4:
-//                cell.attributeValueLabel.text = DataManager.shared.inMemoryClients[self.selectedClientIndex]
+                cell.attributeValueLabel.text = DataManager.shared.inMemoryClients[self.selectedClientIndex].birthdayDate.shortDateString
                 break
             default:
                 fatalError("out of attribute cells")
@@ -81,12 +84,19 @@ class ReportViewController: UIViewController, UITableViewDataSource, UITableView
         case 1:
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "TransactionCellIdentifier", for: indexPath) as! TransactionTableViewCell
             
+            cell.transactionDateLabel.text = DataManager.shared.inMemoryClients[selectedClientIndex].birthdayDate.shortDateString
+            cell.transactionValueLabel.text = "\((DataManager.shared.inMemoryClients[selectedClientIndex].transactionArray[indexPath.row].value))"
+            
             return cell
             
         default:
             fatalError("out of sections")
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: false)
     }
     
     

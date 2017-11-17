@@ -64,6 +64,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     
     //MARK: LifeCycle
     override func viewDidLoad() {
+        super.viewDidLoad()
         
         self.setupUI()
         
@@ -71,6 +72,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
 //        //Добавление всех action'ов для всех textField'ов
 //        for textField in self.inputTextFieldCollection {

@@ -25,9 +25,9 @@ extension Client {
     //Non-optional
     @NSManaged public var name: String
     @NSManaged public var surname: String
+    @NSManaged private var storedBirthdayDate: NSDate
     
     //Optional
-    @NSManaged private var storedBirthdayDate: NSDate?
     @NSManaged private var storedImageData: NSData?
     @NSManaged public var patronymic: String?
     @NSManaged public var phoneNumber: String?
@@ -53,12 +53,12 @@ extension Client {
         }
     }
     
-    var birthdayDate: Date? {
+    var birthdayDate: Date {
         get {
-            return self.storedBirthdayDate as Date?
+            return self.storedBirthdayDate as Date
         }
         set(newDate) {
-            self.storedBirthdayDate = newDate as NSDate?
+            self.storedBirthdayDate = newDate as NSDate
         }
     }
     
@@ -74,14 +74,11 @@ extension Client {
         }
     }
     
-    //Вычисляемое свойство, конвертирующее Date в String
-    var birthdayDateString : String {
-        var returnValue = ""
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/YYYY"
-        returnValue = dateFormatter.string(from: self.birthdayDate!)
-        return returnValue
+    //Свойство, конвертирующее transactions с [Any] в [Transaction]
+    var transactionArray: [Transaction] {
+        return self.transactions?.array as! [Transaction]
     }
+    
     
     
     //MARK: Convenience Initializers
@@ -101,6 +98,8 @@ extension Client {
 //        self.uuid = UUID.init()
         
     }
+    
+    
     
 
 }

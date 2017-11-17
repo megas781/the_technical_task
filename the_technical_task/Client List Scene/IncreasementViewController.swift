@@ -25,6 +25,7 @@ class IncreasementViewController: UIViewController {
     
     //MARK: LifeCycle
     override func viewDidLoad() {
+        super.viewDidLoad()
         
         //Чтобы при нажатии на темную область этот VC исчезал
         self.dimView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(self.customDismiss)))
@@ -34,7 +35,7 @@ class IncreasementViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(animated)
         //Установка значений outlet'ов
         let properClient = DataManager.shared.inMemoryClients[selectedClientIndex]
         self.theImageView.image = properClient.image
@@ -44,7 +45,8 @@ class IncreasementViewController: UIViewController {
         self.dimView.alpha = 0
         self.contentView.alpha = 0
         
-        UIView.animate(withDuration: 0.2 , animations: { 
+        self.inputTextField.becomeFirstResponder()
+        UIView.animate(withDuration: 0.15 , animations: { 
             self.dimView.alpha = 0.3
             self.contentView.alpha = 1
         })
@@ -80,7 +82,7 @@ class IncreasementViewController: UIViewController {
         self.inputTextField.resignFirstResponder()
         
         //Анимация исчезновения
-        UIView.animate(withDuration: 0.2, animations: { 
+        UIView.animate(withDuration: 0.15, animations: { 
             self.dimView.alpha = 0
             self.contentView.alpha = 0
         }) { (_) in
