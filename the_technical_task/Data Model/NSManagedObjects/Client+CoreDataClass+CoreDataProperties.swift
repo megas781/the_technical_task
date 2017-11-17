@@ -74,6 +74,15 @@ extension Client {
         }
     }
     
+    //Вычисляемое свойство, конвертирующее Date в String
+    var birthdayDateString : String {
+        var returnValue = ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/YYYY"
+        returnValue = dateFormatter.string(from: self.birthdayDate!)
+        return returnValue
+    }
+    
     
     //MARK: Convenience Initializers
     convenience init(name: String, surname: String, patronymic: String? = nil, phoneNumber: String? = nil, birthdayDate: Date, image: UIImage? = nil) {

@@ -14,4 +14,6 @@ class AttributeTableViewCell: UITableViewCell {
     @IBOutlet weak var attributeValueLabel: UILabel!
     
     
+    
+    
 }

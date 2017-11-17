@@ -58,6 +58,22 @@ class ReportViewController: UIViewController, UITableViewDataSource, UITableView
             
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "ClientDataInformationCellIdentifier", for: indexPath) as! AttributeTableViewCell
             
+            cell.attributeNameLabel.text = self.attributeNames[indexPath.row]
+            switch indexPath.row {
+            case 0:
+                cell.attributeValueLabel.text = DataManager.shared.inMemoryClients[self.selectedClientIndex].name
+            case 1:
+                cell.attributeValueLabel.text = DataManager.shared.inMemoryClients[self.selectedClientIndex].surname
+            case 2:
+                cell.attributeValueLabel.text = DataManager.shared.inMemoryClients[self.selectedClientIndex].patronymic
+            case 3:
+                cell.attributeValueLabel.text = DataManager.shared.inMemoryClients[self.selectedClientIndex].phoneNumber
+            case 4:
+//                cell.attributeValueLabel.text = DataManager.shared.inMemoryClients[self.selectedClientIndex]
+                break
+            default:
+                fatalError("out of attribute cells")
+            }
             
             
             return cell
