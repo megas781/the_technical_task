@@ -62,6 +62,18 @@ extension Client {
         }
     }
     
+    //Вычисляемый остаток
+    var remainder: Int {
+        if let transactions = self.transactions?.array as? [Transaction] {
+            let returnValue = transactions.reduce(0, { (result, transaction) -> Int in
+                return result + transaction.value
+            })
+            return returnValue
+        } else {
+            return 0
+        }
+    }
+    
     
     //MARK: Convenience Initializers
     convenience init(name: String, surname: String, patronymic: String? = nil, phoneNumber: String? = nil, birthdayDate: Date, image: UIImage? = nil) {

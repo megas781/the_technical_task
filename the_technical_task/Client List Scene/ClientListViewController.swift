@@ -23,26 +23,7 @@ class ClientListTableViewController: UITableViewController {
         
         self.setupUI()
         
-//        DataManager.shared.deleteAllData()
-//        
-//        print("transactions in initial deletion: \(DataManager.shared.getTransactions())")
-//        
-//        DataManager.shared.createNewClientAndSave(name: "Gleb", surname: "Haha", birthdayDate: Date())
-//        DataManager.shared.createNewTransactionAndSave(value: 1243, forClient: DataManager.shared.inMemoryClients.first!)
-//        DataManager.shared.createNewTransactionAndSave(value: 5843, forClient: DataManager.shared.inMemoryClients.first!)
-//        
-//        //Начальные данные
-//        print("did set values")
-        print("clients     : \(DataManager.shared.inMemoryClients)")
-        print("transactions: \(DataManager.shared.getTransactions())")
-//        
-//        //Теперь удаляю клиента. Что будет с транзакциями
-//        DataManager.shared.deleteClient(DataManager.shared.inMemoryClients.first!)
-//        
-//        print("transactions in the end: \(DataManager.shared.getTransactions())")
         
-        
-            
         
         
     }
@@ -63,14 +44,23 @@ class ClientListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
+        
+        //Кнопка прибавления
         let positiveTransactionAction = UITableViewRowAction.init(style: .default, title: "  +  ") { (action, indexPath) in
             print("positiveTransactionAction performed")
+            
+            
+            self.performSegue(withIdentifier: "presentModallyIncreasementVCIdentifier", sender: nil)
+            
         }
         positiveTransactionAction.backgroundColor = #colorLiteral(red: 0, green: 0.6883943677, blue: 0.003334663808, alpha: 1)
         
-        
+        //Кнопка убавления
         let negativeTransactionAction = UITableViewRowAction.init(style: .default, title: "  -  ") { (action, indexPath) in
-            print("negativeTransactionAction performed")
+            print("negativeTransactionAction performed (-1000)")
+            
+            DataManager.shared.createNewTransactionAndSave(value: -1000, forClient: DataManager.shared.inMemoryClients[indexPath.row])
+            
         }
         negativeTransactionAction.backgroundColor = #colorLiteral(red: 0.6911816001, green: 0.007650073618, blue: 0, alpha: 1)
         
@@ -119,6 +109,11 @@ class ClientListTableViewController: UITableViewController {
             dvc.newClientContext = true
             
             break
+        case "presentModallyIncreasementVCIdentifier":
+            
+            //Показ increasementVC. Ничего, вроде, передавать не нужно
+            
+            break
             
         default:
             fatalError("Сигвей с неизвесным identifier'ом")
@@ -130,6 +125,20 @@ class ClientListTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    @IBAction func testButtonTapped(_ sender: UIBarButtonItem) {
+        
+//        print("firstClient.transactions.count: \(DataManager.shared.inMemoryClients.first!.transactions?.count ?? 0)")
+        var indexer = 0
+        let m = (DataManager.shared.inMemoryClients.first!.transactions?.array as! [Transaction]).map { (transaction) -> (Int,Int) in
+            indexer += 1
+            return (indexer, transaction.value)
+        }
+        
+        print("transactions: \(m)")
+        print("remainder: \(DataManager.shared.inMemoryClients.first!.remainder)")
+        print()
+        
+    }
     
     
     

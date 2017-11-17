@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class RoundedButton: UIView {
+@IBDesignable class RoundedView: UIView {
 
    @IBInspectable var theCornerRadius: CGFloat {
       get {
