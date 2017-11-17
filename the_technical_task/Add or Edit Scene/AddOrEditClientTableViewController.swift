@@ -47,13 +47,18 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     //Свойство, показывающее, указана дата, или нет
     private var isDatePicked = false
     //Свойство, показывающие,что нужно сделать: свернуть datePicker или развернуть
-    private var shouldExpandDatePicker = true {
+    private var isDatePickerHidden = true {
         didSet {
+
             DispatchQueue.main.async {
-                self.birthdayDatePicker.isHidden = self.shouldExpandDatePicker
+                self.birthdayDatePicker.isHidden = self.isDatePickerHidden
             }
         
-            
+            if isDatePickerHidden {
+                self.dobLabel.textColor = #colorLiteral(red: 0.7348261476, green: 0.7317743897, blue: 0.7349107862, alpha: 1)
+            } else {
+                self.dobLabel.textColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+            }
             
             
             self.tableView.beginUpdates()
@@ -101,7 +106,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             return 120
         case [1,5]:
             //Так как этот метод ничего не меняет, то если "следует развернуть DatePicker", то возвращаем 0, иначе 216
-            if self.shouldExpandDatePicker {
+            if self.isDatePickerHidden {
                 return 0
             } else {
                 return 216
@@ -131,14 +136,15 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
         
         if indexPath == [1,4] {
             
-            if shouldExpandDatePicker{
-                self.dobLabel.textColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-            } else {
-                self.dobLabel.textColor = #colorLiteral(red: 0.7348261476, green: 0.7317743897, blue: 0.7349107862, alpha: 1)
-            }
+            self.isDatePickerHidden = !self.isDatePickerHidden
+            
+//            if isDatePickerHidden {
+//                self.dobLabel.textColor = #colorLiteral(red: 0.7348261476, green: 0.7317743897, blue: 0.7349107862, alpha: 1)
+//            } else {
+//                self.dobLabel.textColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+//            }
             
             //Меняем свойство (begin и end Editing методы в наблюдателе свойства)
-            self.shouldExpandDatePicker = !self.shouldExpandDatePicker
         }
     }
     
@@ -316,12 +322,13 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             self.patronymicInputTextField.text = DataManager.shared.selectedClient!.patronymic
             self.phoneNumberInputTextField.text = DataManager.shared.selectedClient!.phoneNumber
             
+            self.birthdayDatePicker.date = DataManager.shared.selectedClient!.birthdayDate
             
+            self.isDatePickerHidden = false
             
-            self.shouldExpandDatePicker = false
+            self.dobLabel.text = DataManager.shared.selectedClient!.birthdayDate.shortDateString
             
         }
-        
         
     }
     

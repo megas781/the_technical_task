@@ -89,7 +89,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GJL-7p-YRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="276" y="331"/>
+            <point key="canvasLocation" x="690" y="330"/>
         </scene>
         <!--Отчет-->
         <scene sceneID="Qqt-vW-xye">
@@ -239,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fS3-1c-23E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057" y="331"/>
+            <point key="canvasLocation" x="1018" y="1181"/>
         </scene>
         <!--Increasement View Controller-->
         <scene sceneID="eJl-z4-HT1">
@@ -301,7 +301,7 @@
                                     <constraint firstAttribute="height" constant="30" id="7ht-ib-uDG"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                         </subviews>
@@ -331,7 +331,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F8h-e0-Ayv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057" y="1096"/>
+            <point key="canvasLocation" x="1493" y="-449"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4oi-wh-pV6">
@@ -349,7 +349,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xg7-bi-GcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-431" y="331"/>
+            <point key="canvasLocation" x="-17" y="330"/>
         </scene>
         <!--Добавить клиента-->
         <scene sceneID="A4f-ce-rhP">
@@ -402,13 +402,16 @@
                                                     <rect key="frame" x="16" y="0.0" width="288" height="43.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPH-DQ-Ttr">
-                                                            <rect key="frame" x="0.0" y="11.5" width="41" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="11.5" width="82" height="20.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="82" id="J5T-Bk-z0n"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pTn-R5-af6">
-                                                            <rect key="frame" x="51" y="7" width="237" height="30"/>
+                                                            <rect key="frame" x="92" y="7" width="196" height="30"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartQuotesType="no" textContentType="given-name"/>
@@ -435,13 +438,16 @@
                                                     <rect key="frame" x="16" y="0.0" width="288" height="43.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Фамилия*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDQ-2P-flE">
-                                                            <rect key="frame" x="0.0" y="11.5" width="81" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="11.5" width="82" height="20.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="82" id="iwq-uT-IBf"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vf1-hR-1hQ">
-                                                            <rect key="frame" x="91" y="7" width="197" height="30"/>
+                                                            <rect key="frame" x="92" y="7" width="196" height="30"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartQuotesType="no" textContentType="family-name"/>
@@ -468,13 +474,16 @@
                                                     <rect key="frame" x="16" y="0.0" width="288" height="43.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Отчество" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apN-jo-Sib">
-                                                            <rect key="frame" x="0.0" y="11.5" width="76" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="11.5" width="82" height="20.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="82" id="DZ3-An-dMh"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v7b-PS-ODA">
-                                                            <rect key="frame" x="86" y="7" width="202" height="30"/>
+                                                            <rect key="frame" x="92" y="7" width="196" height="30"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartQuotesType="no"/>
@@ -501,13 +510,16 @@
                                                     <rect key="frame" x="16" y="0.0" width="288" height="43.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Телефон" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scF-I1-RDG">
-                                                            <rect key="frame" x="0.0" y="11.5" width="69.5" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="11.5" width="82" height="20.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="82" id="bAY-Ef-mmx"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="04F-ed-k8Z">
-                                                            <rect key="frame" x="79.5" y="7" width="208.5" height="30"/>
+                                                            <rect key="frame" x="92" y="7" width="196" height="30"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" textContentType="tel"/>
@@ -623,7 +635,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rgB-NC-PqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="grX-Be-HXX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1846" y="-482"/>
+            <point key="canvasLocation" x="2621" y="329"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ooj-Xd-kBZ">
@@ -641,7 +653,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hNv-M0-aVq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057" y="-481"/>
+            <point key="canvasLocation" x="1828" y="330"/>
         </scene>
     </scenes>
     <resources>
