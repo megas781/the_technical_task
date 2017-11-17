@@ -23,28 +23,27 @@ class ClientListTableViewController: UITableViewController {
         
         self.setupUI()
         
-//        DataManager.shared.deleteAllClients()
+        DataManager.shared.deleteAllData()
         
-        print(DataManager.shared.inMemoryClients)
-//        
-////        print("count before: \(DataManager.shared.getClients().count)")
-//        DataManager.shared.createNewClientAndSave(name: "Gleb", surname: "Kalachev", birthdayDate: Date())
-////        
-////        print("count: \(DataManager.shared.inMemoryClients.count)")
-////        
-//        let client = DataManager.shared.inMemoryClients.first!
-////        
-//        DataManager.shared.createNewTransactionAndSave(value: 1234, forClient: client)
-//        DataManager.shared.createNewTransactionAndSave(value: 5678, forClient: client)
-//        
-//        for transaction in client.transactions!.array as! [Transaction] {
-//            print("transaction value: \(transaction.value)")
-//        }
+        print("transactions in initial deletion: \(DataManager.shared.getTransactions())")
         
-        for transaction in DataManager.shared.inMemoryClients.first!.transactions!.array as! [Transaction] {
-            print("transaction value: \(transaction.value)")
-        }
+        DataManager.shared.createNewClientAndSave(name: "Gleb", surname: "Haha", birthdayDate: Date())
+        DataManager.shared.createNewTransactionAndSave(value: 1243, forClient: DataManager.shared.inMemoryClients.first!)
+        DataManager.shared.createNewTransactionAndSave(value: 5843, forClient: DataManager.shared.inMemoryClients.first!)
+        
+        //Начальные данные
+        print("did set values")
+        print("clients     : \(DataManager.shared.inMemoryClients)")
+        print("transactions: \(DataManager.shared.getTransactions())")
+        
+        //Теперь удаляю клиента. Что будет с транзакциями
+        DataManager.shared.deleteClient(DataManager.shared.inMemoryClients.first!)
+        
+        print("transactions in the end: \(DataManager.shared.getTransactions())")
+        
+        
             
+        
         
     }
     

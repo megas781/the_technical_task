@@ -52,6 +52,15 @@ class DataManager {
         
     }
     
+    /*private*/ func getTransactions() -> [Transaction] {
+        do {
+            return try self.context.fetch(Transaction.fetchRequest())
+        } catch let error as NSError {
+            print("fetching error: \(error.localizedDescription)")
+            return []
+        }
+    }
+    
     
     //MARK: Managing data
     
@@ -89,6 +98,20 @@ class DataManager {
         if shouldSaveAfterDeletion {
             self.saveChangesIfNeeded()
         }
+    }
+    
+    func deleteAllData() {
+        
+        for client in self.getClients() {
+            self.context.delete(client)
+        }
+        
+        for transaction in self.getTransactions() {
+            self.context.delete(transaction)
+        }
+        
+        self.saveChangesIfNeeded()
+        
     }
     
     //Может изменю на другую архитектуру
