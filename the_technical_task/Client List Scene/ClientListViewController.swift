@@ -23,23 +23,23 @@ class ClientListTableViewController: UITableViewController {
         
         self.setupUI()
         
-        DataManager.shared.deleteAllData()
-        
-        print("transactions in initial deletion: \(DataManager.shared.getTransactions())")
-        
-        DataManager.shared.createNewClientAndSave(name: "Gleb", surname: "Haha", birthdayDate: Date())
-        DataManager.shared.createNewTransactionAndSave(value: 1243, forClient: DataManager.shared.inMemoryClients.first!)
-        DataManager.shared.createNewTransactionAndSave(value: 5843, forClient: DataManager.shared.inMemoryClients.first!)
-        
-        //Начальные данные
-        print("did set values")
+//        DataManager.shared.deleteAllData()
+//        
+//        print("transactions in initial deletion: \(DataManager.shared.getTransactions())")
+//        
+//        DataManager.shared.createNewClientAndSave(name: "Gleb", surname: "Haha", birthdayDate: Date())
+//        DataManager.shared.createNewTransactionAndSave(value: 1243, forClient: DataManager.shared.inMemoryClients.first!)
+//        DataManager.shared.createNewTransactionAndSave(value: 5843, forClient: DataManager.shared.inMemoryClients.first!)
+//        
+//        //Начальные данные
+//        print("did set values")
         print("clients     : \(DataManager.shared.inMemoryClients)")
         print("transactions: \(DataManager.shared.getTransactions())")
-        
-        //Теперь удаляю клиента. Что будет с транзакциями
-        DataManager.shared.deleteClient(DataManager.shared.inMemoryClients.first!)
-        
-        print("transactions in the end: \(DataManager.shared.getTransactions())")
+//        
+//        //Теперь удаляю клиента. Что будет с транзакциями
+//        DataManager.shared.deleteClient(DataManager.shared.inMemoryClients.first!)
+//        
+//        print("transactions in the end: \(DataManager.shared.getTransactions())")
         
         
             
