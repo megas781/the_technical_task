@@ -143,7 +143,7 @@ class DataManager {
     //Создать транзакцию и сохранить
     func createNewTransactionAndSave(value: Int, forClient client: Client) {
         
-        client.addToTransactions(Transaction.init(value: value, date: Date()))
+        client.addToStoredTransactions(Transaction.init(value: value, date: Date()))
         
         self.saveChangesIfNeeded()
         

@@ -18,7 +18,7 @@ class ClientListTableViewController: UITableViewController {
     
     //MARK: Properties
     //Свойство-хранилище для передачи индекса ячейки в IncreasementVC, так как здесь его передать не получается. Устанавливаться будет в positiveTransactionAction, а присваиваться nil в prepareForSegue
-    private var editActionTappedCellIndex: Int?
+//    private var editActionTappedCellIndex: Int?
     
     
     
@@ -29,7 +29,18 @@ class ClientListTableViewController: UITableViewController {
         
         self.setupUI()
         
+        DataManager.shared.deleteAllData()
         
+        DataManager.shared.createNewClientAndSave(name: "Глеб", surname: "Калачев", birthdayDate: Date())
+        
+        let client = DataManager.shared.clients.first!
+        
+        
+        DataManager.shared.createNewTransactionAndSave(value: 14594, forClient: client)
+        
+        print("client.transactions: \(client.transactions)")
+        
+//        client.addToTransactions(<#T##value: Transaction##Transaction#>)
         
         
     }
@@ -52,19 +63,29 @@ class ClientListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         //Кнопка убавления
-        let negativeTransactionAction = UITableViewRowAction.init(style: .default, title: "  -  ") { (action, indexPath) in
+        let negativeTransactionAction = UITableViewRowAction.init(style: .default, title: " - ") { (action, indexPath) in
             print("negativeTransactionAction performed (-1000)")
+            
+            //Обращаем внимание на клиента (в этом же блоке и удалим selectedClient)
+            DataManager.shared.selectClient(withIndex: indexPath.row)
             
             //Если на счете достаточно средств, то отнимаем
             if DataManager.shared.clients[indexPath.row].remainder >= 1000 {
                 
-                DataManager.shared.createNewTransactionAndSave(value: -1000, forClient: DataManager.shared.clients[indexPath.row])
+                DataManager.shared.createNewTransactionAndSave(value: -1000, forClient: DataManager.shared.selectedClient!)
+                
+                //Сразу убираем выделение
+                DataManager.shared.deselectClient()
+                
             } else {
                 //В противном случае покажем AlertController, говорящий о том, что не достаточно средств
                 let ac = UIAlertController.init(title: "Не достаточно средств", message: "На счете \(DataManager.shared.clients[indexPath.row].remainder)", preferredStyle: .alert)
                 ac.addAction(UIAlertAction.init(title: "ОК", style: .cancel, handler: nil))
                 
-                self.present(ac, animated: true, completion: nil)
+                self.present(ac, animated: true, completion: {
+                    //После показа AlertController'a убираем выделение
+                    DataManager.shared.deselectClient()
+                })
             }
             
             
@@ -73,11 +94,10 @@ class ClientListTableViewController: UITableViewController {
         
         
         //Кнопка прибавления
-        let positiveTransactionAction = UITableViewRowAction.init(style: .default, title: "  +  ") { (action, indexPath) in
+        let positiveTransactionAction = UITableViewRowAction.init(style: .default, title: " + ") { (action, indexPath) in
             print("positiveTransactionAction performed")
             
-            //Запоминаем, editAction какой ячейки мы нажали
-            self.editActionTappedCellIndex = indexPath.row
+            DataManager.shared.selectClient(withIndex: indexPath.row)
             
             self.performSegue(withIdentifier: "presentModallyIncreasementVCIdentifier", sender: nil)
             
@@ -93,6 +113,11 @@ class ClientListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.performSegue(withIdentifier: "fromClientListVCToReportVCIdentifier", sender: nil)
+        
+        guard let index = tableView.indexPathForSelectedRow?.row else {
+            fatalError("Не смог извлечь selectedIndex")
+        }
+        DataManager.shared.selectClient(withIndex: index)
         
         self.tableView.deselectRow(at: indexPath, animated: false)
     }
@@ -136,31 +161,31 @@ class ClientListTableViewController: UITableViewController {
         case "presentModallyIncreasementVCIdentifier":
             
             //Вспоминаем, какой editAction какой ячейки мы нажали?
-            guard let index = self.editActionTappedCellIndex else {
-                fatalError("Coundn't retrieve indexPathForSelectedRow?.row")
-            }
-            
-            //Здесь забываем это значение, так как теперь его держать будет IncreasementVC
-            self.editActionTappedCellIndex = nil
-            
-            let dvc = segue.destination as! IncreasementViewController
-            
-            //Передаю индекс клиента, на не самого клиента, потому что не хочу, чтобы viewController связывался с Client
-            dvc.selectedClientIndex = index
+//            guard let index = self.editActionTappedCellIndex else {
+//                fatalError("Coundn't retrieve indexPathForSelectedRow?.row")
+//            }
+//            
+//            //Здесь забываем это значение, так как теперь его держать будет IncreasementVC
+//            self.editActionTappedCellIndex = nil
+//            
+//            let dvc = segue.destination as! IncreasementViewController
+//            
+//            //Передаю индекс клиента, на не самого клиента, потому что не хочу, чтобы viewController связывался с Client
+//            dvc.selectedClientIndex = index
             
             break
             
         case "fromClientListVCToReportVCIdentifier":
             
-            let dvc = segue.destination as! ReportViewController
-            
-//            print(self.tableView.indexPathForSelectedRow)
-            
-            guard let selectedCellIndex = self.tableView.indexPathForSelectedRow?.row else {
-                fatalError("не смог извлечь indexPathForSelectedRow")
-            }
-            
-            dvc.selectedClientIndex = selectedCellIndex
+//            let dvc = segue.destination as! ReportViewController
+//            
+////            print(self.tableView.indexPathForSelectedRow)
+//            
+//            guard let selectedCellIndex = self.tableView.indexPathForSelectedRow?.row else {
+//                fatalError("не смог извлечь indexPathForSelectedRow")
+//            }
+//            
+//            dvc.selectedClientIndex = selectedCellIndex
             
             break
             

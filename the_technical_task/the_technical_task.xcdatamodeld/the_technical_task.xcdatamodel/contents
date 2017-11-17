@@ -14,8 +14,16 @@
         <attribute name="storedValue" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="storedTransactions" inverseEntity="Client" syncable="YES"/>
     </entity>
+    <entity name="XXX" representedClassName="XXX" syncable="YES">
+        <relationship name="relx" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ZZZ" inverseName="relz" inverseEntity="ZZZ" syncable="YES"/>
+    </entity>
+    <entity name="ZZZ" representedClassName="ZZZ" syncable="YES">
+        <relationship name="relz" maxCount="1" deletionRule="Cascade" destinationEntity="XXX" inverseName="relx" inverseEntity="XXX" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Client" positionX="0" positionY="0" width="128" height="150"/>
         <element name="Transaction" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="XXX" positionX="9" positionY="63" width="128" height="60"/>
+        <element name="ZZZ" positionX="18" positionY="72" width="128" height="60"/>
     </elements>
 </model>

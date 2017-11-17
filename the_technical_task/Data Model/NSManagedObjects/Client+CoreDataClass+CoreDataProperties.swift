@@ -32,7 +32,7 @@ extension Client {
     @NSManaged public var patronymic: String?
     @NSManaged public var phoneNumber: String?
     @NSManaged private var storedTransactions: NSOrderedSet?
-    //    @NSManaged public var uuid: UUID
+    
     
     
     //MARK: Convenience properties
@@ -76,7 +76,7 @@ extension Client {
     
     //Свойство, конвертирующее storedTransactions с [Any] в [Transaction]
     var transactions: [Transaction] {
-        return self.storedTransactions?.array as! [Transaction]
+        return ((self.storedTransactions?.array ?? []) as! [Transaction]).sorted(by: { $0.date > $1.date})
     }
     
     
@@ -95,9 +95,6 @@ extension Client {
         self.birthdayDate = birthdayDate
         self.image = image
         
-//        self.uuid = UUID.init()
-        
-        
     }
     
     
@@ -105,37 +102,38 @@ extension Client {
 
 }
 
-// MARK: Generated accessors for transactions
+// MARK: Generated accessors for storedTransactoins
 extension Client {
-
-    @objc(insertObject:inTransactionsAtIndex:)
-    @NSManaged public func insertIntoTransactions(_ value: Transaction, at idx: Int)
-
-    @objc(removeObjectFromTransactionsAtIndex:)
-    @NSManaged public func removeFromTransactions(at idx: Int)
-
-    @objc(insertTransactions:atIndexes:)
-    @NSManaged public func insertIntoTransactions(_ values: [Transaction], at indexes: NSIndexSet)
-
-    @objc(removeTransactionsAtIndexes:)
-    @NSManaged public func removeFromTransactions(at indexes: NSIndexSet)
-
-    @objc(replaceObjectInTransactionsAtIndex:withObject:)
-    @NSManaged public func replaceTransactions(at idx: Int, with value: Transaction)
-
-    @objc(replaceTransactionsAtIndexes:withTransactions:)
-    @NSManaged public func replaceTransactions(at indexes: NSIndexSet, with values: [Transaction])
-
-    @objc(addTransactionsObject:)
-    @NSManaged public func addToTransactions(_ value: Transaction)
-
-    @objc(removeTransactionsObject:)
-    @NSManaged public func removeFromTransactions(_ value: Transaction)
-
-    @objc(addTransactions:)
-    @NSManaged public func addToTransactions(_ values: NSOrderedSet)
-
-    @objc(removeTransactions:)
-    @NSManaged public func removeFromTransactions(_ values: NSOrderedSet)
-
+    
+    @objc(insertObject:inStoredTransactionsAtIndex:)
+    @NSManaged public func insertIntoStoredTransactions(_ value: Transaction, at idx: Int)
+    
+    @objc(removeObjectFromStoredTransactionsAtIndex:)
+    @NSManaged public func removeFromStoredTransactions(at idx: Int)
+    
+    @objc(insertStoredTransactions:atIndexes:)
+    @NSManaged public func insertIntoStoredTransactions(_ values: [Transaction], at indexes: NSIndexSet)
+    
+    @objc(removeStoredTransactionsAtIndexes:)
+    @NSManaged public func removeFromStoredTransactions(at indexes: NSIndexSet)
+    
+    @objc(replaceObjectInStoredTransactionsAtIndex:withObject:)
+    @NSManaged public func replaceStoredTransactions(at idx: Int, with value: Transaction)
+    
+    @objc(replaceStoredTransactionsAtIndexes:withStoredTransactions:)
+    @NSManaged public func replaceStoredTransactions(at indexes: NSIndexSet, with values: [Transaction])
+    
+    @objc(addStoredTransactionsObject:)
+    @NSManaged public func addToStoredTransactions(_ value: Transaction)
+    
+    @objc(removeStoredTransactionsObject:)
+    @NSManaged public func removeFromStoredTransactions(_ value: Transaction)
+    
+    @objc(addStoredTransactions:)
+    @NSManaged public func addToStoredTransactions(_ values: NSOrderedSet)
+    
+    @objc(removeStoredTransactions:)
+    @NSManaged public func removeFromStoredTransactions(_ values: NSOrderedSet)
+    
 }
+

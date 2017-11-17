@@ -15,7 +15,7 @@ extension Date {
     var shortDateString : String {
         var returnValue = ""
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/YYYY"
+        dateFormatter.dateFormat = "dd.MM.YYYY"
         returnValue = dateFormatter.string(from: self)
         return returnValue
     }

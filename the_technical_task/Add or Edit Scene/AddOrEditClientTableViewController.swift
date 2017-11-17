@@ -147,7 +147,6 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
         
         
         if self.newClientContext {
-            print("Should implement creating new client")
             
             guard let name = self.nameInputTextField.text,
                 let surname = self.nameInputTextField.text else {
@@ -159,7 +158,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             self.performSegue(withIdentifier: "unwindFromAddOrEditClientVCToClientListVCIdentifier", sender: self)
             
         } else {
-            print("non-newClientContext")
+            print("non-newClientContext error")
         }
         
     }

@@ -21,7 +21,7 @@ class IncreasementViewController: UIViewController {
     @IBOutlet weak var inputTextField: UITextField!
     
     
-    var selectedClientIndex: Int!
+//    var selectedClientIndex: Int!
     
     //MARK: LifeCycle
     override func viewDidLoad() {
@@ -30,16 +30,17 @@ class IncreasementViewController: UIViewController {
         //Чтобы при нажатии на темную область этот VC исчезал
         self.dimView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(self.customDismiss)))
         self.theImageView.layer.cornerRadius = self.theImageView.frame.size.height/2
+        self.contentView.addGestureRecognizer(UITapGestureRecognizer.init(target: inputTextField, action: #selector(inputTextField.resignFirstResponder)))
         
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         //Установка значений outlet'ов
-        let properClient = DataManager.shared.clients[selectedClientIndex]
-        self.theImageView.image = properClient.image
-        self.clientNameLabel.text = "\(properClient.name) \(properClient.surname)"
+        self.theImageView.image = DataManager.shared.selectedClient!.image
+            self.clientNameLabel.text = "\(DataManager.shared.selectedClient!.name) \(DataManager.shared.selectedClient!.surname)"
         
         
         self.dimView.alpha = 0
@@ -62,7 +63,7 @@ class IncreasementViewController: UIViewController {
             fatalError("Не смог ковертировать String в Int")
         }
         
-        DataManager.shared.createNewTransactionAndSave(value: newTransactionValue, forClient: DataManager.shared.clients[self.selectedClientIndex])
+        DataManager.shared.createNewTransactionAndSave(value: newTransactionValue, forClient: DataManager.shared.selectedClient!)
         
         
         //Animation
