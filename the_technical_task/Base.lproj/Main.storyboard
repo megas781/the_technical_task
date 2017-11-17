@@ -224,10 +224,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hUO-ep-tQz"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Отчет" id="swn-8P-Wg2"/>
+                    <navigationItem key="navigationItem" title="Отчет" id="swn-8P-Wg2">
+                        <barButtonItem key="rightBarButtonItem" title="Изменить" id="hsc-Fq-TGN">
+                            <connections>
+                                <action selector="editButtonTapped:" destination="0Xu-W8-qgU" id="d51-qA-Jfp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="remainderValueLabel" destination="B2t-fx-ALm" id="H0G-De-27m"/>
                         <outlet property="tableView" destination="S35-2q-IJt" id="KSz-f6-JGF"/>
+                        <segue destination="CNy-vo-P81" kind="show" identifier="EditExistingClientSegueIdentifier" id="PCf-vg-50Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fS3-1c-23E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -247,7 +254,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sga-Ao-YsX" customClass="RoundedView" customModule="the_technical_task" customModuleProvider="target">
-                                <rect key="frame" x="41.5" y="141.5" width="237" height="228"/>
+                                <rect key="frame" x="41.5" y="113" width="237" height="228"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_photo_image" translatesAutoresizingMaskIntoConstraints="NO" id="G3n-e4-utr">
                                         <rect key="frame" x="89" y="16" width="60" height="60"/>
@@ -289,7 +296,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите сумму" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CIi-5v-tVM">
-                                <rect key="frame" x="65.5" y="270.5" width="189" height="30"/>
+                                <rect key="frame" x="65.5" y="242" width="189" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="7ht-ib-uDG"/>
                                 </constraints>
@@ -308,7 +315,7 @@
                             <constraint firstItem="g5D-kY-bVz" firstAttribute="leading" secondItem="hDK-Ll-EbU" secondAttribute="leading" id="duF-MQ-8wI"/>
                             <constraint firstItem="g5D-kY-bVz" firstAttribute="top" secondItem="Fyc-En-RVz" secondAttribute="top" id="pZa-Jf-AU7"/>
                             <constraint firstItem="CIi-5v-tVM" firstAttribute="width" secondItem="Sga-Ao-YsX" secondAttribute="width" multiplier="0.8" id="q76-Da-7sf"/>
-                            <constraint firstItem="Sga-Ao-YsX" firstAttribute="centerY" secondItem="Fyc-En-RVz" secondAttribute="centerY" multiplier="0.9" id="s3P-cF-T8h"/>
+                            <constraint firstItem="Sga-Ao-YsX" firstAttribute="centerY" secondItem="Fyc-En-RVz" secondAttribute="centerY" multiplier="0.8" id="s3P-cF-T8h"/>
                             <constraint firstItem="Sga-Ao-YsX" firstAttribute="width" secondItem="Fyc-En-RVz" secondAttribute="width" multiplier="0.74" id="ufd-ie-jdH"/>
                             <constraint firstItem="s4K-iv-pR0" firstAttribute="width" secondItem="CIi-5v-tVM" secondAttribute="width" id="vVy-qI-UiM"/>
                         </constraints>
@@ -610,6 +617,7 @@
                         <outletCollection property="inputTextFieldCollection" destination="v7b-PS-ODA" collectionClass="NSMutableArray" id="7kw-Ob-bq3"/>
                         <outletCollection property="inputTextFieldCollection" destination="04F-ed-k8Z" collectionClass="NSMutableArray" id="O9m-RO-DHX"/>
                         <segue destination="grX-Be-HXX" kind="unwind" identifier="unwindFromAddOrEditClientVCToClientListVCIdentifier" unwindAction="unwindToClientListVCWithSegue:" id="xtg-Nr-9Sj"/>
+                        <segue destination="grX-Be-HXX" kind="unwind" identifier="unwindFromAddOrEditVCToReportVCIdentifier" unwindAction="unwindToReportViewControllerWithSegue:" id="3gd-JH-0is"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rgB-NC-PqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -640,4 +648,7 @@
         <image name="empty_photo_image" width="64" height="64"/>
         <image name="empty_photo_tap_to_pick_image" width="128" height="128"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="PCf-vg-50Q"/>
+    </inferredMetricsTieBreakers>
 </document>

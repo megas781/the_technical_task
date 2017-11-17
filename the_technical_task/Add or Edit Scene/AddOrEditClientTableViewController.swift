@@ -24,7 +24,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     //Также представим все эти TextField'ы в виде коллекции
     @IBOutlet var inputTextFieldCollection: [UITextField]!
     
-    //Свойство, хранящее такую широту textField'a, чтобы label'ам не пришлось сжимать контент
+    //Свойство, хранящее самый узкий textField. Все textField'ы ровняются на меньший.
     private var smallestTextField: UITextField?
     
     
@@ -37,7 +37,13 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     //MARK: Properties
     
     //Свойство, показывающее, совершались ли хоть какие-то действия с датой или нет
-    var newClientContext: Bool!
+    
+    enum WhatToDoContext {
+        case createNewClient, editExistingClient
+    }
+    
+    var whatToDoContext: WhatToDoContext!
+    
     //Свойство, показывающее, указана дата, или нет
     private var isDatePicked = false
     //Свойство, показывающие,что нужно сделать: свернуть datePicker или развернуть
@@ -46,6 +52,10 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             DispatchQueue.main.async {
                 self.birthdayDatePicker.isHidden = self.shouldExpandDatePicker
             }
+        
+            
+            
+            
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
         }
@@ -68,34 +78,19 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
         
         self.setupUI()
         
+        switch self.whatToDoContext! {
+        case .createNewClient:
+            self.title = "Новый клиент"
+            self.navigationItem.leftBarButtonItem!.title = "Назад"
+            self.navigationItem.rightBarButtonItem!.title = "Создать"
+        case .editExistingClient:
+            self.title = "" //Ставлю пустоту, так как в противном случае будет сжатие текста
+            self.navigationItem.leftBarButtonItem!.title = "Отменить"
+            self.navigationItem.rightBarButtonItem!.title = " Сохранить"
+        }
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-//        //Добавление всех action'ов для всех textField'ов
-//        for textField in self.inputTextFieldCollection {
-//            
-//            print("smallestWidth: \(self.biggestLabelWidth)")
-//            
-//            print("will be compared with frame: \(textField.frame)")
-//            
-//            if self.biggestLabelWidth == nil || self.biggestLabelWidth! > textField.frame.size.width {
-//                self.biggestLabelWidth = textField.frame.size.width
-//            }
-//            
-//            print("newWidth: \(self.biggestLabelWidth)")
-//            
-//            print()
-//            
-//        }
-//        
-//        for textField in self.inputTextFieldCollection {
-//            textField.widthAnchor.constraint(equalToConstant: self.biggestLabelWidth!).isActive = true
-//        }
-
-    }
     
     //MARK: UITableViewDataSource
     
@@ -112,6 +107,13 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
                 return 216
             }
         default:
+            
+            //В условии исключаем ячейку выбора даты
+//            if indexPath != [1, 4] {
+//                print("self.smallestTextField: \(self.smallestTextField)")
+//                self.inputTextFieldCollection[indexPath.row].frame.size.width = self.smallestTextField!.frame.size.width
+//            }
+            
             return 44
         }
         
@@ -146,7 +148,9 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         
         
-        if self.newClientContext {
+        switch self.whatToDoContext! {
+        case .createNewClient:
+            
             
             guard let name = self.nameInputTextField.text,
                 let surname = self.nameInputTextField.text else {
@@ -157,9 +161,11 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             
             self.performSegue(withIdentifier: "unwindFromAddOrEditClientVCToClientListVCIdentifier", sender: self)
             
-        } else {
-            print("non-newClientContext error")
+            
+        case .editExistingClient:
+            break
         }
+        
         
     }
     
@@ -167,7 +173,15 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
         
         print("back button tapped")
         
-        self.performSegue(withIdentifier: "unwindFromAddOrEditClientVCToClientListVCIdentifier", sender: self)
+        switch self.whatToDoContext! {
+        case .createNewClient:
+            self.performSegue(withIdentifier: "unwindFromAddOrEditClientVCToClientListVCIdentifier", sender: self)
+        case .editExistingClient:
+            self.performSegue(withIdentifier: "unwindFromAddOrEditClientVCToClientListVCIdentifier", sender: self)
+        }
+        
+        
+        
         
     }
     
@@ -288,16 +302,30 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             
 //            let relativeLabelWidth = ((textField.superview as! UIStackView).subviews.first! as! UILabel).frame.size.width
             
-            if smallestTextField == nil || smallestTextField!.frame.size.width > textField.frame.size.width {
-                self.smallestTextField = textField
-            }
             
         }
         
-        //Здесь мы нашли smallestTextFieldWidth. Так что можно ставить constraint'ы
+        
+        
+        //Здесь проверим контекст. Если .editExistingClient, то устанавливаем outlet'ы
+        
+        if self.whatToDoContext == .editExistingClient {
+            self.theImagePickerButton.setBackgroundImage(DataManager.shared.selectedClient!.image ?? UIImage.init(named: "empty_photo_tap_to_pick_image"), for: .normal)
+            self.nameInputTextField.text = DataManager.shared.selectedClient!.name
+            self.surnameInputTextField.text = DataManager.shared.selectedClient!.surname
+            self.patronymicInputTextField.text = DataManager.shared.selectedClient!.patronymic
+            self.phoneNumberInputTextField.text = DataManager.shared.selectedClient!.phoneNumber
+            
+            
+            
+            self.shouldExpandDatePicker = false
+            
+        }
         
         
     }
+    
+    
     
     
 }

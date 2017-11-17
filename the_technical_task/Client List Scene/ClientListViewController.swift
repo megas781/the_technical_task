@@ -29,19 +29,6 @@ class ClientListTableViewController: UITableViewController {
         
         self.setupUI()
         
-        DataManager.shared.deleteAllData()
-        
-        DataManager.shared.createNewClientAndSave(name: "Глеб", surname: "Калачев", birthdayDate: Date())
-        
-        let client = DataManager.shared.clients.first!
-        
-        
-        DataManager.shared.createNewTransactionAndSave(value: 14594, forClient: client)
-        
-        print("client.transactions: \(client.transactions)")
-        
-//        client.addToTransactions(<#T##value: Transaction##Transaction#>)
-        
         
     }
     
@@ -155,7 +142,8 @@ class ClientListTableViewController: UITableViewController {
 //                fatalError("Не смог извлечь indexPathForSelectedRow")
 //            }
             
-            dvc.newClientContext = true
+            //Указываем, в каком контексте мы вызываем AddOrEditClientTableViewController
+            dvc.whatToDoContext = .createNewClient
             
             break
         case "presentModallyIncreasementVCIdentifier":

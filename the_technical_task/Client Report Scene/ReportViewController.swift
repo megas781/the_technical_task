@@ -29,6 +29,8 @@ class ReportViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    //MARK: TableView: dataSource and delegate
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -98,6 +100,34 @@ class ReportViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    
+    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
+        
+        self.performSegue(withIdentifier: "EditExistingClientSegueIdentifier", sender: nil)
+        
+    }
+    
+    
+    //MARK: Navigation methods
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else {
+            fatalError("segue without identifier")
+        }
+        
+        switch identifier {
+        case "EditExistingClientSegueIdentifier":
+            let dvc = (segue.destination as! UINavigationController).topViewController! as! AddOrEditClientViewController
+            dvc.whatToDoContext = .editExistingClient
+            break
+        default:
+            fatalError("Не должно быть других segue'ев")
+        }
+    }
+    
+    @IBAction func unwindToReportViewController(segue: UIStoryboardSegue) {
+        
     }
     
     
