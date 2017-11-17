@@ -37,7 +37,7 @@ class IncreasementViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //Установка значений outlet'ов
-        let properClient = DataManager.shared.inMemoryClients[selectedClientIndex]
+        let properClient = DataManager.shared.clients[selectedClientIndex]
         self.theImageView.image = properClient.image
         self.clientNameLabel.text = "\(properClient.name) \(properClient.surname)"
         
@@ -62,7 +62,7 @@ class IncreasementViewController: UIViewController {
             fatalError("Не смог ковертировать String в Int")
         }
         
-        DataManager.shared.createNewTransactionAndSave(value: newTransactionValue, forClient: DataManager.shared.inMemoryClients[self.selectedClientIndex])
+        DataManager.shared.createNewTransactionAndSave(value: newTransactionValue, forClient: DataManager.shared.clients[self.selectedClientIndex])
         
         
         //Animation

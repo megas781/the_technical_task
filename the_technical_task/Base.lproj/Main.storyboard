@@ -68,6 +68,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Список клиентов" id="5LS-fi-ZGd">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="IOo-lT-AK2"/>
                         <barButtonItem key="leftBarButtonItem" title="test" id="dK5-p2-b9c">
                             <connections>
                                 <action selector="testButtonTapped:" destination="9Ky-GQ-4ey" id="jpv-yW-axp"/>
@@ -124,8 +125,15 @@
                                     <constraint firstItem="B2t-fx-ALm" firstAttribute="centerY" secondItem="QvE-Kr-spZ" secondAttribute="centerY" id="wzJ-lK-4Av"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chU-Ms-AYP" userLabel="blackLine">
+                                <rect key="frame" x="0.0" y="523" width="320" height="0.5"/>
+                                <color key="backgroundColor" red="0.78497463464736938" green="0.78195327520370483" blue="0.79924982786178589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Pkk-JY-XCJ"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="S35-2q-IJt">
-                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="459"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClientDataInformationCellIdentifier" id="HAC-35-390" customClass="AttributeTableViewCell" customModule="the_technical_task" customModuleProvider="target">
@@ -205,17 +213,18 @@
                         <constraints>
                             <constraint firstItem="QvE-Kr-spZ" firstAttribute="bottom" secondItem="hUO-ep-tQz" secondAttribute="bottom" id="79d-nM-xfu"/>
                             <constraint firstItem="QvE-Kr-spZ" firstAttribute="leading" secondItem="hUO-ep-tQz" secondAttribute="leading" id="Eo9-3K-LDC"/>
-                            <constraint firstItem="QvE-Kr-spZ" firstAttribute="top" secondItem="S35-2q-IJt" secondAttribute="bottom" id="QsF-rf-Dfh"/>
+                            <constraint firstItem="chU-Ms-AYP" firstAttribute="leading" secondItem="hUO-ep-tQz" secondAttribute="leading" id="FRo-tG-WJC"/>
+                            <constraint firstItem="chU-Ms-AYP" firstAttribute="top" secondItem="S35-2q-IJt" secondAttribute="bottom" id="OCM-i7-CyP"/>
                             <constraint firstItem="hUO-ep-tQz" firstAttribute="trailing" secondItem="S35-2q-IJt" secondAttribute="trailing" id="TTk-Qv-Tds"/>
                             <constraint firstItem="hUO-ep-tQz" firstAttribute="trailing" secondItem="QvE-Kr-spZ" secondAttribute="trailing" id="Uif-nZ-8FE"/>
                             <constraint firstItem="S35-2q-IJt" firstAttribute="leading" secondItem="hUO-ep-tQz" secondAttribute="leading" id="eZc-hd-tzp"/>
+                            <constraint firstItem="QvE-Kr-spZ" firstAttribute="top" secondItem="chU-Ms-AYP" secondAttribute="bottom" id="hBW-pK-0K9"/>
                             <constraint firstItem="S35-2q-IJt" firstAttribute="top" secondItem="hUO-ep-tQz" secondAttribute="top" id="j9M-nk-31m"/>
+                            <constraint firstItem="chU-Ms-AYP" firstAttribute="trailing" secondItem="hUO-ep-tQz" secondAttribute="trailing" id="oZK-ji-gHH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hUO-ep-tQz"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Отчет" id="swn-8P-Wg2">
-                        <barButtonItem key="backBarButtonItem" title="sdf" id="Isc-5t-hyu"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Отчет" id="swn-8P-Wg2"/>
                     <connections>
                         <outlet property="remainderValueLabel" destination="B2t-fx-ALm" id="H0G-De-27m"/>
                         <outlet property="tableView" destination="S35-2q-IJt" id="KSz-f6-JGF"/>
@@ -576,12 +585,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Добавить клиента" id="D0K-nh-zz8">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="UpN-9H-5J0"/>
-                        <barButtonItem key="leftBarButtonItem" title="Назад" id="vA4-8B-Xin">
+                        <barButtonItem key="leftBarButtonItem" title="Назад" id="Ci6-nM-16p">
                             <connections>
-                                <action selector="backButtonTapped:" destination="MQt-FO-7Ve" id="bUH-U7-vpQ"/>
+                                <action selector="backButtonTapped:" destination="MQt-FO-7Ve" id="0Dc-pQ-b5L"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Сохранить" id="Awq-a8-3Qa">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Создать" id="Awq-a8-3Qa">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="MQt-FO-7Ve" id="3GV-sQ-vop"/>
                             </connections>

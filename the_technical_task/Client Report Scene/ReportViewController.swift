@@ -24,7 +24,8 @@ class ReportViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.remainderValueLabel.text = "\(DataManager.shared.inMemoryClients[selectedClientIndex].remainder)"
+        self.remainderValueLabel.text = "\(DataManager.shared.clients[selectedClientIndex].remainder)"
+        self.tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         
     }
     
@@ -48,7 +49,7 @@ class ReportViewController: UIViewController, UITableViewDataSource, UITableView
         case 0:
             return 5
         case 1:
-            return DataManager.shared.inMemoryClients[self.selectedClientIndex].transactions?.count ?? 0
+            return DataManager.shared.clients[self.selectedClientIndex].transactions.count
         default:
             fatalError("out of sections")
         }
@@ -64,15 +65,15 @@ class ReportViewController: UIViewController, UITableViewDataSource, UITableView
             cell.attributeNameLabel.text = self.attributeNames[indexPath.row]
             switch indexPath.row {
             case 0:
-                cell.attributeValueLabel.text = DataManager.shared.inMemoryClients[self.selectedClientIndex].name
+                cell.attributeValueLabel.text = DataManager.shared.clients[self.selectedClientIndex].name
             case 1:
-                cell.attributeValueLabel.text = DataManager.shared.inMemoryClients[self.selectedClientIndex].surname
+                cell.attributeValueLabel.text = DataManager.shared.clients[self.selectedClientIndex].surname
             case 2:
-                cell.attributeValueLabel.text = DataManager.shared.inMemoryClients[self.selectedClientIndex].patronymic
+                cell.attributeValueLabel.text = DataManager.shared.clients[self.selectedClientIndex].patronymic
             case 3:
-                cell.attributeValueLabel.text = DataManager.shared.inMemoryClients[self.selectedClientIndex].phoneNumber
+                cell.attributeValueLabel.text = DataManager.shared.clients[self.selectedClientIndex].phoneNumber
             case 4:
-                cell.attributeValueLabel.text = DataManager.shared.inMemoryClients[self.selectedClientIndex].birthdayDate.shortDateString
+                cell.attributeValueLabel.text = DataManager.shared.clients[self.selectedClientIndex].birthdayDate.shortDateString
                 break
             default:
                 fatalError("out of attribute cells")
@@ -84,8 +85,8 @@ class ReportViewController: UIViewController, UITableViewDataSource, UITableView
         case 1:
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "TransactionCellIdentifier", for: indexPath) as! TransactionTableViewCell
             
-            cell.transactionDateLabel.text = DataManager.shared.inMemoryClients[selectedClientIndex].birthdayDate.shortDateString
-            cell.transactionValueLabel.text = "\((DataManager.shared.inMemoryClients[selectedClientIndex].transactionArray[indexPath.row].value))"
+            cell.transactionDateLabel.text = DataManager.shared.clients[selectedClientIndex].birthdayDate.shortDateString
+            cell.transactionValueLabel.text = "\((DataManager.shared.clients[selectedClientIndex].transactions[indexPath.row].value))"
             
             return cell
             

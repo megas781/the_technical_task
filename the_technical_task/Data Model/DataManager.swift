@@ -26,18 +26,35 @@ class DataManager {
     
     private init() {
         //При инициализации shared нужно установить inMemoryClients
-        self.inMemoryClients = self.getClients()
+        self.updateInMemoryClients()
     }
+    
+    
+    
     
     
     //MARK: Fetching data
     
+    //Здесь будет храниться своеборазный FirstResponder клиент, на который направлено внимание программы
+    var selectedClient: Client?
+    
+    //Методы для установки selectedClient
+    func selectClient(_ client: Client) {
+        self.selectedClient = client
+    }
+    func selectClient(withIndex index: Int) {
+        self.selectedClient = self.clients[index]
+    }
+    func deselectClient() {
+        self.selectedClient = nil
+    }
+    
     //Массив для загрузки данных с оперативой памяти. Такой подход вроде уменьшит ресурсопотребление. Массив обновляется либо вручную, либо сделаю, чтобы при любом изменении объектов
-    var inMemoryClients: [Client] = []
+    var clients: [Client] = []
     
     //Для удобного ручного обновления массива inMemoryClients
-    func updateInMemoryClients() {
-        self.inMemoryClients = self.getClients()
+    private func updateInMemoryClients() {
+        self.clients = self.getClients()
     }
     
     //Загрузка данных с диска
@@ -72,8 +89,8 @@ class DataManager {
                 self.updateInMemoryClients()
             } catch let error as NSError {
                 print("saving error : \(error.localizedDescription)")
-                print("failureReason: \(error.localizedFailureReason)")
-                print("suggestion   : \(error.localizedRecoveryOptions)")
+//                print("failureReason: \(error.localizedFailureReason)")
+//                print("suggestion   : \(error.localizedRecoveryOptions)")
             }
         }
     }

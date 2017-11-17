@@ -7,12 +7,12 @@
         <attribute name="storedBirthdayDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="storedImageData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="surname" attributeType="String" syncable="YES"/>
-        <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Transaction" inverseName="client" inverseEntity="Transaction" syncable="YES"/>
+        <relationship name="storedTransactions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Transaction" inverseName="client" inverseEntity="Transaction" syncable="YES"/>
     </entity>
     <entity name="Transaction" representedClassName="Transaction" syncable="YES">
         <attribute name="storedDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="storedValue" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="transactions" inverseEntity="Client" syncable="YES"/>
+        <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="storedTransactions" inverseEntity="Client" syncable="YES"/>
     </entity>
     <elements>
         <element name="Client" positionX="0" positionY="0" width="128" height="150"/>

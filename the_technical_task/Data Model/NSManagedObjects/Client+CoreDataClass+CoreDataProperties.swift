@@ -31,7 +31,7 @@ extension Client {
     @NSManaged private var storedImageData: NSData?
     @NSManaged public var patronymic: String?
     @NSManaged public var phoneNumber: String?
-    @NSManaged public var transactions: NSOrderedSet?
+    @NSManaged private var storedTransactions: NSOrderedSet?
     //    @NSManaged public var uuid: UUID
     
     
@@ -64,7 +64,7 @@ extension Client {
     
     //Вычисляемый остаток
     var remainder: Int {
-        if let transactions = self.transactions?.array as? [Transaction] {
+        if let transactions = self.storedTransactions?.array as? [Transaction] {
             let returnValue = transactions.reduce(0, { (result, transaction) -> Int in
                 return result + transaction.value
             })
@@ -74,9 +74,9 @@ extension Client {
         }
     }
     
-    //Свойство, конвертирующее transactions с [Any] в [Transaction]
-    var transactionArray: [Transaction] {
-        return self.transactions?.array as! [Transaction]
+    //Свойство, конвертирующее storedTransactions с [Any] в [Transaction]
+    var transactions: [Transaction] {
+        return self.storedTransactions?.array as! [Transaction]
     }
     
     
@@ -96,6 +96,7 @@ extension Client {
         self.image = image
         
 //        self.uuid = UUID.init()
+        
         
     }
     

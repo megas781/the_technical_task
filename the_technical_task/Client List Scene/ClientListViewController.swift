@@ -37,13 +37,13 @@ class ClientListTableViewController: UITableViewController {
     //MARK: UITableViewDataSource implementation
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataManager.shared.inMemoryClients.count
+        return DataManager.shared.clients.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "ClientListTableViewCellIdentifier", for: indexPath) as! ClientListTableViewCell
         
-        cell.setOutletsAndRoundImageView(with: DataManager.shared.inMemoryClients[indexPath.row])
+        cell.setOutletsAndRoundImageView(with: DataManager.shared.clients[indexPath.row])
         
         return cell
     }
@@ -56,12 +56,12 @@ class ClientListTableViewController: UITableViewController {
             print("negativeTransactionAction performed (-1000)")
             
             //Если на счете достаточно средств, то отнимаем
-            if DataManager.shared.inMemoryClients[indexPath.row].remainder >= 1000 {
+            if DataManager.shared.clients[indexPath.row].remainder >= 1000 {
                 
-                DataManager.shared.createNewTransactionAndSave(value: -1000, forClient: DataManager.shared.inMemoryClients[indexPath.row])
+                DataManager.shared.createNewTransactionAndSave(value: -1000, forClient: DataManager.shared.clients[indexPath.row])
             } else {
                 //В противном случае покажем AlertController, говорящий о том, что не достаточно средств
-                let ac = UIAlertController.init(title: "Не достаточно средств", message: "На счете \(DataManager.shared.inMemoryClients[indexPath.row].remainder)", preferredStyle: .alert)
+                let ac = UIAlertController.init(title: "Не достаточно средств", message: "На счете \(DataManager.shared.clients[indexPath.row].remainder)", preferredStyle: .alert)
                 ac.addAction(UIAlertAction.init(title: "ОК", style: .cancel, handler: nil))
                 
                 self.present(ac, animated: true, completion: nil)
@@ -154,7 +154,7 @@ class ClientListTableViewController: UITableViewController {
             
             let dvc = segue.destination as! ReportViewController
             
-            print(self.tableView.indexPathForSelectedRow)
+//            print(self.tableView.indexPathForSelectedRow)
             
             guard let selectedCellIndex = self.tableView.indexPathForSelectedRow?.row else {
                 fatalError("не смог извлечь indexPathForSelectedRow")
@@ -178,13 +178,13 @@ class ClientListTableViewController: UITableViewController {
         
 //        print("firstClient.transactions.count: \(DataManager.shared.inMemoryClients.first!.transactions?.count ?? 0)")
         var indexer = 0
-        let m = (DataManager.shared.inMemoryClients.last!.transactions?.array as! [Transaction]).map { (transaction) -> (Int,Int) in
+        let m = DataManager.shared.clients.last!.transactions.map({ (transaction) -> (Int,Int) in
             indexer += 1
             return (indexer, transaction.value)
-        }
+        })
         
         print("transactions: \(m)")
-        print("remainder: \(DataManager.shared.inMemoryClients.first!.remainder)")
+        print("remainder: \(DataManager.shared.clients.first!.remainder)")
         print()
         
     }
