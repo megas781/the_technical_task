@@ -195,6 +195,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="0Xu-W8-qgU" id="rlu-lm-BxQ"/>
+                                    <outlet property="delegate" destination="0Xu-W8-qgU" id="Gyk-aC-ZAO"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -302,7 +306,7 @@
                         <viewLayoutGuide key="safeArea" id="hDK-Ll-EbU"/>
                     </view>
                     <connections>
-                        <outlet property="ClientNameLabel" destination="s4K-iv-pR0" id="5YN-aL-yWB"/>
+                        <outlet property="clientNameLabel" destination="s4K-iv-pR0" id="5YN-aL-yWB"/>
                         <outlet property="contentView" destination="Sga-Ao-YsX" id="VwW-7Y-a6e"/>
                         <outlet property="dimView" destination="g5D-kY-bVz" id="z8h-9A-g6S"/>
                         <outlet property="inputTextField" destination="CIi-5v-tVM" id="fYg-Ay-bX9"/>

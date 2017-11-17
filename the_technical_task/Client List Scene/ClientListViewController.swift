@@ -16,6 +16,12 @@ class ClientListTableViewController: UITableViewController {
     @IBOutlet weak var theSearchBar: UISearchBar!
     
     
+    //MARK: Properties
+    //Свойство-хранилище для передачи индекса ячейки в IncreasementVC, так как здесь его передать не получается. Устанавливаться будет в positiveTransactionAction, а присваиваться nil в prepareForSegue
+    private var editActionTappedCellIndex: Int?
+    
+    
+    
     //MARK: LifeCycle implementation
     
     override func viewDidLoad() {
@@ -42,27 +48,42 @@ class ClientListTableViewController: UITableViewController {
         return cell
     }
     
+    
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        //Кнопка убавления
+        let negativeTransactionAction = UITableViewRowAction.init(style: .default, title: "  -  ") { (action, indexPath) in
+            print("negativeTransactionAction performed (-1000)")
+            
+            //Если на счете достаточно средств, то отнимаем
+            if DataManager.shared.inMemoryClients[indexPath.row].remainder >= 1000 {
+                
+                DataManager.shared.createNewTransactionAndSave(value: -1000, forClient: DataManager.shared.inMemoryClients[indexPath.row])
+            } else {
+                //В противном случае покажем AlertController, говорящий о том, что не достаточно средств
+                let ac = UIAlertController.init(title: "Не достаточно средств", message: "На счете \(DataManager.shared.inMemoryClients[indexPath.row].remainder)", preferredStyle: .alert)
+                ac.addAction(UIAlertAction.init(title: "ОК", style: .cancel, handler: nil))
+                
+                self.present(ac, animated: true, completion: nil)
+            }
+            
+            
+        }
+        negativeTransactionAction.backgroundColor = #colorLiteral(red: 0.6911816001, green: 0.007650073618, blue: 0, alpha: 1)
         
         
         //Кнопка прибавления
         let positiveTransactionAction = UITableViewRowAction.init(style: .default, title: "  +  ") { (action, indexPath) in
             print("positiveTransactionAction performed")
             
+            //Запоминаем, editAction какой ячейки мы нажали
+            self.editActionTappedCellIndex = indexPath.row
             
             self.performSegue(withIdentifier: "presentModallyIncreasementVCIdentifier", sender: nil)
             
         }
         positiveTransactionAction.backgroundColor = #colorLiteral(red: 0, green: 0.6883943677, blue: 0.003334663808, alpha: 1)
         
-        //Кнопка убавления
-        let negativeTransactionAction = UITableViewRowAction.init(style: .default, title: "  -  ") { (action, indexPath) in
-            print("negativeTransactionAction performed (-1000)")
-            
-            DataManager.shared.createNewTransactionAndSave(value: -1000, forClient: DataManager.shared.inMemoryClients[indexPath.row])
-            
-        }
-        negativeTransactionAction.backgroundColor = #colorLiteral(red: 0.6911816001, green: 0.007650073618, blue: 0, alpha: 1)
         
         return [positiveTransactionAction, negativeTransactionAction]
     }
@@ -71,6 +92,9 @@ class ClientListTableViewController: UITableViewController {
     //MARK: UITableViewDelegate implementation
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: false)
+        
+        self.performSegue(withIdentifier: "fromClientListVCToReportVCIdentifier", sender: nil)
+        
     }
     
     //MARK: IBActions on tap
@@ -111,7 +135,25 @@ class ClientListTableViewController: UITableViewController {
             break
         case "presentModallyIncreasementVCIdentifier":
             
+            //Вспоминаем, какой editAction какой ячейки мы нажали?
+            guard let index = self.editActionTappedCellIndex else {
+                fatalError("Coundn't retrieve indexPathForSelectedRow?.row")
+            }
+            
+            //Здесь забываем это значение, так как теперь его держать будет IncreasementVC
+            self.editActionTappedCellIndex = nil
+            
             //Показ increasementVC. Ничего, вроде, передавать не нужно
+            let dvc = segue.destination as! IncreasementViewController
+            
+            //Передаю индекс клиента, на не самого клиента, потому что не хочу, чтобы viewController связывался с Client
+            dvc.selectedClientIndex = index
+            
+            break
+            
+        case "fromClientListVCToReportVCIdentifier":
+            
+            let dvc = segue.destination as! ReportViewController
             
             break
             
@@ -129,7 +171,7 @@ class ClientListTableViewController: UITableViewController {
         
 //        print("firstClient.transactions.count: \(DataManager.shared.inMemoryClients.first!.transactions?.count ?? 0)")
         var indexer = 0
-        let m = (DataManager.shared.inMemoryClients.first!.transactions?.array as! [Transaction]).map { (transaction) -> (Int,Int) in
+        let m = (DataManager.shared.inMemoryClients.last!.transactions?.array as! [Transaction]).map { (transaction) -> (Int,Int) in
             indexer += 1
             return (indexer, transaction.value)
         }
