@@ -21,23 +21,30 @@ class ClientListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setup()
+        self.setupUI()
         
-        DataManager.shared.deleteAllClients()
+//        DataManager.shared.deleteAllClients()
         
-        print("count before: \(DataManager.shared.getClients().count)")
+        print(DataManager.shared.inMemoryClients)
+//        
+////        print("count before: \(DataManager.shared.getClients().count)")
+//        DataManager.shared.createNewClientAndSave(name: "Gleb", surname: "Kalachev", birthdayDate: Date())
+////        
+////        print("count: \(DataManager.shared.inMemoryClients.count)")
+////        
+//        let client = DataManager.shared.inMemoryClients.first!
+////        
+//        DataManager.shared.createNewTransactionAndSave(value: 1234, forClient: client)
+//        DataManager.shared.createNewTransactionAndSave(value: 5678, forClient: client)
+//        
+//        for transaction in client.transactions!.array as! [Transaction] {
+//            print("transaction value: \(transaction.value)")
+//        }
         
-        for i in 1...5 {
-            DataManager.shared.createNewClientAndSave(name: "Gleb #\(i)", surname: "Kalachev", patronymic: "Романович", birthdayDate: Date())
+        for transaction in DataManager.shared.inMemoryClients.first!.transactions!.array as! [Transaction] {
+            print("transaction value: \(transaction.value)")
         }
-        for i in 1...5 {
-            print("#\(1) transactions: \(DataManager.shared.inMemoryClients[i-1].transactions)")
-        }
-        
-        
-        
-        
-        print("count after : \(DataManager.shared.getClients().count)")
+            
         
     }
     
@@ -87,7 +94,7 @@ class ClientListTableViewController: UITableViewController {
     
     
     //MARK: Custom functions
-    private func setup() {
+    private func setupUI() {
         //Убираем линии
         self.tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         //Чтобы при возвращении к этому viewController'у theSearchBar не был firstResponder'ом

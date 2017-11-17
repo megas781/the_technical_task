@@ -9,10 +9,11 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 @objc(Transaction)
 public class Transaction: NSManagedObject {
-    
+    private static var context: NSManagedObjectContext { return (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext}
 }
 
 extension Transaction {
@@ -21,12 +22,35 @@ extension Transaction {
         return NSFetchRequest<Transaction>(entityName: "Transaction")
     }
 
-    @NSManaged public var date: NSDate?
-    @NSManaged public var value: Int64
+    @NSManaged private var storedDate: NSDate
+    @NSManaged private var storedValue: Int32
 
     @NSManaged public var client: Client?
     
-    //Рассматриваю возможное добавление uuid
-//    @NSManaged public var uuid: UUID
+    
+    //Convenience properties
+    var date: Date {
+        get {
+            return self.storedDate as Date
+        }
+        set(newDate) {
+            self.storedDate = newDate as NSDate
+        }
+    }
+    var value: Int {
+        get {
+            return Int(self.storedValue)
+        }
+        set {
+            self.storedValue = Int32(newValue)
+        }
+    }
+    
+    //Ты не должен создавать Trnsaction сам по себе
+    convenience init(value: Int, date: Date) {
+        self.init(context: Transaction.context)
+        self.value = value
+        self.date = date
+    }
 
 }

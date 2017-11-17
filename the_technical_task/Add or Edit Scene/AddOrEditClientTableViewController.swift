@@ -24,7 +24,8 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     //Также представим все эти TextField'ы в виде коллекции
     @IBOutlet var inputTextFieldCollection: [UITextField]!
     
-    private var smallestTextFieldWidth: CGFloat?
+    //Свойство, хранящее такую широту textField'a, чтобы label'ам не пришлось сжимать контент
+    private var smallestTextField: UITextField?
     
     
     @IBOutlet weak var dobLabel: UILabel!
@@ -69,6 +70,31 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+//        //Добавление всех action'ов для всех textField'ов
+//        for textField in self.inputTextFieldCollection {
+//            
+//            print("smallestWidth: \(self.biggestLabelWidth)")
+//            
+//            print("will be compared with frame: \(textField.frame)")
+//            
+//            if self.biggestLabelWidth == nil || self.biggestLabelWidth! > textField.frame.size.width {
+//                self.biggestLabelWidth = textField.frame.size.width
+//            }
+//            
+//            print("newWidth: \(self.biggestLabelWidth)")
+//            
+//            print()
+//            
+//        }
+//        
+//        for textField in self.inputTextFieldCollection {
+//            textField.widthAnchor.constraint(equalToConstant: self.biggestLabelWidth!).isActive = true
+//        }
+
+    }
+    
     //MARK: UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -88,6 +114,8 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
         }
         
     }
+    
+    
     
     //MARK: UITableViewDelegate
     
@@ -257,16 +285,16 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             
             textField.addTarget(self, action: #selector(self.aTextFieldPrimaryActionTriggered(_:)), for: .primaryActionTriggered)
             
-            if self.smallestTextFieldWidth == nil || self.smallestTextFieldWidth! > textField.frame.size.width {
-                self.smallestTextFieldWidth = textField.frame.size.width
+//            let relativeLabelWidth = ((textField.superview as! UIStackView).subviews.first! as! UILabel).frame.size.width
+            
+            if smallestTextField == nil || smallestTextField!.frame.size.width > textField.frame.size.width {
+                self.smallestTextField = textField
             }
             
         }
         
         //Здесь мы нашли smallestTextFieldWidth. Так что можно ставить constraint'ы
-        for textField in self.inputTextFieldCollection {
-            textField.widthAnchor.constraint(equalToConstant: self.smallestTextFieldWidth!).isActive = true
-        }
+        
         
     }
     

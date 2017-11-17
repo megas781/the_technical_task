@@ -41,7 +41,7 @@ class DataManager {
     }
     
     //Загрузка данных с диска
-    func getClients() -> [Client] {
+    private func getClients() -> [Client] {
         
         do {
             return try self.context.fetch(Client.fetchRequest())
@@ -93,8 +93,16 @@ class DataManager {
     
     //Может изменю на другую архитектуру
     func createNewClientAndSave(name: String, surname: String, patronymic: String? = nil, phoneNumber: String? = nil, birthdayDate: Date, image: UIImage? = nil) {
-        let m = Client.init(name: name, surname: surname, patronymic: patronymic, phoneNumber: phoneNumber, birthdayDate: birthdayDate, image: image)
+        let _ = Client.init(name: name, surname: surname, patronymic: patronymic, phoneNumber: phoneNumber, birthdayDate: birthdayDate, image: image)
         self.saveChangesIfNeeded()
+    }
+    
+    func createNewTransactionAndSave(value: Int, forClient client: Client) {
+        
+        client.addToTransactions(Transaction.init(value: value, date: Date()))
+        
+        self.saveChangesIfNeeded()
+        
     }
     
     
