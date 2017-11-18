@@ -124,7 +124,7 @@ class ClientListTableViewController: UITableViewController, UISearchBarDelegate 
             self.performSegue(withIdentifier: "presentModallyIncreasementVCIdentifier", sender: nil)
             
         }
-        positiveTransactionAction.backgroundColor = #colorLiteral(red: 0, green: 0.6883943677, blue: 0.003334663808, alpha: 1)
+        positiveTransactionAction.backgroundColor = #colorLiteral(red: 0.1207086166, green: 0.8921914657, blue: 0.01943670142, alpha: 1)
         
         
         return [positiveTransactionAction, negativeTransactionAction]
@@ -219,20 +219,20 @@ class ClientListTableViewController: UITableViewController, UISearchBarDelegate 
         self.tableView.reloadData()
     }
     
-    @IBAction func testButtonTapped(_ sender: UIBarButtonItem) {
-        
-//        print("firstClient.transactions.count: \(DataManager.shared.inMemoryClients.first!.transactions?.count ?? 0)")
-        var indexer = 0
-        let m = DataManager.shared.clients.last!.transactions.map({ (transaction) -> (Int,Int) in
-            indexer += 1
-            return (indexer, transaction.value)
-        })
-        
-        print("transactions: \(m)")
-        print("remainder: \(DataManager.shared.clients.first!.remainder)")
-        print()
-        
-    }
+//    @IBAction func testButtonTapped(_ sender: UIBarButtonItem) {
+//        
+////        print("firstClient.transactions.count: \(DataManager.shared.inMemoryClients.first!.transactions?.count ?? 0)")
+//        var indexer = 0
+//        let m = DataManager.shared.clients.last!.transactions.map({ (transaction) -> (Int,Int) in
+//            indexer += 1
+//            return (indexer, transaction.value)
+//        })
+//        
+//        print("transactions: \(m)")
+//        print("remainder: \(DataManager.shared.clients.first!.remainder)")
+//        print()
+//        
+//    }
     
     
     

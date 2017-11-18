@@ -47,3 +47,42 @@ extension String {
         return returnValue
     }
 }
+
+extension UIImage {
+    
+    //Функция, возвращающая изображение, оптимизированное для рамки данного view
+    func optimizeResolution(forView theView: UIView) -> UIImage {
+        
+        //Просто константа
+        let const: CGFloat = 1.5
+        
+        var newSize: CGSize
+        
+        let largerViewSide = theView.frame.size.width > theView.frame.size.height ? theView.frame.size.width : theView.frame.size.height
+        
+        //view должен быть меньше изображения, или ничего оптимизировать не нужно
+        guard largerViewSide < (self.size.width > self.size.height ? self.size.width : self.size.height) else {
+            return self
+        }
+        
+        if self.size.width < self.size.height {
+            newSize = CGSize.init(width: largerViewSide * const, height: largerViewSide * (self.size.height/self.size.width) * const)
+        } else {
+            newSize = CGSize.init(width: largerViewSide * (self.size.width/self.size.height) * const, height: largerViewSide * const)
+        }
+        
+        /*В любом случае находим большую сторону view. Если */
+        
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        self.draw(in:rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+}

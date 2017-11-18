@@ -23,7 +23,7 @@
 		ED91D6231FBDC695001DBDB2 /* Transaction+CoreDataClass+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91D61F1FBDC695001DBDB2 /* Transaction+CoreDataClass+CoreDataProperties.swift */; };
 		EDA693D01FBDB42000FBDFAE /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA693CF1FBDB42000FBDFAE /* DataManager.swift */; };
 		EDD4464D1FBF1139003C1F02 /* useful_extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD4464C1FBF1139003C1F02 /* useful_extensions.swift */; };
-		EDE1FD191FBE0765009EFB70 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE1FD181FBE0765009EFB70 /* RoundedView.swift */; };
+		EDE1FD191FBE0765009EFB70 /* RoundedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE1FD181FBE0765009EFB70 /* RoundedViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +45,7 @@
 		ED91D61F1FBDC695001DBDB2 /* Transaction+CoreDataClass+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EDA693CF1FBDB42000FBDFAE /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		EDD4464C1FBF1139003C1F02 /* useful_extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = useful_extensions.swift; sourceTree = "<group>"; };
-		EDE1FD181FBE0765009EFB70 /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
+		EDE1FD181FBE0765009EFB70 /* RoundedViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedViews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +84,7 @@
 				EDA693CC1FBDAC9000FBDFAE /* Client Report Scene */,
 				ED0B85011FBD92E3006F877A /* Main.storyboard */,
 				EDA693DA1FBDC11D00FBDFAE /* Data Model */,
-				EDE1FD181FBE0765009EFB70 /* RoundedView.swift */,
+				EDE1FD181FBE0765009EFB70 /* RoundedViews.swift */,
 				EDD4464C1FBF1139003C1F02 /* useful_extensions.swift */,
 				ED0B85071FBD92E3006F877A /* Assets.xcassets */,
 				ED0B85091FBD92E3006F877A /* LaunchScreen.storyboard */,
@@ -225,7 +225,7 @@
 				ED0B851B1FBDAB64006F877A /* AttributeTableViewCell.swift in Sources */,
 				EDA693D01FBDB42000FBDFAE /* DataManager.swift in Sources */,
 				ED0B851D1FBDABA4006F877A /* TransactionTableViewCell.swift in Sources */,
-				EDE1FD191FBE0765009EFB70 /* RoundedView.swift in Sources */,
+				EDE1FD191FBE0765009EFB70 /* RoundedViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

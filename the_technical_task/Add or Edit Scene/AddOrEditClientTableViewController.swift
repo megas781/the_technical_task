@@ -129,7 +129,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     //MARK: UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("did select row")
+//        print("did select row")
         self.tableView.deselectRow(at: indexPath, animated: false)
         
         self.resignAnyFirstResponder()
@@ -187,7 +187,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     
     @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
         
-        print("back button tapped")
+//        print("back button tapped")
         
         switch self.whatToDoContext! {
         case .createNewClient:
@@ -238,10 +238,10 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             return
         }
         
-        if self.theImagePickerImageView.image != image {
-            self.theImagePickerImageView.image = image
-            self.updateSaveButtonEnability()
-        }
+        self.theImagePickerImageView.image = image.optimizeResolution(forView: self.theImagePickerImageView)
+            
+        self.updateSaveButtonEnability()
+        
         
     }
     
@@ -265,7 +265,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     //В этом методе будет проверяться правильность заполнения первых двух textField'ов (имя и фамилия) и даты рождения
     @objc func aTextFieldValueChanged(_ sender: UITextField) {
         
-        print("a textField value changed. textField.text: \(sender.text)")
+//        print("a textField value changed. textField.text: \(sender.text)")
         self.updateSaveButtonEnability()
         
     }
@@ -359,7 +359,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             
         case .editExistingClient:
             
-            print(DataManager.shared.selectedClient)
+//            print(DataManager.shared.selectedClient)
             
             self.theImagePickerImageView.image = DataManager.shared.selectedClient!.image ?? UIImage.init(named: "empty_photo_tap_to_pick_image")
             

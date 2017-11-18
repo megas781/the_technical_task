@@ -256,7 +256,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sga-Ao-YsX" customClass="RoundedView" customModule="the_technical_task" customModuleProvider="target">
                                 <rect key="frame" x="41.5" y="121" width="237" height="212"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_photo_image" translatesAutoresizingMaskIntoConstraints="NO" id="G3n-e4-utr">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_photo_image" translatesAutoresizingMaskIntoConstraints="NO" id="G3n-e4-utr">
                                         <rect key="frame" x="89" y="16" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="chD-Z5-bsP"/>
@@ -264,15 +264,23 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Фамилия Имя" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4K-iv-pR0">
-                                        <rect key="frame" x="24.5" y="92" width="189" height="21"/>
+                                        <rect key="frame" x="24.5" y="84" width="189" height="28"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTh-Te-dmC">
-                                        <rect key="frame" x="0.5" y="167" width="237" height="37"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTh-Te-dmC" customClass="RoundedButton" customModule="the_technical_task" customModuleProvider="target">
+                                        <rect key="frame" x="8.5" y="170" width="221" height="34"/>
+                                        <color key="backgroundColor" red="0.98999999999999999" green="0.98999999999999999" blue="0.98999999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="Сохранить"/>
+                                        <state key="normal" title="Добавить на счёт">
+                                            <color key="titleColor" red="0.2471956025" green="0.2496430838" blue="0.2496430838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="theCornerRadius">
+                                                <real key="value" value="16"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="saveButtonTapped:" destination="4x6-83-aux" eventType="touchUpInside" id="CMI-hr-3xD"/>
                                         </connections>
@@ -280,14 +288,14 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.92426921593510492" green="0.94275460025380708" blue="0.94275460025380708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="HTh-Te-dmC" firstAttribute="width" secondItem="Sga-Ao-YsX" secondAttribute="width" constant="-16" id="Ei9-Ll-3Ed"/>
+                                    <constraint firstItem="HTh-Te-dmC" firstAttribute="centerX" secondItem="Sga-Ao-YsX" secondAttribute="centerX" id="Muj-55-vaW"/>
                                     <constraint firstAttribute="height" constant="212" id="S0j-L8-80o"/>
-                                    <constraint firstAttribute="trailing" secondItem="HTh-Te-dmC" secondAttribute="trailing" id="Sa4-cb-1lf"/>
                                     <constraint firstItem="G3n-e4-utr" firstAttribute="top" secondItem="Sga-Ao-YsX" secondAttribute="top" constant="16" id="YVR-wN-LfR"/>
                                     <constraint firstItem="G3n-e4-utr" firstAttribute="centerX" secondItem="Sga-Ao-YsX" secondAttribute="centerX" id="leJ-Rp-CRC"/>
-                                    <constraint firstItem="HTh-Te-dmC" firstAttribute="leading" secondItem="Sga-Ao-YsX" secondAttribute="leading" id="r2g-7X-6ui"/>
                                     <constraint firstAttribute="bottom" secondItem="HTh-Te-dmC" secondAttribute="bottom" constant="8" id="t5E-Sz-G7m"/>
                                     <constraint firstItem="s4K-iv-pR0" firstAttribute="centerX" secondItem="Sga-Ao-YsX" secondAttribute="centerX" id="ye6-WM-XSt"/>
-                                    <constraint firstItem="s4K-iv-pR0" firstAttribute="top" secondItem="G3n-e4-utr" secondAttribute="bottom" constant="16" id="yfS-Sd-hZg"/>
+                                    <constraint firstItem="s4K-iv-pR0" firstAttribute="top" secondItem="G3n-e4-utr" secondAttribute="bottom" constant="8" id="yfS-Sd-hZg"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="theCornerRadius">
@@ -296,9 +304,9 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите сумму" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CIi-5v-tVM">
-                                <rect key="frame" x="65.5" y="250" width="189" height="30"/>
+                                <rect key="frame" x="65.5" y="241" width="189" height="34"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="7ht-ib-uDG"/>
+                                    <constraint firstAttribute="height" constant="34" id="7ht-ib-uDG"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -306,11 +314,12 @@
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="CIi-5v-tVM" firstAttribute="top" secondItem="s4K-iv-pR0" secondAttribute="bottom" constant="16" id="3S7-Y4-f8r"/>
+                            <constraint firstItem="CIi-5v-tVM" firstAttribute="top" secondItem="s4K-iv-pR0" secondAttribute="bottom" constant="8" id="3S7-Y4-f8r"/>
                             <constraint firstItem="Sga-Ao-YsX" firstAttribute="centerX" secondItem="Fyc-En-RVz" secondAttribute="centerX" id="AUg-nC-1jo"/>
                             <constraint firstItem="CIi-5v-tVM" firstAttribute="centerX" secondItem="Fyc-En-RVz" secondAttribute="centerX" id="B8D-lp-Esg"/>
                             <constraint firstItem="hDK-Ll-EbU" firstAttribute="trailing" secondItem="g5D-kY-bVz" secondAttribute="trailing" id="Cma-5e-Kxv"/>
-                            <constraint firstItem="HTh-Te-dmC" firstAttribute="top" secondItem="CIi-5v-tVM" secondAttribute="bottom" constant="8" id="Gpd-a3-BbE"/>
+                            <constraint firstItem="HTh-Te-dmC" firstAttribute="top" secondItem="CIi-5v-tVM" secondAttribute="bottom" constant="16" id="Gpd-a3-BbE"/>
+                            <constraint firstItem="HTh-Te-dmC" firstAttribute="height" secondItem="CIi-5v-tVM" secondAttribute="height" id="NLP-ZF-d6j"/>
                             <constraint firstItem="hDK-Ll-EbU" firstAttribute="bottom" secondItem="g5D-kY-bVz" secondAttribute="bottom" id="dTF-qz-miV"/>
                             <constraint firstItem="g5D-kY-bVz" firstAttribute="leading" secondItem="hDK-Ll-EbU" secondAttribute="leading" id="duF-MQ-8wI"/>
                             <constraint firstItem="g5D-kY-bVz" firstAttribute="top" secondItem="Fyc-En-RVz" secondAttribute="top" id="pZa-Jf-AU7"/>
@@ -378,7 +387,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="wVV-Od-EcH" firstAttribute="height" secondItem="IiC-SN-VXO" secondAttribute="height" multiplier="0.8" id="6VG-gd-FDV"/>
-                                                <constraint firstItem="wVV-Od-EcH" firstAttribute="width" secondItem="wVV-Od-EcH" secondAttribute="height" id="G2V-xt-rZn"/>
                                                 <constraint firstItem="wVV-Od-EcH" firstAttribute="centerX" secondItem="IiC-SN-VXO" secondAttribute="centerX" id="vh7-1W-tOU"/>
                                                 <constraint firstItem="wVV-Od-EcH" firstAttribute="centerY" secondItem="IiC-SN-VXO" secondAttribute="centerY" id="wYQ-n0-yQs"/>
                                             </constraints>

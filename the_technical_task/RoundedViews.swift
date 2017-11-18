@@ -20,3 +20,15 @@ import UIKit
    }
 
 }
+@IBDesignable class RoundedButton: UIButton {
+    
+    @IBInspectable var theCornerRadius: CGFloat {
+        get {
+            return self.layer.cornerRadius
+        }
+        set {
+            self.layer.cornerRadius = newValue
+        }
+    }
+    
+}
