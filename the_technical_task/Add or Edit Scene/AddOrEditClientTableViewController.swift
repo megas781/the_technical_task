@@ -91,9 +91,14 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
         
         self.setupUI()
         
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        
-        
+        //Эта строчка для того, анимация ичезновения клавиатуры была одновременна с анимацие исчезновения vc
+        self.resignAnyFirstResponder()
     }
     
     

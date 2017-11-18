@@ -124,7 +124,7 @@ class ClientListTableViewController: UITableViewController, UISearchBarDelegate 
             self.performSegue(withIdentifier: "presentModallyIncreasementVCIdentifier", sender: nil)
             
         }
-        positiveTransactionAction.backgroundColor = #colorLiteral(red: 0.1207086166, green: 0.8921914657, blue: 0.01943670142, alpha: 1)
+        positiveTransactionAction.backgroundColor = #colorLiteral(red: 0, green: 0.6883943677, blue: 0.003334663808, alpha: 1)
         
         
         return [positiveTransactionAction, negativeTransactionAction]
@@ -136,9 +136,6 @@ class ClientListTableViewController: UITableViewController, UISearchBarDelegate 
         
         self.performSegue(withIdentifier: "fromClientListVCToReportVCIdentifier", sender: nil)
         
-        guard let index = tableView.indexPathForSelectedRow?.row else {
-            fatalError("Не смог извлечь selectedIndex")
-        }
         DataManager.shared.selectClient(self.properClientArray[indexPath.row])
         
         self.tableView.deselectRow(at: indexPath, animated: false)
@@ -176,8 +173,10 @@ class ClientListTableViewController: UITableViewController, UISearchBarDelegate 
     private func setupUI() {
         //Убираем линии
         self.tableView.tableFooterView = UIView.init(frame: CGRect.zero)
-        //Чтобы при возвращении к этому viewController'у theSearchBar не был firstResponder'ом
-        self.definesPresentationContext = true
+//        Чтобы при возвращении к этому viewController'у theSearchBar не был firstResponder'ом
+//        self.definesPresentationContext = true
+        
+//        self.tableView.tableFooterView!.addGestureRecognizer(UITapGestureRecognizer.init(target: self.theSearchBar, action: #selector(self.theSearchBar.resignFirstResponder)))
         
     }
     

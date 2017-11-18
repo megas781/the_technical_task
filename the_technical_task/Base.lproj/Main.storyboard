@@ -69,11 +69,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Список клиентов" id="5LS-fi-ZGd">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="IOo-lT-AK2"/>
-                        <barButtonItem key="leftBarButtonItem" title="test" id="dK5-p2-b9c">
-                            <connections>
-                                <action selector="testButtonTapped:" destination="9Ky-GQ-4ey" id="jpv-yW-axp"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="dYi-qm-thH">
                             <connections>
                                 <action selector="addClientButtonTapped:" destination="9Ky-GQ-4ey" id="jnC-F6-KRP"/>
