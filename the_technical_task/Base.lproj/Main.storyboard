@@ -34,7 +34,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_photo_image" translatesAutoresizingMaskIntoConstraints="NO" id="30w-ZG-3yF">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_photo_image" translatesAutoresizingMaskIntoConstraints="NO" id="30w-ZG-3yF">
                                             <rect key="frame" x="16" y="3.5" width="35" height="35"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="30w-ZG-3yF" secondAttribute="height" id="Q39-IO-JOJ"/>
@@ -658,6 +658,6 @@
         <image name="empty_photo_tap_to_pick_image" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PCf-vg-50Q"/>
+        <segue reference="BPx-a4-DmU"/>
     </inferredMetricsTieBreakers>
 </document>

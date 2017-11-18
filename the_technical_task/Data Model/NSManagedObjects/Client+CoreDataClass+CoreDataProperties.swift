@@ -33,12 +33,35 @@ extension Client {
     @NSManaged public var phoneNumber: String?
     @NSManaged private var storedTransactions: NSOrderedSet?
     
+    //До сих пор точно не знаю, почему при выгрузке изображения с диска, оно поворачивается к оригинальной ориентации. Это свойство будет хранить imageOrientation изображения
+    @NSManaged public var storedImageOrientation: Int16
     
     
     //MARK: Convenience properties
     var image: UIImage? {
         get {
             if let imageData = self.storedImageData as Data? {
+                
+                
+//                guard let orientation = self.storedImageOrientation else {
+//                    fatalError("пустое свойство imageOrientation")
+//                }
+                guard let retrievedImage = UIImage(data: imageData) else {
+                    return nil
+                }
+                switch self.storedImageOrientation {
+                case 0:
+                    return UIImage(cgImage: retrievedImage.cgImage!, scale: 1, orientation: .up)
+                case 1:
+                    return UIImage(cgImage: retrievedImage.cgImage!, scale: 1, orientation: .down)
+                case 2:
+                    return UIImage(cgImage: retrievedImage.cgImage!, scale: 1, orientation: .left)
+                case 3:
+                    return UIImage(cgImage: retrievedImage.cgImage!, scale: 1, orientation: .right)
+                default:
+                    fatalError("not implemented case")
+                } 
+                
                 return UIImage.init(data: imageData)
             } else {
                 return nil
@@ -47,8 +70,10 @@ extension Client {
         set(newImage) {
             if let newImage = newImage {
                 self.storedImageData = UIImagePNGRepresentation(newImage) as NSData?
+                self.storedImageOrientation = Int16(newImage.imageOrientation.rawValue)
             } else {
                 self.storedImageData = nil
+                self.storedImageOrientation = 0
             }
         }
     }
