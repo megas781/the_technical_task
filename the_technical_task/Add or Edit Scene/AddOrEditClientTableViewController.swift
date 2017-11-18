@@ -61,8 +61,24 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             }
             
             
-            self.tableView.beginUpdates()
-            self.tableView.endUpdates()
+            
+            
+            if !isDatePickerHidden {
+                
+                //Появление DatePicker'а
+                
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
+                
+                self.tableView.scrollToRow(at: IndexPath.init(row: 5, section: 1), at: UITableViewScrollPosition.bottom, animated: true)
+            } else {
+                
+                //Спрятать DatePicker
+                
+//                self.tableView.beginUpdates()
+                self.tableView.scrollToRow(at: IndexPath.init(row: 4, section: 1), at: UITableViewScrollPosition.bottom, animated: true)
+                
+            }
         }
     }    
     
@@ -75,16 +91,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
         
         self.setupUI()
         
-        switch self.whatToDoContext! {
-        case .createNewClient:
-            self.title = "Новый клиент"
-            self.navigationItem.leftBarButtonItem!.title = "Назад"
-            self.navigationItem.rightBarButtonItem!.title = "Создать"
-        case .editExistingClient:
-            self.title = "" //Ставлю пустоту, так как в противном случае будет сжатие текста
-            self.navigationItem.leftBarButtonItem!.title = "Отменить"
-            self.navigationItem.rightBarButtonItem!.title = " Сохранить"
-        }
+        
         
     }
     
@@ -130,13 +137,8 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             
             self.isDatePickerHidden = !self.isDatePickerHidden
             
-//            if isDatePickerHidden {
-//                self.dobLabel.textColor = #colorLiteral(red: 0.7348261476, green: 0.7317743897, blue: 0.7349107862, alpha: 1)
-//            } else {
-//                self.dobLabel.textColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-//            }
             
-            //Меняем свойство (begin и end Editing методы в наблюдателе свойства)
+            //(begin и end Editing методы в наблюдателе свойства)
         }
     }
     
@@ -199,9 +201,9 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
         
     }
     
-    @objc func theImagePickerButtonTapped(_ sender: UIImageView) {
+    @objc func theImagePickerViewTapped(_ sender: UIImageView) {
         
-        //Здесь нужно зумутить ActionSheet с выбором Камера/Библиотека
+        //Здесь нужно создать ActionSheet с выбором Камера/Библиотека
         
         let ac = UIAlertController.init(title: "Выбирите источник изображения", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
@@ -235,7 +237,10 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             return
         }
         
-        self.theImagePickerImageView.image = image
+        if self.theImagePickerImageView.image != image {
+            self.theImagePickerImageView.image = image
+            self.updateSaveButtonEnability()
+        }
         
     }
     
@@ -303,13 +308,9 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     
     private func setupUI() {
         
-        self.theImagePickerImageView.layer.cornerRadius = self.theImagePickerImageView.frame.size.height/2
-        self.tableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        //Добавление action'ов
+        self.theImagePickerImageView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(self.theImagePickerViewTapped(_:))))
         
-        
-        self.theImagePickerImageView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(self.theImagePickerButtonTapped(_:))))
-        
-        //Добавление всех action'ов для всех textField'ов
         for textField in self.inputTextFieldCollection {
             
             textField.addTarget(self, action: #selector(self.aTextFieldValueChanged(_:)), for: .editingChanged)
@@ -317,9 +318,24 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             
         }
         
+        //Прочие настройки
+        self.theImagePickerImageView.layer.cornerRadius = self.theImagePickerImageView.frame.size.height/2
+        self.tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         
         
-        //Здесь проверим контекст. Если .editExistingClient, то устанавливаем outlet'ы
+        //Настройки зависящие от контекста
+        switch self.whatToDoContext! {
+        case .createNewClient:
+            self.title = "Новый клиент"
+            self.navigationItem.leftBarButtonItem!.title = "Назад"
+            self.navigationItem.rightBarButtonItem!.title = "Создать"
+        case .editExistingClient:
+            self.title = "" //Ставлю пустоту, так как в противном случае будет сжатие текста
+            self.navigationItem.leftBarButtonItem!.title = "Отменить"
+            self.navigationItem.rightBarButtonItem!.title = " Сохранить"
+        }
+        
+        //здесь если .editExistingClient, то устанавливаем outlet'ы
         if self.whatToDoContext == .editExistingClient {
             self.theImagePickerImageView.image = DataManager.shared.selectedClient!.image ?? UIImage.init(named: "empty_photo_tap_to_pick_image")
             
@@ -330,7 +346,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             
             self.birthdayDatePicker.date = DataManager.shared.selectedClient!.birthdayDate
             
-            self.isDatePickerHidden = false
+//            self.isDatePickerHidden = false
             
             self.dobLabel.text = DataManager.shared.selectedClient!.birthdayDate.shortDateString
             
@@ -338,11 +354,10 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             self.saveButton.isEnabled = false
             
         } else {
-            
-            //При появлении VC определить, нужно включить saveButton или нет
-            //
+            //этот метод в данном контексте заблокирует saveButton
             self.updateSaveButtonEnability()
         }
+        
         
         
     }
