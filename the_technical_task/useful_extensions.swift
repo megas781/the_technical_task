@@ -20,3 +20,30 @@ extension Date {
         return returnValue
     }
 }
+
+extension String {
+    //Вернуть строку с удаленными лишними пробелами
+    func withoutExtraSpaces() -> String {
+        
+        var result = self
+        
+        while result.contains("  ") {
+            result = result.replacingOccurrences(of: "  ", with: " ")
+        }
+        return result
+    }
+    
+    //Помимо удаления двойных пробелов пробелов также удаляются первый и последний пробел, если они есть
+    func searchableString() -> String {
+        var returnValue = self.withoutExtraSpaces()
+        
+        if returnValue.first == " " {
+            returnValue.removeFirst()
+        }
+        if returnValue.last == " " {
+            returnValue.removeLast()
+        }
+        
+        return returnValue
+    }
+}

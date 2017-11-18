@@ -11,9 +11,32 @@ import CoreData
 
 
 
-class ClientListTableViewController: UITableViewController {
+class ClientListTableViewController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var theSearchBar: UISearchBar!
+    
+    //Это свойство детектирует, активна фильтрация или нет
+    private var shouldReturnFiltered: Bool {
+//        print("\() \() \()")
+        if theSearchBar.isFirstResponder && theSearchBar.text != nil && theSearchBar.text?.searchableString() != "" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    private var properClientArray: [Client] {
+        if shouldReturnFiltered {
+            return DataManager.shared.ClientsFilteredIfNeeded(withString: theSearchBar.text!)
+        } else {
+            return DataManager.shared.clients
+        }
+    }
+    
+//    private var properClientArray = DataManager.shared.clients
+    
+    
+    
     
     
     //MARK: Properties
@@ -29,6 +52,9 @@ class ClientListTableViewController: UITableViewController {
         
         self.setupUI()
         
+        theSearchBar.delegate = self
+        
+        
         
     }
     
@@ -36,16 +62,21 @@ class ClientListTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.theSearchBar.resignFirstResponder()
+        self.theSearchBar.text = ""
+    }
+    
     //MARK: UITableViewDataSource implementation
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataManager.shared.clients.count
+        return self.properClientArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "ClientListTableViewCellIdentifier", for: indexPath) as! ClientListTableViewCell
         
-        cell.setOutletsAndRoundImageView(with: DataManager.shared.clients[indexPath.row])
+        cell.setOutletsAndRoundImageView(with: self.properClientArray[indexPath.row] )
         
         return cell
     }
@@ -58,7 +89,7 @@ class ClientListTableViewController: UITableViewController {
             print("negativeTransactionAction performed (-1000)")
             
             //Обращаем внимание на клиента (в этом же блоке и удалим selectedClient)
-            DataManager.shared.selectClient(withIndex: indexPath.row)
+            DataManager.shared.selectClient(self.properClientArray[indexPath.row])
             
             //Если на счете достаточно средств, то отнимаем
             if DataManager.shared.clients[indexPath.row].remainder >= 1000 {
@@ -88,7 +119,7 @@ class ClientListTableViewController: UITableViewController {
         let positiveTransactionAction = UITableViewRowAction.init(style: .default, title: " + ") { (action, indexPath) in
             print("positiveTransactionAction performed")
             
-            DataManager.shared.selectClient(withIndex: indexPath.row)
+            DataManager.shared.selectClient(self.properClientArray[indexPath.row])
             
             self.performSegue(withIdentifier: "presentModallyIncreasementVCIdentifier", sender: nil)
             
@@ -108,10 +139,29 @@ class ClientListTableViewController: UITableViewController {
         guard let index = tableView.indexPathForSelectedRow?.row else {
             fatalError("Не смог извлечь selectedIndex")
         }
-        DataManager.shared.selectClient(withIndex: index)
+        DataManager.shared.selectClient(self.properClientArray[indexPath.row])
         
         self.tableView.deselectRow(at: indexPath, animated: false)
     }
+    
+    //MARK: UISearchBarDelegate implementation
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("textDidChange")
+        print(self.shouldReturnFiltered)
+        self.tableView.reloadData()
+    }
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+    }
+    
     
     //MARK: IBActions on tap
     
@@ -128,6 +178,7 @@ class ClientListTableViewController: UITableViewController {
         self.tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         //Чтобы при возвращении к этому viewController'у theSearchBar не был firstResponder'ом
         self.definesPresentationContext = true
+        
     }
     
     
@@ -142,39 +193,19 @@ class ClientListTableViewController: UITableViewController {
             
             let dvc = (segue.destination as! UINavigationController).viewControllers.first! as! AddOrEditClientViewController
             
-            
             //Указываем, в каком контексте мы вызываем AddOrEditClientTableViewController
             dvc.whatToDoContext = .createNewClient
             
             break
         case "presentModallyIncreasementVCIdentifier":
             
-            //Вспоминаем, какой editAction какой ячейки мы нажали?
-//            guard let index = self.editActionTappedCellIndex else {
-//                fatalError("Coundn't retrieve indexPathForSelectedRow?.row")
-//            }
-//            
-//            //Здесь забываем это значение, так как теперь его держать будет IncreasementVC
-//            self.editActionTappedCellIndex = nil
-//            
-//            let dvc = segue.destination as! IncreasementViewController
-//            
-//            //Передаю индекс клиента, на не самого клиента, потому что не хочу, чтобы viewController связывался с Client
-//            dvc.selectedClientIndex = index
+            
             
             break
             
         case "fromClientListVCToReportVCIdentifier":
             
-//            let dvc = segue.destination as! ReportViewController
-//            
-////            print(self.tableView.indexPathForSelectedRow)
-//            
-//            guard let selectedCellIndex = self.tableView.indexPathForSelectedRow?.row else {
-//                fatalError("не смог извлечь indexPathForSelectedRow")
-//            }
-//            
-//            dvc.selectedClientIndex = selectedCellIndex
+            
             
             break
             

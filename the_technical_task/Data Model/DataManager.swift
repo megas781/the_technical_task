@@ -42,15 +42,40 @@ class DataManager {
     func selectClient(_ client: Client) {
         self.selectedClient = client
     }
-    func selectClient(withIndex index: Int) {
-        self.selectedClient = self.clients[index]
-    }
+    
     func deselectClient() {
         self.selectedClient = nil
     }
     
     //Массив для загрузки данных с оперативой памяти. Такой подход вроде уменьшит ресурсопотребление. Массив обновляется либо вручную, либо сделаю, чтобы при любом изменении объектов
     var clients: [Client] = []
+    
+    //Фильтрация по формату или фамилия, или имя, или отчество или  ФИО через один пробел
+    func ClientsFilteredIfNeeded(withString filterString: String) -> [Client] {
+        
+        //Копируем параметр для дальнейшего изменения
+        
+        if filterString.contains(" ") {
+            
+            //Здесь фильтрация по формату ФИО
+            
+            
+            return DataManager.shared.clients.filter({ (client) -> Bool in
+                return "\(client.surname) \(client.name) \(client.patronymic ?? "")".contains(filterString)
+            })
+            
+        } else {
+            
+            
+            //Здесь фильтрация по одному слову
+            return DataManager.shared.clients.filter({ (client) -> Bool in
+                return client.name.contains(filterString) || client.surname.contains(filterString) || (client.patronymic ?? "").contains(filterString)
+            })
+            
+        }
+        
+        
+    }
     
     //Для удобного ручного обновления массива inMemoryClients
     private func updateInMemoryClients() {
@@ -89,8 +114,8 @@ class DataManager {
                 self.updateInMemoryClients()
             } catch let error as NSError {
                 print("saving error : \(error.localizedDescription)")
-//                print("failureReason: \(error.localizedFailureReason)")
-//                print("suggestion   : \(error.localizedRecoveryOptions)")
+                //                print("failureReason: \(error.localizedFailureReason)")
+                //                print("suggestion   : \(error.localizedRecoveryOptions)")
             }
         }
     }
@@ -151,4 +176,10 @@ class DataManager {
     
     
 }
+
+//extension Array<Client> {
+//    func selectClient(withIndex index: Int) {
+//        DataManager.selectedClient = self[index]
+//    }
+//}
 
