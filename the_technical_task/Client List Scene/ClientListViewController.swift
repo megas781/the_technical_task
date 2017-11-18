@@ -32,6 +32,10 @@ class ClientListTableViewController: UITableViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
     //MARK: UITableViewDataSource implementation
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

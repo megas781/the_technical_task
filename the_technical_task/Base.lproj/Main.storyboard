@@ -369,21 +369,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CFl-SI-oVo">
-                                                    <rect key="frame" x="112.5" y="12" width="95.5" height="95.5"/>
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_photo_tap_to_pick_image" translatesAutoresizingMaskIntoConstraints="NO" id="wVV-Od-EcH">
+                                                    <rect key="frame" x="112.5" y="11" width="95.5" height="96"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="CFl-SI-oVo" secondAttribute="height" multiplier="1:1" id="eqn-mh-sYk"/>
+                                                        <constraint firstAttribute="width" secondItem="wVV-Od-EcH" secondAttribute="height" id="PAK-SQ-hV2"/>
                                                     </constraints>
-                                                    <state key="normal" backgroundImage="empty_photo_tap_to_pick_image"/>
-                                                    <connections>
-                                                        <action selector="theImagePickerButtonTapped:" destination="MQt-FO-7Ve" eventType="touchUpInside" id="AcU-nI-heq"/>
-                                                    </connections>
-                                                </button>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="CFl-SI-oVo" firstAttribute="centerY" secondItem="IiC-SN-VXO" secondAttribute="centerY" id="IwT-MB-OlK"/>
-                                                <constraint firstItem="CFl-SI-oVo" firstAttribute="centerX" secondItem="IiC-SN-VXO" secondAttribute="centerX" id="QV4-O7-R9M"/>
-                                                <constraint firstItem="CFl-SI-oVo" firstAttribute="height" secondItem="IiC-SN-VXO" secondAttribute="height" multiplier="0.8" id="Vdp-iE-Bli"/>
+                                                <constraint firstItem="wVV-Od-EcH" firstAttribute="height" secondItem="IiC-SN-VXO" secondAttribute="height" multiplier="0.8" id="6VG-gd-FDV"/>
+                                                <constraint firstItem="wVV-Od-EcH" firstAttribute="width" secondItem="wVV-Od-EcH" secondAttribute="height" id="G2V-xt-rZn"/>
+                                                <constraint firstItem="wVV-Od-EcH" firstAttribute="centerX" secondItem="IiC-SN-VXO" secondAttribute="centerX" id="vh7-1W-tOU"/>
+                                                <constraint firstItem="wVV-Od-EcH" firstAttribute="centerY" secondItem="IiC-SN-VXO" secondAttribute="centerY" id="wYQ-n0-yQs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -623,7 +620,7 @@
                         <outlet property="phoneNumberInputTextField" destination="04F-ed-k8Z" id="FV0-Yk-J0d"/>
                         <outlet property="saveButton" destination="Awq-a8-3Qa" id="uux-Xl-d8L"/>
                         <outlet property="surnameInputTextField" destination="Vf1-hR-1hQ" id="G6b-ro-Zr2"/>
-                        <outlet property="theImagePickerButton" destination="CFl-SI-oVo" id="3jf-Ol-FOG"/>
+                        <outlet property="theImagePickerImageView" destination="wVV-Od-EcH" id="Piz-Gh-pvS"/>
                         <outletCollection property="inputTextFieldCollection" destination="pTn-R5-af6" collectionClass="NSMutableArray" id="8gA-KX-nZJ"/>
                         <outletCollection property="inputTextFieldCollection" destination="Vf1-hR-1hQ" collectionClass="NSMutableArray" id="b65-Ug-IE9"/>
                         <outletCollection property="inputTextFieldCollection" destination="v7b-PS-ODA" collectionClass="NSMutableArray" id="7kw-Ob-bq3"/>

@@ -13,7 +13,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     
     //MARK: Outlets
     
-    @IBOutlet weak var theImagePickerButton: UIButton!
+    @IBOutlet weak var theImagePickerImageView: UIImageView!
     
     
     @IBOutlet weak var nameInputTextField: UITextField!
@@ -25,7 +25,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     @IBOutlet var inputTextFieldCollection: [UITextField]!
     
     //Свойство, хранящее самый узкий textField. Все textField'ы ровняются на меньший.
-    private var smallestTextField: UITextField?
+//    private var smallestTextField: UITextField?
     
     
     @IBOutlet weak var dobLabel: UILabel!
@@ -65,15 +65,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             self.tableView.endUpdates()
         }
     }    
-    //Свойство, создающее короткий date string
-    private var dateString : String {
-        
-        var value = ""
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/YYYY"
-        value = dateFormatter.string(from: birthdayDatePicker.date)
-        return value
-    }
+    
     
     
     
@@ -153,22 +145,37 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         
+        guard let name = self.nameInputTextField.text,
+            let surname = self.surnameInputTextField.text else {
+                fatalError("Не смог уберечь saveButton от краша")
+        }
         
         switch self.whatToDoContext! {
         case .createNewClient:
             
             
-            guard let name = self.nameInputTextField.text,
-                let surname = self.nameInputTextField.text else {
-                    fatalError("Не смог уберечь saveButton от краша")
-            }
-            
-            DataManager.shared.createNewClientAndSave(name: name, surname: surname, patronymic: self.patronymicInputTextField.text, phoneNumber: self.phoneNumberInputTextField.text, birthdayDate: self.birthdayDatePicker.date, image: self.theImagePickerButton.currentBackgroundImage != UIImage.init(named: "empty_photo_tap_to_pick_image") ? self.theImagePickerButton.currentBackgroundImage : nil)
+            DataManager.shared.createNewClientAndSave(name: name, surname: surname, patronymic: self.patronymicInputTextField.text, phoneNumber: self.phoneNumberInputTextField.text, birthdayDate: self.birthdayDatePicker.date, image: self.theImagePickerImageView.image != UIImage.init(named: "empty_photo_tap_to_pick_image") ? self.theImagePickerImageView.image : nil)
             
             self.performSegue(withIdentifier: "unwindFromAddOrEditClientVCToClientListVCIdentifier", sender: self)
             
             
         case .editExistingClient:
+            
+            //Здесь нужно обновить данные. Делаем проверку на идентичность, чтобы в случае чего не делать лишней работы и перезаписывать одно и то же
+            
+            DataManager.shared.selectedClient!.name = name
+            DataManager.shared.selectedClient!.surname = surname
+            DataManager.shared.selectedClient!.patronymic = self.patronymicInputTextField.text
+            DataManager.shared.selectedClient!.phoneNumber = self.phoneNumberInputTextField.text
+            DataManager.shared.selectedClient!.birthdayDate = self.birthdayDatePicker.date
+            
+            //Перезапись изображения на диск значительно больше ресурсов, так что сперва делаем проверку на идентичность
+            if DataManager.shared.selectedClient!.image != self.theImagePickerImageView.image {
+                DataManager.shared.selectedClient!.image = self.theImagePickerImageView.image
+            }
+            
+            self.performSegue(withIdentifier: "unwindFromAddOrEditVCToReportVCIdentifier", sender: self)
+            
             break
         }
         
@@ -183,7 +190,8 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
         case .createNewClient:
             self.performSegue(withIdentifier: "unwindFromAddOrEditClientVCToClientListVCIdentifier", sender: self)
         case .editExistingClient:
-            self.performSegue(withIdentifier: "unwindFromAddOrEditClientVCToClientListVCIdentifier", sender: self)
+            
+            self.performSegue(withIdentifier: "unwindFromAddOrEditVCToReportVCIdentifier", sender: self)
         }
         
         
@@ -191,7 +199,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
         
     }
     
-    @IBAction func theImagePickerButtonTapped(_ sender: UIButton) {
+    @objc func theImagePickerButtonTapped(_ sender: UIImageView) {
         
         //Здесь нужно зумутить ActionSheet с выбором Камера/Библиотека
         
@@ -227,7 +235,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             return
         }
         
-        self.theImagePickerButton.setBackgroundImage(image, for: .normal)
+        self.theImagePickerImageView.image = image
         
     }
     
@@ -242,7 +250,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
         self.updateSaveButtonEnability()
         
         //Здесь нужно обновлять dobLabel с выбранной датой в коротком формате
-        self.dobLabel.text = self.dateString
+        self.dobLabel.text = self.birthdayDatePicker.date.shortDateString
         
     }
     
@@ -251,6 +259,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     //В этом методе будет проверяться правильность заполнения первых двух textField'ов (имя и фамилия) и даты рождения
     @objc func aTextFieldValueChanged(_ sender: UITextField) {
         
+        print("a textField value changed. textField.text: \(sender.text)")
         self.updateSaveButtonEnability()
         
     }
@@ -293,30 +302,27 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
     }
     
     private func setupUI() {
-        self.theImagePickerButton.layer.cornerRadius = self.theImagePickerButton.frame.size.height/2
+        
+        self.theImagePickerImageView.layer.cornerRadius = self.theImagePickerImageView.frame.size.height/2
         self.tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         
+        
+        self.theImagePickerImageView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(self.theImagePickerButtonTapped(_:))))
+        
         //Добавление всех action'ов для всех textField'ов
-        for (index,textField) in self.inputTextFieldCollection.enumerated() {
+        for textField in self.inputTextFieldCollection {
             
-            //Если textField является nameInput или surnameInput
-            if [0, 1].contains(index) {
-                textField.addTarget(self, action: #selector(self.aTextFieldValueChanged(_:)), for: .valueChanged)
-            }
-            
+            textField.addTarget(self, action: #selector(self.aTextFieldValueChanged(_:)), for: .editingChanged)
             textField.addTarget(self, action: #selector(self.aTextFieldPrimaryActionTriggered(_:)), for: .primaryActionTriggered)
-            
-//            let relativeLabelWidth = ((textField.superview as! UIStackView).subviews.first! as! UILabel).frame.size.width
-            
             
         }
         
         
         
         //Здесь проверим контекст. Если .editExistingClient, то устанавливаем outlet'ы
-        
         if self.whatToDoContext == .editExistingClient {
-            self.theImagePickerButton.setBackgroundImage(DataManager.shared.selectedClient!.image ?? UIImage.init(named: "empty_photo_tap_to_pick_image"), for: .normal)
+            self.theImagePickerImageView.image = DataManager.shared.selectedClient!.image ?? UIImage.init(named: "empty_photo_tap_to_pick_image")
+            
             self.nameInputTextField.text = DataManager.shared.selectedClient!.name
             self.surnameInputTextField.text = DataManager.shared.selectedClient!.surname
             self.patronymicInputTextField.text = DataManager.shared.selectedClient!.patronymic
@@ -328,7 +334,16 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             
             self.dobLabel.text = DataManager.shared.selectedClient!.birthdayDate.shortDateString
             
+            self.isDatePicked = true
+            self.saveButton.isEnabled = false
+            
+        } else {
+            
+            //При появлении VC определить, нужно включить saveButton или нет
+            //
+            self.updateSaveButtonEnability()
         }
+        
         
     }
     

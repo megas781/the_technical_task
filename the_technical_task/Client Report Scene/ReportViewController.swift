@@ -29,6 +29,10 @@ class ReportViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
     //MARK: TableView: dataSource and delegate
     
     func numberOfSections(in tableView: UITableView) -> Int {
