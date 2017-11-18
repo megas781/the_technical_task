@@ -142,9 +142,6 @@ class ClientListTableViewController: UITableViewController {
             
             let dvc = (segue.destination as! UINavigationController).viewControllers.first! as! AddOrEditClientViewController
             
-//            guard let selectedClientIndex = tableView.indexPathForSelectedRow?.row else {
-//                fatalError("Не смог извлечь indexPathForSelectedRow")
-//            }
             
             //Указываем, в каком контексте мы вызываем AddOrEditClientTableViewController
             dvc.whatToDoContext = .createNewClient

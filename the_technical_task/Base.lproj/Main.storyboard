@@ -254,7 +254,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sga-Ao-YsX" customClass="RoundedView" customModule="the_technical_task" customModuleProvider="target">
-                                <rect key="frame" x="41.5" y="113" width="237" height="228"/>
+                                <rect key="frame" x="41.5" y="121" width="237" height="212"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_photo_image" translatesAutoresizingMaskIntoConstraints="NO" id="G3n-e4-utr">
                                         <rect key="frame" x="89" y="16" width="60" height="60"/>
@@ -270,7 +270,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTh-Te-dmC">
-                                        <rect key="frame" x="0.5" y="167" width="237" height="53"/>
+                                        <rect key="frame" x="0.5" y="167" width="237" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Сохранить"/>
                                         <connections>
@@ -280,7 +280,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.92426921593510492" green="0.94275460025380708" blue="0.94275460025380708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="228" id="S0j-L8-80o"/>
+                                    <constraint firstAttribute="height" constant="212" id="S0j-L8-80o"/>
                                     <constraint firstAttribute="trailing" secondItem="HTh-Te-dmC" secondAttribute="trailing" id="Sa4-cb-1lf"/>
                                     <constraint firstItem="G3n-e4-utr" firstAttribute="top" secondItem="Sga-Ao-YsX" secondAttribute="top" constant="16" id="YVR-wN-LfR"/>
                                     <constraint firstItem="G3n-e4-utr" firstAttribute="centerX" secondItem="Sga-Ao-YsX" secondAttribute="centerX" id="leJ-Rp-CRC"/>
@@ -296,7 +296,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите сумму" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CIi-5v-tVM">
-                                <rect key="frame" x="65.5" y="242" width="189" height="30"/>
+                                <rect key="frame" x="65.5" y="250" width="189" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="7ht-ib-uDG"/>
                                 </constraints>

@@ -93,6 +93,7 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
         
         
         
+        
     }
     
     
@@ -318,8 +319,12 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             
         }
         
-        //Прочие настройки
+        //Настройки theImagePickerImageView
         self.theImagePickerImageView.layer.cornerRadius = self.theImagePickerImageView.frame.size.height/2
+        self.theImagePickerImageView.layer.borderColor = #colorLiteral(red: 0.3525935914, green: 0.3525935914, blue: 0.3525935914, alpha: 1)
+        self.theImagePickerImageView.layer.borderWidth = 0.5
+        
+        
         self.tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         
         
@@ -335,8 +340,27 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             self.navigationItem.rightBarButtonItem!.title = " Сохранить"
         }
         
-        //здесь если .editExistingClient, то устанавливаем outlet'ы
-        if self.whatToDoContext == .editExistingClient {
+        switch self.whatToDoContext! {
+        
+        case .createNewClient:
+            
+            var dateComponents = Calendar.init(identifier: Calendar.Identifier.gregorian).dateComponents([.year], from: Date())
+            dateComponents.calendar = Calendar.init(identifier: Calendar.Identifier.gregorian)
+//            dateComponents.hour = 12
+            dateComponents.day = 15
+            dateComponents.month = 1
+            dateComponents.year! -= 18
+            self.birthdayDatePicker.date = dateComponents.date!
+            
+            //этот метод в данном контексте заблокирует saveButton
+            self.updateSaveButtonEnability()
+            break
+            
+            
+        case .editExistingClient:
+            
+            print(DataManager.shared.selectedClient)
+            
             self.theImagePickerImageView.image = DataManager.shared.selectedClient!.image ?? UIImage.init(named: "empty_photo_tap_to_pick_image")
             
             self.nameInputTextField.text = DataManager.shared.selectedClient!.name
@@ -344,21 +368,17 @@ class AddOrEditClientViewController: UITableViewController, UIImagePickerControl
             self.patronymicInputTextField.text = DataManager.shared.selectedClient!.patronymic
             self.phoneNumberInputTextField.text = DataManager.shared.selectedClient!.phoneNumber
             
+            
             self.birthdayDatePicker.date = DataManager.shared.selectedClient!.birthdayDate
-            
-//            self.isDatePickerHidden = false
-            
             self.dobLabel.text = DataManager.shared.selectedClient!.birthdayDate.shortDateString
+            
             
             self.isDatePicked = true
             self.saveButton.isEnabled = false
             
-        } else {
-            //этот метод в данном контексте заблокирует saveButton
-            self.updateSaveButtonEnability()
+            break
+            
         }
-        
-        
         
     }
     
